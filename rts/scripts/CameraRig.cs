@@ -1,7 +1,7 @@
 using Godot;
 
 /// <summary>
-/// Orthografische RTS-Kamera im Anno/Civilization-Stil.
+/// Orthografische RTS-Kamera.
 ///
 /// Steuerung:
 ///   • WASD / Pfeiltasten           → schwenken (Pan)
@@ -10,7 +10,7 @@ using Godot;
 ///   • Mittlere Maustaste + Ziehen  → schwenken (Pan)
 ///   • Rechte Maustaste + Ziehen    → drehen (Yaw)
 ///
-/// Pitch ist bewusst fix (Anno-Feel): einmal einstellen im Inspector,
+/// Pitch ist bewusst fix: einmal einstellen im Inspector,
 /// keine Live-Verstellung während des Spiels.
 ///
 /// Szenenstruktur:
@@ -132,6 +132,6 @@ public partial class CameraRig : Node3D
 		return (right, forward);
 	}
 
-	// Weiter herausgezoomt = schnelleres Pan-Feeling (Anno-Standard).
+	// Weiter herausgezoomt = schnelleres Pan-Feeling.
 	private float ZoomMultiplier() => Mathf.Clamp(_camera.Size / 15f, 0.5f, 3f);
 }

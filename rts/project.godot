@@ -24,6 +24,10 @@ window/stretch/aspect="expand"
 
 project/assembly_name="rts"
 
+[gui]
+
+theme/custom="uid://b2nhtivb8dpf4"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

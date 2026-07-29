@@ -1,4 +1,5 @@
 using Godot;
+using RTS.Models;
 using System.Collections.Generic;
 
 public partial class Main : Node3D
@@ -11,8 +12,8 @@ public partial class Main : Node3D
 	private Node3D _hexContainer;
 	private Camera3D _camera;
 
-	private readonly Dictionary<Vector2I, HexTile> _tiles = new();
-	private readonly Dictionary<Vector2I, GhostHexTile> _ghostTiles = new();
+	private readonly Dictionary<Vector2I, HexTileBase> _tiles = [];
+	private readonly Dictionary<Vector2I, GhostHexTile> _ghostTiles = [];
 
 	private bool _buildMode = false;
 
@@ -91,14 +92,14 @@ public partial class Main : Node3D
 		{
 			int q = k.X, r = k.Y;
 			Vector2I[] neighbors =
-			{
-				new Vector2I(q + 1, r),
-				new Vector2I(q, r + 1),
-				new Vector2I(q - 1, r + 1),
-				new Vector2I(q - 1, r),
-				new Vector2I(q, r - 1),
-				new Vector2I(q + 1, r - 1)
-			};
+			[
+				new(q + 1, r),
+				new(q, r + 1),
+				new(q - 1, r + 1),
+				new(q - 1, r),
+				new(q, r - 1),
+				new(q + 1, r - 1)
+			];
 
 			foreach (var n in neighbors)
 			{
@@ -176,7 +177,7 @@ public partial class Main : Node3D
 		else
 		{
 			// not build mode: you can select tiles by coordinate
-			if (_tiles.TryGetValue(hex, out HexTile t))
+			if (_tiles.TryGetValue(hex, out HexTileBase t))
 			{
 				GD.Print($"Clicked tile {hex} (Q={t.Q}, R={t.R})");
 			}

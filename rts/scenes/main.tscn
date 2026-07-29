@@ -56,3 +56,22 @@ projection = 1
 size = 14.0
 
 [node name="HexContainer" type="Node3D" parent="." unique_id=1704159855]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=252425112]
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer" unique_id=38050352]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -74.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Button" type="Button" parent="CanvasLayer/PanelContainer" unique_id=218776149]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Bauen"
+
+[connection signal="pressed" from="CanvasLayer/PanelContainer/Button" to="." method="OnBuildButtonPressed"]
