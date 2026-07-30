@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://hbreeucidmm4"]
 
 [ext_resource type="Script" uid="uid://8qkuii5ev2dd" path="res://scripts/GhostHexTile.cs" id="1_h4dqv"]
+[ext_resource type="PackedScene" uid="uid://cehshrs2at6vv" path="res://scenes/water_hex_tile.tscn" id="2_u6qq0"]
+[ext_resource type="PackedScene" uid="uid://566bmonnby40" path="res://scenes/gras_hex_tile.tscn" id="3_mlyrr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gnbg0"]
 transparency = 1
@@ -19,6 +21,7 @@ radius = 3.0
 
 [node name="GhostHexTile" type="Node3D" unique_id=519360369]
 script = ExtResource("1_h4dqv")
+HexTiles = Array[PackedScene]([ExtResource("2_u6qq0"), ExtResource("3_mlyrr")])
 
 [node name="Body" type="StaticBody3D" parent="." unique_id=367019170]
 
@@ -32,3 +35,24 @@ shape = SubResource("CylinderShape3D_3tcii")
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -0.2, 0)
 text = "+"
 font_size = 400
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=794656727]
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer" unique_id=396352588]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -174.5
+offset_top = -111.0
+offset_right = 174.5
+offset_bottom = 111.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer" unique_id=701622092]
+layout_mode = 2
+text = "Test"

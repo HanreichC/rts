@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cpjrnq5r6dy50"]
 
 [ext_resource type="Script" uid="uid://spt2211mnwgw" path="res://scripts/Main.cs" id="1_o5qli"]
-[ext_resource type="PackedScene" uid="uid://566bmonnby40" path="res://scenes/hex_tile.tscn" id="2_sugp2"]
+[ext_resource type="PackedScene" uid="uid://566bmonnby40" path="res://scenes/gras_hex_tile.tscn" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://hbreeucidmm4" path="res://scenes/ghost_hex_tile.tscn" id="3_jyhfs"]
 [ext_resource type="Script" uid="uid://bmi8wgt4dx5rq" path="res://scripts/CameraRig.cs" id="4_jyhfs"]
 
@@ -21,7 +21,7 @@ ambient_light_source = 3
 tonemap_mode = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h4dqv"]
-albedo_color = Color(0.68235296, 0.7764706, 0.8117647, 1)
+albedo_color = Color(0.16862746, 0.1764706, 0.25882354, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_3tcii"]
 material = SubResource("StandardMaterial3D_h4dqv")
