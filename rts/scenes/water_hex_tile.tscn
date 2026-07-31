@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cehshrs2at6vv"]
 
 [ext_resource type="Script" uid="uid://cgx4uxjcrhijb" path="res://scripts/WaterHexTile.cs" id="1_3i3hi"]
+[ext_resource type="PackedScene" uid="uid://b08o5oxqxnx3w" path="res://scenes/construction_site.tscn" id="2_so3nn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ibg3g"]
 albedo_color = Color(0.05490196, 0.5294118, 0.8, 1)
@@ -28,6 +29,7 @@ radial_segments = 6
 
 [node name="HexTile" type="Node3D" unique_id=937024430]
 script = ExtResource("1_3i3hi")
+ConstructionSiteScene = ExtResource("2_so3nn")
 
 [node name="Body" type="StaticBody3D" parent="." unique_id=1095410016]
 

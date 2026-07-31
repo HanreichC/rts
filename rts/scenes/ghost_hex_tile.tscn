@@ -19,9 +19,11 @@ radial_segments = 6
 height = 0.4
 radius = 3.0
 
-[node name="GhostHexTile" type="Node3D" unique_id=519360369]
+[node name="GhostHexTile" type="Node3D" unique_id=519360369 node_paths=PackedStringArray("PlusLabel", "Container")]
 script = ExtResource("1_h4dqv")
 HexTiles = Array[PackedScene]([ExtResource("2_u6qq0"), ExtResource("3_mlyrr")])
+PlusLabel = NodePath("PlusLabel")
+Container = NodePath("CanvasLayer/PanelContainer")
 
 [node name="Body" type="StaticBody3D" parent="." unique_id=367019170]
 
@@ -33,6 +35,7 @@ shape = SubResource("CylinderShape3D_3tcii")
 
 [node name="PlusLabel" type="Label3D" parent="." unique_id=2058377420]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -0.2, 0)
+outline_modulate = Color(1, 1, 1, 1)
 text = "+"
 font_size = 400
 

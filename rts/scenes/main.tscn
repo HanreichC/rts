@@ -28,10 +28,12 @@ material = SubResource("StandardMaterial3D_h4dqv")
 size = Vector2(1000, 1000)
 center_offset = Vector3(0, -1, 0)
 
-[node name="Main" type="Node3D" unique_id=252113751]
+[node name="Main" type="Node3D" unique_id=252113751 node_paths=PackedStringArray("HexContainer", "Camera")]
 script = ExtResource("1_o5qli")
 HexScene = ExtResource("2_sugp2")
 GhostHexScene = ExtResource("3_jyhfs")
+HexContainer = NodePath("HexContainer")
+Camera = NodePath("CameraRig/PitchPivot/Camera3D")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1557929172]
 environment = SubResource("Environment_env")
@@ -45,7 +47,7 @@ transform = Transform3D(0.8660254, -0.43301272, 0.24999999, 0, 0.49999997, 0.866
 
 [node name="CameraRig" type="Node3D" parent="." unique_id=78357893]
 script = ExtResource("4_jyhfs")
-PitchDegrees = -50.0
+PitchDegrees = -45.0
 
 [node name="PitchPivot" type="Node3D" parent="CameraRig" unique_id=597734696]
 transform = Transform3D(1, 0, 0, 0, 0.5735764, 0.819152, 0, -0.819152, 0.5735764, 0, 0, 0)

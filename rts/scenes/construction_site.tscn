@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://b08o5oxqxnx3w"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3tcii"]
+top_radius = 1.0
+bottom_radius = 1.0
+height = 0.05
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_3tcii"]
+height = 0.05
+radius = 1.0
+
+[node name="Node3D" type="Node3D" unique_id=542154132]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1486203377]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=2118467472]
+mesh = SubResource("CylinderMesh_3tcii")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=691201741]
+shape = SubResource("CylinderShape3D_3tcii")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=1303389964]
+transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, 0.99999994, 0, -0.99999994, -4.3711385e-08, 0, 0.03, -0.065)
+outline_modulate = Color(1, 1, 1, 1)
+text = "+"
+font_size = 400
+width = 400.0

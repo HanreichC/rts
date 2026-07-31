@@ -9,50 +9,49 @@ public partial class Main : Node3D
 
 	[Export] public float HexSize { get; set; } = 3.0f;
 
-	private Node3D _hexContainer;
-	private Camera3D _camera;
+	[Export] public Node3D HexContainer { get; set; }
+	[Export] public Camera3D Camera { get; set; }
 
 	private readonly Dictionary<Vector2I, HexTileBase> _tiles = [];
 	private readonly Dictionary<Vector2I, GhostHexTile> _ghostTiles = [];
 
 	private bool _buildMode = false;
+	private GhostHexTile _activePicker;
 
 	public override void _Ready()
 	{
-		GD.Print("Main._Ready()");
-		_hexContainer = GetNode<Node3D>("HexContainer");
-		_camera = GetNode<Camera3D>("CameraRig/PitchPivot/Camera3D");
-
-		if (_hexContainer == null) { GD.PrintErr("HexContainer missing"); return; }
-		if (HexScene == null) { GD.PrintErr("HexScene missing"); return; }
-		if (GhostHexScene == null) { GD.PrintErr("GhostHexScene missing"); return; }
-
 		CreateStartTiles();
 	}
 
 	private void CreateStartTiles()
 	{
-		AddHex(0, 0);
-		AddHex(1, 0);
-		AddHex(0, 1);
-		AddHex(-1, 1);
-		AddHex(-1, 0);
-		AddHex(0, -1);
-		AddHex(1, -1);
+		AddHex(HexScene, 0, 0);
+		AddHex(HexScene, 1, 0);
+		AddHex(HexScene, 0, 1);
+		AddHex(HexScene, -1, 1);
+		AddHex(HexScene, -1, 0);
+		AddHex(HexScene, 0, -1);
+		AddHex(HexScene, 1, -1);
 	}
 
-	private void AddHex(int q, int r)
+	private void AddHex(PackedScene scene, int q, int r)
 	{
 		var key = new Vector2I(q, r);
 		if (_tiles.ContainsKey(key)) return;
 
-		Node node = HexScene.Instantiate();
-		if (node is not HexTile hex) { GD.PrintErr("HexScene root not HexTile"); return; }
+		Node node = scene.Instantiate();
+		if (node is not HexTileBase hex)
+		{
+			GD.PrintErr("Scene root not HexTileBase");
+			return;
+		}
 
 		hex.Position = AxialToWorld(q, r);
 		hex.Q = q; hex.R = r;
-		_hexContainer.AddChild(hex);
+		HexContainer.AddChild(hex);
 		_tiles[key] = hex;
+
+		if (_buildMode) hex.SetConstructionSiteVisible(true);
 	}
 
 	private void AddGhostHex(int q, int r)
@@ -62,16 +61,21 @@ public partial class Main : Node3D
 		if (_ghostTiles.ContainsKey(key)) return;
 
 		Node node = GhostHexScene.Instantiate();
-		if (node is not GhostHexTile ghost) { GD.PrintErr("GhostScene root not GhostHexTile"); return; }
+		if (node is not GhostHexTile ghost)
+		{
+			GD.PrintErr("GhostScene root not GhostHexTile");
+			return;
+		}
 
 		ghost.Position = AxialToWorld(q, r);
 		ghost.Q = q; ghost.R = r;
-		_hexContainer.AddChild(ghost);
+		HexContainer.AddChild(ghost);
 		_ghostTiles[key] = ghost;
 	}
 
 	private void ClearGhostHexes()
 	{
+		ClosePicker();
 		foreach (var pair in _ghostTiles)
 			if (IsInstanceValid(pair.Value))
 				pair.Value.QueueFree();
@@ -80,6 +84,9 @@ public partial class Main : Node3D
 	private void ToggleBuildMode()
 	{
 		_buildMode = !_buildMode;
+		foreach (var tile in _tiles.Values)
+			tile.SetConstructionSiteVisible(_buildMode);
+
 		if (_buildMode) ShowBuildPositions(); else ClearGhostHexes();
 	}
 
@@ -168,27 +175,59 @@ public partial class Main : Node3D
 		{
 			if (_ghostTiles.TryGetValue(hex, out GhostHexTile ghost))
 			{
-				AddHex(ghost.Q, ghost.R);
-				if (IsInstanceValid(ghost)) ghost.QueueFree();
-				_ghostTiles.Remove(hex);
-				ShowBuildPositions();
+				OpenPicker(ghost);
+				return;
 			}
+			ClosePicker();
+			return;
 		}
-		else
+
+		if (_tiles.TryGetValue(hex, out HexTileBase t))
 		{
-			// not build mode: you can select tiles by coordinate
-			if (_tiles.TryGetValue(hex, out HexTileBase t))
-			{
-				GD.Print($"Clicked tile {hex} (Q={t.Q}, R={t.R})");
-			}
+			GD.Print($"Clicked tile {hex} (Q={t.Q}, R={t.R})");
 		}
+	}
+
+	private void OpenPicker(GhostHexTile ghost)
+	{
+		if (_activePicker == ghost) return;
+		ClosePicker();
+		_activePicker = ghost;
+		ghost.TileSelected += OnTileSelected;
+		ghost.OpenPicker();
+	}
+
+	private void ClosePicker()
+	{
+		if (_activePicker == null) return;
+		if (IsInstanceValid(_activePicker))
+		{
+			_activePicker.TileSelected -= OnTileSelected;
+			_activePicker.ClosePicker();
+		}
+		_activePicker = null;
+	}
+
+	private void OnTileSelected(PackedScene scene)
+	{
+		if (_activePicker == null) return;
+		var key = new Vector2I(_activePicker.Q, _activePicker.R);
+		int q = _activePicker.Q, r = _activePicker.R;
+		var ghost = _activePicker;
+
+		ClosePicker();
+		AddHex(scene, q, r);
+
+		if (IsInstanceValid(ghost)) ghost.QueueFree();
+		_ghostTiles.Remove(key);
+		ShowBuildPositions();
 	}
 
 	private Vector3 GetMouseWorldPointOnGround()
 	{
 		Vector2 mouse = GetViewport().GetMousePosition();
-		Vector3 origin = _camera.ProjectRayOrigin(mouse);
-		Vector3 dir = _camera.ProjectRayNormal(mouse);
+		Vector3 origin = Camera.ProjectRayOrigin(mouse);
+		Vector3 dir = Camera.ProjectRayNormal(mouse);
 
 		Plane ground = new Plane(Vector3.Up, 0f); // Y=0
 		Vector3? intersect = ground.IntersectsRay(origin, dir);
