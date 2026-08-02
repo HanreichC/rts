@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cpjrnq5r6dy50"]
 
 [ext_resource type="Script" uid="uid://spt2211mnwgw" path="res://scripts/Main.cs" id="1_o5qli"]
-[ext_resource type="PackedScene" uid="uid://566bmonnby40" path="res://scenes/gras_hex_tile.tscn" id="2_sugp2"]
+[ext_resource type="PackedScene" uid="uid://566bmonnby40" path="res://scenes/grass_hex_tile.tscn" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://hbreeucidmm4" path="res://scenes/ghost_hex_tile.tscn" id="3_jyhfs"]
 [ext_resource type="Script" uid="uid://bmi8wgt4dx5rq" path="res://scripts/CameraRig.cs" id="4_jyhfs"]
 

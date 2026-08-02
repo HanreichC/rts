@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" uid="uid://8qkuii5ev2dd" path="res://scripts/GhostHexTile.cs" id="1_h4dqv"]
 [ext_resource type="PackedScene" uid="uid://cehshrs2at6vv" path="res://scenes/water_hex_tile.tscn" id="2_u6qq0"]
-[ext_resource type="PackedScene" uid="uid://566bmonnby40" path="res://scenes/gras_hex_tile.tscn" id="3_mlyrr"]
+[ext_resource type="PackedScene" uid="uid://566bmonnby40" path="res://scenes/grass_hex_tile.tscn" id="3_mlyrr"]
+
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gnbg0"]
 transparency = 1
