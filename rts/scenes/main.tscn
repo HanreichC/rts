@@ -47,7 +47,8 @@ transform = Transform3D(0.8660254, -0.43301272, 0.24999999, 0, 0.49999997, 0.866
 
 [node name="CameraRig" type="Node3D" parent="." unique_id=78357893]
 script = ExtResource("4_jyhfs")
-PitchDegrees = -45.0
+MousePanSpeed = 0.02
+PitchDegrees = -35.0
 
 [node name="PitchPivot" type="Node3D" parent="CameraRig" unique_id=597734696]
 transform = Transform3D(1, 0, 0, 0, 0.5735764, 0.819152, 0, -0.819152, 0.5735764, 0, 0, 0)
