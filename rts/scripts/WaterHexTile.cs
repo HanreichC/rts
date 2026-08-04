@@ -1,4 +1,4 @@
-using RTS.Models;
+using RTS.Implementations;
 
 public partial class WaterHexTile : HexTileBase
 {

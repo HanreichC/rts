@@ -1,15 +1,23 @@
-using RTS.Models;
+using RTS.Implementations;
 using Godot;
+using System.Collections.Generic;
 
 public partial class GhostHexTile : HexTileBase
 {
 	[Signal] public delegate void TileSelectedEventHandler(PackedScene scene);
 
-	[Export] public Godot.Collections.Array<PackedScene> HexTiles { get; set; } = new Godot.Collections.Array<PackedScene>();
+	[Export] public Godot.Collections.Array<PackedScene> HexTiles { get; set; } = new();
 
 	[Export] public Label3D PlusLabel { get; set; }
-
 	[Export] public PanelContainer Container { get; set; }
+
+	[ExportGroup("Picker Layout")]
+	[Export] public float PickerRadius { get; set; } = 80f;
+	[Export] public float PickerButtonSize { get; set; } = 64f;
+	[Export] public int PreviewResolution { get; set; } = 128;
+
+	// One preview per scene, shared across ALL ghosts. Rendered once, then cached.
+	private static readonly Dictionary<PackedScene, Texture2D> _previewCache = [];
 
 	public override void _Ready()
 	{
@@ -19,7 +27,6 @@ public partial class GhostHexTile : HexTileBase
 			return;
 		}
 
-		// Free positioning via _Process – anchors would fight the manual Position.
 		Container.SetAnchorsPreset(Control.LayoutPreset.TopLeft, keepOffsets: false);
 		Container.Visible = false;
 		BuildPicker();
@@ -39,21 +46,13 @@ public partial class GhostHexTile : HexTileBase
 		Container.Position = screenPos - new Vector2(Container.Size.X / 2f, Container.Size.Y + 10f);
 	}
 
-	[ExportGroup("Picker Layout")]
-	[Export] public float PickerRadius { get; set; } = 80f;
-	[Export] public float PickerButtonSize { get; set; } = 64f;
-	[Export] public int PreviewResolution { get; set; } = 128;
-
 	private void BuildPicker()
 	{
 		foreach (var child in Container.GetChildren()) child.QueueFree();
 		if (HexTiles.Count == 0) return;
 
 		float wheelSize = (PickerRadius + PickerButtonSize / 2f) * 2f + 16f;
-		var wheel = new Control
-		{
-			CustomMinimumSize = new Vector2(wheelSize, wheelSize)
-		};
+		var wheel = new Control { CustomMinimumSize = new Vector2(wheelSize, wheelSize) };
 		Container.AddChild(wheel);
 
 		Vector2 center = new(wheelSize / 2f, wheelSize / 2f);
@@ -62,12 +61,12 @@ public partial class GhostHexTile : HexTileBase
 		for (int i = 0; i < count; i++)
 		{
 			var scene = HexTiles[i];
-			float angle = Mathf.Tau * i / count - Mathf.Pi / 2f; // start at top, go clockwise
+			float angle = Mathf.Tau * i / count - Mathf.Pi / 2f; // start top, clockwise
 			Vector2 pos = center + new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * PickerRadius;
 
 			var btn = new TextureButton
 			{
-				TextureNormal = RenderPreview(scene),
+				TextureNormal = GetPreview(scene),
 				IgnoreTextureSize = true,
 				StretchMode = TextureButton.StretchModeEnum.KeepAspectCentered,
 				Size = new Vector2(PickerButtonSize, PickerButtonSize),
@@ -76,7 +75,6 @@ public partial class GhostHexTile : HexTileBase
 				TooltipText = scene.ResourcePath.GetFile().GetBaseName()
 			};
 
-			// subtle hover feedback
 			btn.MouseEntered += () => btn.Scale = new Vector2(1.15f, 1.15f);
 			btn.MouseExited += () => btn.Scale = Vector2.One;
 
@@ -87,7 +85,17 @@ public partial class GhostHexTile : HexTileBase
 		}
 	}
 
-	// Renders a tile scene into a texture via an isolated 3D SubViewport.
+	private Texture2D GetPreview(PackedScene scene)
+	{
+		if (_previewCache.TryGetValue(scene, out var cached))
+			return cached;
+
+		var texture = RenderPreview(scene);
+		_previewCache[scene] = texture;
+		return texture;
+	}
+
+	// Renders a tile scene ONCE into a texture via an isolated 3D SubViewport.
 	private Texture2D RenderPreview(PackedScene scene)
 	{
 		var sv = new SubViewport
@@ -95,12 +103,11 @@ public partial class GhostHexTile : HexTileBase
 			Size = new Vector2I(PreviewResolution, PreviewResolution),
 			TransparentBg = true,
 			OwnWorld3D = true,
-			RenderTargetUpdateMode = SubViewport.UpdateMode.Always
+			RenderTargetUpdateMode = SubViewport.UpdateMode.Once // render one frame, then stop
 		};
 		AddChild(sv);
 
-		var tile = scene.Instantiate<Node3D>();
-		sv.AddChild(tile);
+		sv.AddChild(scene.Instantiate<Node3D>());
 
 		var cam = new Camera3D
 		{
@@ -112,11 +119,7 @@ public partial class GhostHexTile : HexTileBase
 		cam.LookAt(Vector3.Zero, Vector3.Up);
 		cam.Current = true;
 
-		var light = new DirectionalLight3D
-		{
-			RotationDegrees = new Vector3(-50, -35, 0)
-		};
-		sv.AddChild(light);
+		sv.AddChild(new DirectionalLight3D { RotationDegrees = new Vector3(-50, -35, 0) });
 
 		return sv.GetTexture();
 	}

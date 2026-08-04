@@ -1,6 +1,6 @@
 using Godot;
 
-namespace RTS.Models
+namespace RTS.Implementations
 {
 	public partial class HexTileBase : Node3D
 	{
