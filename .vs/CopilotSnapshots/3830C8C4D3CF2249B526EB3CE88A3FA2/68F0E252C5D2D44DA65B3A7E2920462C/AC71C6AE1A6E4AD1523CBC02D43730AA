@@ -1,0 +1,71 @@
+﻿shader_type spatial;
+
+render_mode blend_mix, depth_draw_alpha_prepass, cull_disabled;
+
+// Base water appearance.
+uniform vec4 water_color : source_color = vec4(0.0, 0.25, 0.9, 0.72);
+uniform float metallic : hint_range(0.0, 1.0, 0.01) = 0.0;
+uniform float specular : hint_range(0.0, 1.0, 0.01) = 0.85;
+uniform float roughness : hint_range(0.0, 1.0, 0.01) = 0.18;
+
+// Wave movement.
+uniform float wave_height : hint_range(0.0, 2.0, 0.01) = 0.18;
+uniform float wave_scale : hint_range(0.1, 10.0, 0.01) = 1.3;
+uniform float wave_speed : hint_range(0.0, 5.0, 0.01) = 0.8;
+
+// Water depth and opacity.
+uniform float beer_factor : hint_range(0.0, 3.0, 0.01) = 0.35;
+uniform float minimum_alpha : hint_range(0.0, 1.0, 0.01) = 0.18;
+
+uniform sampler2D depth_texture : hint_depth_texture, filter_linear_mipmap;
+
+float wave(vec2 position, float time) {
+	float wave_a = sin(position.x * wave_scale + time * wave_speed);
+	float wave_b = cos(position.y * wave_scale * 1.25 + time * wave_speed * 0.8);
+	float wave_c = sin((position.x + position.y) * wave_scale * 0.7 + time * wave_speed * 1.2);
+
+	return (wave_a + wave_b + wave_c) / 3.0;
+}
+
+void vertex() {
+	VERTEX.y += wave(VERTEX.xz, TIME) * wave_height;
+}
+
+void fragment() {
+	// Derivative-based normal follows the animated vertices.
+	vec3 wave_normal = normalize(cross(dFdx(VERTEX), dFdy(VERTEX)));
+
+	// Ensure the normal faces toward the camera on a two-sided mesh.
+	if (wave_normal.z < 0.0) {
+		wave_normal = -wave_normal;
+	}
+
+	NORMAL = wave_normal;
+	ALBEDO = water_color.rgb;
+	METALLIC = metallic;
+	SPECULAR = specular;
+	ROUGHNESS = roughness;
+
+	// Opaque-water fallback: useful for debugging and intentional opaque water.
+	if (beer_factor <= 0.0) {
+		ALPHA = water_color.a;
+	} else {
+		// Read opaque scene depth behind this water pixel.
+		float scene_depth = texture(depth_texture, SCREEN_UV).r;
+
+		// Reconstruct the scene position in view space.
+		// Do not remap scene_depth to -1..1: Godot 4 uses reverse-Z.
+		vec3 ndc = vec3(SCREEN_UV * 2.0 - 1.0, scene_depth);
+		vec4 scene_view_position = INV_PROJECTION_MATRIX * vec4(ndc, 1.0);
+		scene_view_position.xyz /= scene_view_position.w;
+
+		// In fragment(), VERTEX is the current position in view space.
+		float water_distance = -VERTEX.z;
+		float scene_distance = -scene_view_position.z;
+		float water_thickness = max(scene_distance - water_distance, 0.0);
+
+		// Beer-Lambert absorption: deeper water becomes more opaque.
+		float depth_alpha = 1.0 - exp(-water_thickness * beer_factor);
+		ALPHA = clamp(max(depth_alpha, minimum_alpha) * water_color.a, minimum_alpha, 1.0);
+	}
+}

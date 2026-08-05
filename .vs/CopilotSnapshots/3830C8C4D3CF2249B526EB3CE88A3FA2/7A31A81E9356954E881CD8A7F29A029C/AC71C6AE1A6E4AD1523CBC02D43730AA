@@ -1,0 +1,43 @@
+﻿shader_type spatial;
+
+render_mode cull_disabled;
+
+uniform vec4 water_color : source_color = vec4(0.0, 0.23, 0.78, 1.0);
+uniform float wave_height : hint_range(0.0, 1.5, 0.01) = 0.65;
+uniform float wave_speed : hint_range(0.0, 5.0, 0.01) = 2.2;
+uniform float wave_density : hint_range(0.1, 6.0, 0.01) = 2.35;
+uniform float metallic : hint_range(0.0, 1.0, 0.01) = 0.15;
+uniform float roughness : hint_range(0.0, 1.0, 0.01) = 0.34;
+
+varying float animated_wave;
+
+float random_wave(vec2 position, float time, vec2 direction, float frequency, float speed) {
+	return sin(dot(position, direction) * frequency + time * speed);
+}
+
+float water_height(vec2 position, float time) {
+	float wave_a = random_wave(position, time, normalize(vec2(0.88, 0.47)), wave_density * 1.8, wave_speed);
+	float wave_b = random_wave(position, time, normalize(vec2(-0.35, 0.94)), wave_density * 2.7, wave_speed * 0.73);
+	float wave_c = random_wave(position, time, normalize(vec2(0.61, -0.79)), wave_density * 4.2, wave_speed * 1.46);
+	float wave_d = random_wave(position, time, normalize(vec2(-0.97, -0.24)), wave_density * 1.15, wave_speed * 0.51);
+	float wave_e = random_wave(position, time, normalize(vec2(0.22, -0.98)), wave_density * 5.5, wave_speed * 1.91);
+	float primary_swell = wave_a * 0.38 + wave_b * 0.24 + wave_d * 0.16;
+	float choppy_water = abs(wave_c) * 0.14 + abs(wave_e) * 0.08;
+	return primary_swell + choppy_water;
+}
+
+void vertex() {
+	float height = water_height(VERTEX.xz, TIME);
+	VERTEX.y += height * wave_height;
+	animated_wave = height;
+}
+
+void fragment() {
+	// Derivatives are constant across each rasterized triangle, yielding flat low-poly lighting.
+	NORMAL = normalize(cross(dFdx(VERTEX), dFdy(VERTEX)));
+	float crest = smoothstep(0.45, 0.85, animated_wave);
+	ALBEDO = mix(water_color.rgb, vec3(0.18, 0.53, 0.92), crest * 0.45);
+	METALLIC = metallic;
+	SPECULAR = 0.85;
+	ROUGHNESS = roughness;
+}

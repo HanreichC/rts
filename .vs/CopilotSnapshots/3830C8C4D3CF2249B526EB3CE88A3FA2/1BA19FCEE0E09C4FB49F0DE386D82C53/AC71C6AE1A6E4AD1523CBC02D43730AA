@@ -1,0 +1,45 @@
+﻿shader_type spatial;
+
+render_mode cull_disabled;
+
+uniform vec4 deep_color : source_color = vec4(0.005, 0.055, 0.22, 1.0);
+uniform vec4 shallow_color : source_color = vec4(0.02, 0.34, 0.72, 1.0);
+uniform vec4 crest_color : source_color = vec4(0.5, 0.78, 0.92, 1.0);
+uniform float facet_size : hint_range(0.5, 3.0, 0.1) = 1.5;
+uniform float wave_height : hint_range(0.0, 1.0, 0.01) = 0.28;
+uniform float roughness : hint_range(0.0, 1.0, 0.01) = 0.38;
+
+varying float wave_value;
+
+float wave(vec2 position, float time) {
+	vec2 facet_position = floor(position / facet_size) * facet_size;
+	float wave_a = sin(dot(facet_position, vec2(0.94, 0.34)) * 3.4 + time * 1.10);
+	float wave_b = sin(dot(facet_position, vec2(-0.42, 0.91)) * 2.15 - time * 0.72);
+	float wave_c = sin(dot(facet_position, vec2(0.71, -0.70)) * 4.85 + time * 1.58);
+	float wave_d = cos(dot(facet_position, vec2(0.16, 0.99)) * 1.35 + time * 0.38);
+	return wave_a * 0.42 + wave_b * 0.29 + wave_c * 0.18 + wave_d * 0.11;
+}
+
+void vertex() {
+	float current_wave = wave(VERTEX.xz, TIME);
+	float normal_sample_distance = facet_size;
+	float x_wave = wave(VERTEX.xz + vec2(normal_sample_distance, 0.0), TIME);
+	float z_wave = wave(VERTEX.xz + vec2(0.0, normal_sample_distance), TIME);
+
+	VERTEX.y += current_wave * wave_height;
+	wave_value = current_wave;
+	NORMAL = normalize(vec3(
+		-(x_wave - current_wave) * wave_height / normal_sample_distance,
+		1.0,
+		-(z_wave - current_wave) * wave_height / normal_sample_distance));
+}
+
+void fragment() {
+	float wave_tint = clamp(wave_value * 0.5 + 0.5, 0.0, 1.0);
+	float crest = smoothstep(0.45, 0.8, wave_value);
+	ALBEDO = mix(deep_color.rgb, shallow_color.rgb, wave_tint);
+	ALBEDO = mix(ALBEDO, crest_color.rgb, crest * 0.45);
+	METALLIC = 0.0;
+	SPECULAR = 0.85;
+	ROUGHNESS = roughness;
+}

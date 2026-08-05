@@ -1,0 +1,54 @@
+﻿using Godot;
+using RTS.Implementations;
+using System.Collections.Generic;
+
+public partial class GhostHexTile : HexTileBase
+{
+	[Signal] public delegate void TileSelectedEventHandler(PackedScene scene);
+
+	[Export] public PackedScene GrassHexScene { get; set; }
+	[Export] public PackedScene WaterHexScene { get; set; }
+
+	[Export] public Label3D PlusLabel { get; set; }
+	[Export] public PanelContainer Container { get; set; }
+
+	//[ExportGroup("Picker Layout")]
+	//[Export] public float PickerRadius { get; set; } = 80f;
+	//[Export] public float PickerButtonSize { get; set; } = 64f;
+	//[Export] public int PreviewResolution { get; set; } = 128;
+
+	// One preview per scene, shared across ALL ghosts. Rendered once, then cached.
+	private static readonly Dictionary<PackedScene, Texture2D> _previewCache = [];
+
+	public override void _Ready()
+	{
+		if (Container == null)
+		{
+			GD.PrintErr("GhostHexTile: Container not assigned");
+			return;
+		}
+
+		Container.SetAnchorsPreset(Control.LayoutPreset.TopLeft, keepOffsets: false);
+		Container.Visible = false;
+	}
+
+	public void OpenPicker() => Container.Visible = true;
+	public void ClosePicker() => Container.Visible = false;
+
+	public override void _Process(double delta)
+	{
+		if (Container == null || !Container.Visible) return;
+
+		var camera = GetViewport().GetCamera3D();
+		if (camera == null) return;
+
+		var screenPos = camera.UnprojectPosition(PlusLabel.GlobalPosition);
+		Container.Position = screenPos - new Vector2(Container.Size.X / 2f, Container.Size.Y + 10f);
+	}
+
+	public void OnGrassButtonPressed()
+		=> EmitSignal("TileSelected", GrassHexScene);
+
+	public void OnWaterButtonPressed()
+		=> EmitSignal("TileSelected", WaterHexScene);
+}

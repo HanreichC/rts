@@ -47,8 +47,14 @@ public partial class GhostHexTile : HexTileBase
 	}
 
 	public void OnGrassButtonPressed()
-		=> EmitSignal("TileSelected", GrassHexScene);
+	{
+		if (GrassHexScene != null)
+			EmitSignal(SignalName.TileSelected, GrassHexScene);
+	}
 
 	public void OnWaterButtonPressed()
-		=> EmitSignal("TileSelected", WaterHexScene);
+	{
+		if (WaterHexScene != null)
+			EmitSignal(SignalName.TileSelected, WaterHexScene);
+	}
 }

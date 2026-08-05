@@ -33,7 +33,7 @@ public partial class CameraRig : Node3D
 	[ExportGroup("Zoom")]
 	[Export] public float ZoomStep { get; set; } = 2f;
 	[Export] public float MinZoom { get; set; } = 8f;
-	[Export] public float MaxZoom { get; set; } = 40f;
+	[Export] public float MaxZoom { get; set; } = 80f;
 	[Export] public float ZoomSmoothness { get; set; } = 12f;
 
 	private Node3D _pitchPivot;
@@ -45,11 +45,11 @@ public partial class CameraRig : Node3D
 		_pitchPivot = GetNode<Node3D>("PitchPivot");
 		_camera = GetNode<Camera3D>("PitchPivot/Camera3D");
 
-		_camera.Projection = Camera3D.ProjectionType.Orthogonal;
+		_camera.Projection = Camera3D.ProjectionType.Perspective;
 		_pitchPivot.Rotation = new Vector3(Mathf.DegToRad(PitchDegrees), 0f, 0f);
 
-		_targetZoom = Mathf.Clamp(_camera.Size, MinZoom, MaxZoom);
-		_camera.Size = _targetZoom;
+		_targetZoom = Mathf.Clamp(_camera.Position.Z, MinZoom, MaxZoom);
+		SetCameraDistance(_targetZoom);
 	}
 
 	public override void _Process(double dt)
@@ -110,11 +110,18 @@ public partial class CameraRig : Node3D
 	{
 		if (ZoomSmoothness <= 0f)
 		{
-			_camera.Size = _targetZoom;
+			SetCameraDistance(_targetZoom);
 			return;
 		}
 		float t = 1f - Mathf.Exp(-ZoomSmoothness * delta);
-		_camera.Size = Mathf.Lerp(_camera.Size, _targetZoom, t);
+		SetCameraDistance(Mathf.Lerp(_camera.Position.Z, _targetZoom, t));
+	}
+
+	private void SetCameraDistance(float distance)
+	{
+		Vector3 position = _camera.Position;
+		position.Z = distance;
+		_camera.Position = position;
 	}
 
 	private void PanByScreen(Vector2 screenDelta, float speed)
@@ -133,5 +140,5 @@ public partial class CameraRig : Node3D
 	}
 
 	// Weiter herausgezoomt = schnelleres Pan-Feeling.
-	private float ZoomMultiplier() => Mathf.Clamp(_camera.Size / 15f, 0.5f, 3f);
+	private float ZoomMultiplier() => Mathf.Clamp(_camera.Position.Z / 15f, 0.5f, 3f);
 }

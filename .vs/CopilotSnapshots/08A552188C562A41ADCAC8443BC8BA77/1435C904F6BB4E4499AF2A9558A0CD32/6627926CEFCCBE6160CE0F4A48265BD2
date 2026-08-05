@@ -1,0 +1,90 @@
+﻿[gd_scene format=3 uid="uid://cpjrnq5r6dy50"]
+
+[ext_resource type="Script" uid="uid://spt2211mnwgw" path="res://scripts/Main.cs" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://566bmonnby40" path="res://scenes/grass_hex_tile.tscn" id="2_sugp2"]
+[ext_resource type="PackedScene" uid="uid://hbreeucidmm4" path="res://scenes/ghost_hex_tile.tscn" id="3_jyhfs"]
+[ext_resource type="Script" uid="uid://bmi8wgt4dx5rq" path="res://scripts/CameraRig.cs" id="4_jyhfs"]
+[ext_resource type="Shader" uid="uid://bxewbfojnfmtl" path="res://shader/water.gdshader" id="4_tbgi4"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sky"]
+sky_top_color = Color(0.55, 0.7, 0.85, 1)
+sky_horizon_color = Color(0.78, 0.85, 0.9, 1)
+ground_bottom_color = Color(0.78, 0.85, 0.9, 1)
+ground_horizon_color = Color(0.78, 0.85, 0.9, 1)
+
+[sub_resource type="Sky" id="Sky_env"]
+sky_material = SubResource("ProceduralSkyMaterial_sky")
+
+[sub_resource type="Environment" id="Environment_env"]
+background_mode = 2
+sky = SubResource("Sky_env")
+ambient_light_source = 3
+tonemap_mode = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_76700"]
+render_priority = 0
+shader = ExtResource("4_tbgi4")
+shader_parameter/water_color = Color(0.10980392, 0.4392157, 0.78431374, 1)
+shader_parameter/wave_height = 0.87999998033024
+shader_parameter/wave_speed = 4.21999990567456
+shader_parameter/wave_density = 0.84999998472612
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 0.1999999955296
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3tcii"]
+material = SubResource("ShaderMaterial_76700")
+size = Vector2(600, 600)
+subdivide_width = 500
+subdivide_depth = 500
+center_offset = Vector3(0, -0.5, 0)
+
+[node name="Main" type="Node3D" unique_id=252113751 node_paths=PackedStringArray("HexContainer", "Camera")]
+script = ExtResource("1_o5qli")
+HexScene = ExtResource("2_sugp2")
+GhostHexScene = ExtResource("3_jyhfs")
+HexContainer = NodePath("HexContainer")
+Camera = NodePath("CameraRig/PitchPivot/Camera3D")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1557929172]
+environment = SubResource("Environment_env")
+
+[node name="Ground" type="MeshInstance3D" parent="." unique_id=792901095]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7367337, -0.4210465, 1.2635016)
+mesh = SubResource("PlaneMesh_3tcii")
+
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=2137354030]
+transform = Transform3D(0.8660254, -0.43301272, 0.24999999, 0, 0.49999997, 0.86602545, -0.5, -0.75, 0.43301266, 0, 0, 0)
+
+[node name="CameraRig" type="Node3D" parent="." unique_id=78357893]
+script = ExtResource("4_jyhfs")
+MousePanSpeed = 0.02
+PitchDegrees = -35.0
+
+[node name="PitchPivot" type="Node3D" parent="CameraRig" unique_id=597734696]
+transform = Transform3D(1, 0, 0, 0, 0.5735764, 0.819152, 0, -0.819152, 0.5735764, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraRig/PitchPivot" unique_id=564802915]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
+projection = 1
+size = 14.0
+
+[node name="HexContainer" type="Node3D" parent="." unique_id=1704159855]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=252425112]
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer" unique_id=38050352]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -74.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Button" type="Button" parent="CanvasLayer/PanelContainer" unique_id=218776149]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Bauen"
+
+[connection signal="pressed" from="CanvasLayer/PanelContainer/Button" to="." method="OnBuildButtonPressed"]

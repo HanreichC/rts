@@ -1,0 +1,52 @@
+﻿shader_type spatial;
+
+render_mode cull_disabled;
+
+uniform vec4 water_color : source_color = vec4(0.0, 0.23, 0.78, 1.0);
+uniform float wave_height : hint_range(0.0, 1.5, 0.01) = 0.65;
+uniform float wave_speed : hint_range(0.0, 5.0, 0.01) = 2.2;
+uniform float wave_density : hint_range(0.1, 6.0, 0.01) = 2.35;
+uniform float metallic : hint_range(0.0, 1.0, 0.01) = 0.15;
+uniform float roughness : hint_range(0.0, 1.0, 0.01) = 0.34;
+
+varying float animated_wave;
+varying float collision_strength;
+
+float directional_wave(vec2 position, float time, vec2 direction, float frequency, float speed, float phase) {
+	return sin(dot(position, direction) * frequency + time * speed + phase);
+}
+
+float swell_collision(vec2 position, float time) {
+	float swell_a = directional_wave(position, time, normalize(vec2(0.92, 0.39)), wave_density * 1.15, wave_speed * 0.48, 0.0);
+	float swell_b = directional_wave(position, time, normalize(vec2(-0.46, 0.89)), wave_density * 1.72, wave_speed * -0.37, 1.9);
+	return swell_a * swell_b;
+}
+
+float water_height(vec2 position, float time) {
+	float swell_a = directional_wave(position, time, normalize(vec2(0.78, 0.62)), wave_density * 0.42, wave_speed * 0.23, 0.0);
+	float swell_b = directional_wave(position, time, normalize(vec2(-0.41, 0.91)), wave_density * 0.61, wave_speed * -0.17, 1.9);
+	float swell_c = directional_wave(position, time, normalize(vec2(0.94, -0.34)), wave_density * 0.83, wave_speed * 0.31, 4.1);
+
+	vec2 warped_position = position + vec2(swell_b + swell_c, -swell_a) * 1.7;
+	float wave_a = directional_wave(warped_position, time, normalize(vec2(0.19, -0.98)), wave_density * 1.35, wave_speed * 0.74, 0.7);
+	float wave_b = directional_wave(warped_position, time, normalize(vec2(-0.87, -0.49)), wave_density * 1.72, wave_speed * -0.56, 2.8);
+	float variation = directional_wave(position, time, normalize(vec2(0.56, -0.83)), wave_density * 0.19, wave_speed * 0.11, 3.4) * 0.5 + 0.5;
+
+	return swell_a * (0.36 + variation * 0.10) + swell_b * 0.30 + swell_c * 0.21 + wave_a * 0.09 + wave_b * 0.06;
+}
+
+void vertex() {
+	float height = water_height(VERTEX.xz, TIME);
+	VERTEX.y += height * wave_height;
+	animated_wave = height;
+	collision_strength = max(swell_collision(VERTEX.xz, TIME), 0.0);
+}
+
+void fragment() {
+	// Derivatives are constant across each rasterized triangle, yielding flat low-poly lighting.
+	NORMAL = normalize(cross(dFdx(VERTEX), dFdy(VERTEX)));
+	ALBEDO = water_color.rgb;
+	METALLIC = metallic;
+	SPECULAR = 0.85;
+	ROUGHNESS = roughness;
+}

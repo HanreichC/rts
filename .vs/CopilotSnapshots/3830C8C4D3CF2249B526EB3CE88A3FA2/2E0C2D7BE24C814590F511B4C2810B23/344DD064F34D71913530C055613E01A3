@@ -1,0 +1,38 @@
+﻿shader_type spatial;
+
+render_mode cull_disabled;
+
+uniform vec4 water_color : source_color = vec4(0.01, 0.18, 0.75, 1.0);
+uniform float metallic : hint_range(0.0, 1.0, 0.01) = 0.0;
+uniform float specular : hint_range(0.0, 1.0, 0.01) = 0.75;
+uniform float roughness : hint_range(0.0, 1.0, 0.01) = 0.3;
+uniform float wave_height : hint_range(0.0, 2.0, 0.01) = 0.8;
+uniform float wave_scale : hint_range(0.01, 5.0, 0.01) = 0.18;
+uniform float wave_speed : hint_range(0.0, 5.0, 0.01) = 0.75;
+
+float wave(vec2 position, float time) {
+	float wave_a = sin(position.x * wave_scale + time * wave_speed);
+	float wave_b = cos(position.y * wave_scale * 1.25 + time * wave_speed * 0.8);
+	float wave_c = sin((position.x + position.y) * wave_scale * 0.7 + time * wave_speed * 1.2);
+	return (wave_a + wave_b + wave_c) / 3.0;
+}
+
+void vertex() {
+	float current_wave = wave(VERTEX.xz, TIME);
+	float normal_sample_distance = 0.1;
+	float x_wave = wave(VERTEX.xz + vec2(normal_sample_distance, 0.0), TIME);
+	float z_wave = wave(VERTEX.xz + vec2(0.0, normal_sample_distance), TIME);
+
+	VERTEX.y += current_wave * wave_height;
+	NORMAL = normalize(vec3(
+		-(x_wave - current_wave) * wave_height / normal_sample_distance,
+		1.0,
+		-(z_wave - current_wave) * wave_height / normal_sample_distance));
+}
+
+void fragment() {
+	ALBEDO = water_color.rgb;
+	METALLIC = metallic;
+	SPECULAR = specular;
+	ROUGHNESS = roughness;
+}

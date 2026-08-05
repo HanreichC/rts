@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b08o5oxqxnx3w" path="res://scenes/construction_site.tscn" id="2_so3nn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ibg3g"]
-albedo_color = Color(0.05490196, 0.5294118, 0.8, 1)
+albedo_color = Color(0.10980392, 0.4392157, 0.78431374, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_mxcym"]
 material = SubResource("StandardMaterial3D_ibg3g")
