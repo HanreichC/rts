@@ -155,6 +155,8 @@ public partial class Main : Node3D
 
 	private void OnTileSelected(PackedScene scene)
 	{
+		GD.Print($"Selected {scene.ResourcePath.GetFile().GetBaseName()} at {_activePicker.Q}, {_activePicker.R}");
+
 		if (_activePicker == null)
 			return;
 

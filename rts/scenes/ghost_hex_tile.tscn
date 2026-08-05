@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://cehshrs2at6vv" path="res://scenes/water_hex_tile.tscn" id="2_u6qq0"]
 [ext_resource type="PackedScene" uid="uid://566bmonnby40" path="res://scenes/grass_hex_tile.tscn" id="3_mlyrr"]
 
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gnbg0"]
 transparency = 1
 albedo_color = Color(1, 1, 1, 0.06666667)
@@ -22,7 +21,8 @@ radius = 3.0
 
 [node name="GhostHexTile" type="Node3D" unique_id=519360369 node_paths=PackedStringArray("PlusLabel", "Container")]
 script = ExtResource("1_h4dqv")
-HexTiles = Array[PackedScene]([ExtResource("2_u6qq0"), ExtResource("3_mlyrr")])
+GrassHexScene = ExtResource("3_mlyrr")
+WaterHexScene = ExtResource("2_u6qq0")
 PlusLabel = NodePath("PlusLabel")
 Container = NodePath("CanvasLayer/PanelContainer")
 
@@ -35,7 +35,7 @@ mesh = SubResource("CylinderMesh_3tcii")
 shape = SubResource("CylinderShape3D_3tcii")
 
 [node name="PlusLabel" type="Label3D" parent="." unique_id=2058377420]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -0.2, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -0.2, -0.06028819)
 outline_modulate = Color(1, 1, 1, 1)
 text = "+"
 font_size = 400
@@ -50,13 +50,25 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -174.5
 offset_top = -111.0
-offset_right = 174.5
-offset_bottom = 111.0
+offset_right = -50.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 
-[node name="Label" type="Label" parent="CanvasLayer/PanelContainer" unique_id=701622092]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer" unique_id=223783681]
 layout_mode = 2
-text = "Test"
+
+[node name="GrassButton" type="Button" parent="CanvasLayer/PanelContainer/VBoxContainer" unique_id=1167059215]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Gras"
+
+[node name="WaterButton" type="Button" parent="CanvasLayer/PanelContainer/VBoxContainer" unique_id=1621355684]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Wasser"
+
+[connection signal="pressed" from="CanvasLayer/PanelContainer/VBoxContainer/GrassButton" to="." method="OnGrassButtonPressed"]
+[connection signal="pressed" from="CanvasLayer/PanelContainer/VBoxContainer/WaterButton" to="." method="OnWaterButtonPressed"]
