@@ -1,5 +1,8 @@
 [gd_scene format=3 uid="uid://b08o5oxqxnx3w"]
 
+[ext_resource type="Script" uid="uid://nchaf2d6xrj4" path="res://scripts/ConstructionSite.cs" id="1_l1rfi"]
+[ext_resource type="PackedScene" uid="uid://dquqqqmydjq1t" path="res://scenes/house.tscn" id="2_ljql8"]
+
 [sub_resource type="CylinderMesh" id="CylinderMesh_3tcii"]
 top_radius = 1.0
 bottom_radius = 1.0
@@ -9,7 +12,11 @@ height = 0.05
 height = 0.05
 radius = 1.0
 
-[node name="Node3D" type="Node3D" unique_id=542154132]
+[node name="Node3D" type="Node3D" unique_id=542154132 node_paths=PackedStringArray("BuildingSelectionPanel", "PlusLabel")]
+script = ExtResource("1_l1rfi")
+HouseScene = ExtResource("2_ljql8")
+BuildingSelectionPanel = NodePath("CanvasLayer/BuildingSelectionPanel")
+PlusLabel = NodePath("PlusLabel")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1486203377]
 
@@ -19,9 +26,31 @@ mesh = SubResource("CylinderMesh_3tcii")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=691201741]
 shape = SubResource("CylinderShape3D_3tcii")
 
-[node name="Label3D" type="Label3D" parent="." unique_id=1303389964]
+[node name="PlusLabel" type="Label3D" parent="." unique_id=1303389964]
 transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, 0.99999994, 0, -0.99999994, -4.3711385e-08, 0, 0.03, -0.065)
 outline_modulate = Color(1, 1, 1, 1)
 text = "+"
 font_size = 400
 width = 400.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1642624153]
+
+[node name="BuildingSelectionPanel" type="PanelContainer" parent="CanvasLayer" unique_id=34167122]
+offset_left = 531.0
+offset_top = 258.0
+offset_right = 631.0
+offset_bottom = 358.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/BuildingSelectionPanel" unique_id=695121634]
+layout_mode = 2
+
+[node name="HouseButton" type="Button" parent="CanvasLayer/BuildingSelectionPanel/VBoxContainer" unique_id=1278355091]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Haus"
+
+[node name="HFlowContainer" type="HFlowContainer" parent="CanvasLayer/BuildingSelectionPanel/VBoxContainer" unique_id=110768231]
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="pressed" from="CanvasLayer/BuildingSelectionPanel/VBoxContainer/HouseButton" to="." method="OnHouseButtonPressed"]

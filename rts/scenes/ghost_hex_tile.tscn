@@ -19,12 +19,12 @@ radial_segments = 6
 height = 0.4
 radius = 3.0
 
-[node name="GhostHexTile" type="Node3D" unique_id=519360369 node_paths=PackedStringArray("PlusLabel", "Container")]
+[node name="GhostHexTile" type="Node3D" unique_id=519360369 node_paths=PackedStringArray("PlusLabel", "HexTileSelectionPanel")]
 script = ExtResource("1_h4dqv")
 GrassHexScene = ExtResource("3_mlyrr")
 WaterHexScene = ExtResource("2_u6qq0")
 PlusLabel = NodePath("PlusLabel")
-Container = NodePath("CanvasLayer/PanelContainer")
+HexTileSelectionPanel = NodePath("CanvasLayer/HexTileSelectionPanel")
 
 [node name="Body" type="StaticBody3D" parent="." unique_id=367019170]
 
@@ -42,7 +42,7 @@ font_size = 400
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=794656727]
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer" unique_id=396352588]
+[node name="HexTileSelectionPanel" type="PanelContainer" parent="CanvasLayer" unique_id=396352588]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -50,25 +50,25 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -174.5
 offset_top = -111.0
-offset_right = -50.0
-offset_bottom = 20.0
+offset_right = -74.5
+offset_bottom = -11.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer" unique_id=223783681]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HexTileSelectionPanel" unique_id=223783681]
 layout_mode = 2
 
-[node name="GrassButton" type="Button" parent="CanvasLayer/PanelContainer/VBoxContainer" unique_id=1167059215]
+[node name="GrassButton" type="Button" parent="CanvasLayer/HexTileSelectionPanel/VBoxContainer" unique_id=1167059215]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Gras"
 
-[node name="WaterButton" type="Button" parent="CanvasLayer/PanelContainer/VBoxContainer" unique_id=1621355684]
+[node name="WaterButton" type="Button" parent="CanvasLayer/HexTileSelectionPanel/VBoxContainer" unique_id=1621355684]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Wasser"
 
-[connection signal="pressed" from="CanvasLayer/PanelContainer/VBoxContainer/GrassButton" to="." method="OnGrassButtonPressed"]
-[connection signal="pressed" from="CanvasLayer/PanelContainer/VBoxContainer/WaterButton" to="." method="OnWaterButtonPressed"]
+[connection signal="pressed" from="CanvasLayer/HexTileSelectionPanel/VBoxContainer/GrassButton" to="." method="OnGrassButtonPressed"]
+[connection signal="pressed" from="CanvasLayer/HexTileSelectionPanel/VBoxContainer/WaterButton" to="." method="OnWaterButtonPressed"]

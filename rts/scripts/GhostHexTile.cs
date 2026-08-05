@@ -10,40 +10,32 @@ public partial class GhostHexTile : HexTileBase
 	[Export] public PackedScene WaterHexScene { get; set; }
 
 	[Export] public Label3D PlusLabel { get; set; }
-	[Export] public PanelContainer Container { get; set; }
-
-	//[ExportGroup("Picker Layout")]
-	//[Export] public float PickerRadius { get; set; } = 80f;
-	//[Export] public float PickerButtonSize { get; set; } = 64f;
-	//[Export] public int PreviewResolution { get; set; } = 128;
-
-	// One preview per scene, shared across ALL ghosts. Rendered once, then cached.
-	private static readonly Dictionary<PackedScene, Texture2D> _previewCache = [];
+	[Export] public PanelContainer HexTileSelectionPanel { get; set; }
 
 	public override void _Ready()
 	{
-		if (Container == null)
+		if (HexTileSelectionPanel == null)
 		{
-			GD.PrintErr("GhostHexTile: Container not assigned");
+			GD.PrintErr("GhostHexTile: HexTileSelectionPanel not assigned");
 			return;
 		}
 
-		Container.SetAnchorsPreset(Control.LayoutPreset.TopLeft, keepOffsets: false);
-		Container.Visible = false;
+		HexTileSelectionPanel.SetAnchorsPreset(Control.LayoutPreset.TopLeft, keepOffsets: false);
+		HexTileSelectionPanel.Visible = false;
 	}
 
-	public void OpenPicker() => Container.Visible = true;
-	public void ClosePicker() => Container.Visible = false;
+	public void OpenPicker() => HexTileSelectionPanel.Visible = true;
+	public void ClosePicker() => HexTileSelectionPanel.Visible = false;
 
 	public override void _Process(double delta)
 	{
-		if (Container == null || !Container.Visible) return;
+		if (HexTileSelectionPanel == null || !HexTileSelectionPanel.Visible) return;
 
 		var camera = GetViewport().GetCamera3D();
 		if (camera == null) return;
 
 		var screenPos = camera.UnprojectPosition(PlusLabel.GlobalPosition);
-		Container.Position = screenPos - new Vector2(Container.Size.X / 2f, Container.Size.Y + 10f);
+		HexTileSelectionPanel.Position = screenPos - new Vector2(HexTileSelectionPanel.Size.X / 2f, HexTileSelectionPanel.Size.Y + 10f);
 	}
 
 	public void OnGrassButtonPressed()

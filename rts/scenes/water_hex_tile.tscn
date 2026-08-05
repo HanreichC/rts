@@ -2,30 +2,32 @@
 
 [ext_resource type="Script" uid="uid://cgx4uxjcrhijb" path="res://scripts/WaterHexTile.cs" id="1_3i3hi"]
 [ext_resource type="PackedScene" uid="uid://b08o5oxqxnx3w" path="res://scenes/construction_site.tscn" id="2_so3nn"]
+[ext_resource type="Shader" uid="uid://bxewbfojnfmtl" path="res://shader/water.gdshader" id="3_wu2yf"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ibg3g"]
-albedo_color = Color(0.10980392, 0.4392157, 0.78431374, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_go6ie"]
+render_priority = 0
+shader = ExtResource("3_wu2yf")
+shader_parameter/water_color = Color(0.10980392, 0.4392157, 0.78431374, 1)
+shader_parameter/wave_height = 1.499999966472
+shader_parameter/wave_speed = 0.86999998055376
+shader_parameter/wave_density = 1.34999997355012
+shader_parameter/turbulence = 0.92
+shader_parameter/metallic = 0.15
+shader_parameter/roughness = 0.34
+shader_parameter/highlight_color = Color(1, 1, 1, 1)
+shader_parameter/highlight_strength = 0.0
+shader_parameter/clip_to_hex = true
+shader_parameter/hex_radius = 3.0
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_mxcym"]
-material = SubResource("StandardMaterial3D_ibg3g")
-top_radius = 2.95
-bottom_radius = 2.95
-height = 0.4
-radial_segments = 6
+[sub_resource type="PlaneMesh" id="PlaneMesh_go6ie"]
+material = SubResource("ShaderMaterial_go6ie")
+size = Vector2(6, 6)
+subdivide_width = 24
+subdivide_depth = 24
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_mxcym"]
 height = 0.4
 radius = 3.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_txdkp"]
-albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_ibg3g"]
-material = SubResource("StandardMaterial3D_txdkp")
-top_radius = 3.0
-bottom_radius = 3.0
-height = 0.38
-radial_segments = 6
 
 [node name="HexTile" type="Node3D" unique_id=937024430]
 script = ExtResource("1_3i3hi")
@@ -34,10 +36,7 @@ ConstructionSiteScene = ExtResource("2_so3nn")
 [node name="Body" type="StaticBody3D" parent="." unique_id=1095410016]
 
 [node name="Mesh" type="MeshInstance3D" parent="Body" unique_id=2001022025]
-mesh = SubResource("CylinderMesh_mxcym")
+mesh = SubResource("PlaneMesh_go6ie")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Body" unique_id=1057021608]
 shape = SubResource("CylinderShape3D_mxcym")
-
-[node name="OutlineMesh" type="MeshInstance3D" parent="Body" unique_id=502872405]
-mesh = SubResource("CylinderMesh_ibg3g")

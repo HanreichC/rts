@@ -26,11 +26,15 @@ render_priority = 0
 shader = ExtResource("4_tbgi4")
 shader_parameter/water_color = Color(0.10980392, 0.4392157, 0.78431374, 1)
 shader_parameter/wave_height = 1.499999966472
-shader_parameter/wave_speed = 5.0
-shader_parameter/wave_density = 0.74999998696132
-shader_parameter/turbulence = 0.999999977648
-shader_parameter/metallic = 0.0
+shader_parameter/wave_speed = 4.99999988824
+shader_parameter/wave_density = 5.99999986961332
+shader_parameter/turbulence = 0.0999999977648
+shader_parameter/metallic = 0.1999999955296
 shader_parameter/roughness = 0.0
+shader_parameter/highlight_color = Color(1, 1, 1, 1)
+shader_parameter/highlight_strength = 0.0
+shader_parameter/clip_to_hex = false
+shader_parameter/hex_radius = 3.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_3tcii"]
 material = SubResource("ShaderMaterial_76700")
@@ -49,7 +53,8 @@ Camera = NodePath("CameraRig/PitchPivot/Camera3D")
 environment = SubResource("Environment_env")
 
 [node name="Ground" type="MeshInstance3D" parent="." unique_id=792901095]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7367337, -0.4210465, 1.2635016)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.737, -20, 1.264)
+visible = false
 mesh = SubResource("PlaneMesh_3tcii")
 
 [node name="Sun" type="DirectionalLight3D" parent="." unique_id=2137354030]
