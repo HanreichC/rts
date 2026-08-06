@@ -8,12 +8,12 @@
 render_priority = 0
 shader = ExtResource("3_wu2yf")
 shader_parameter/water_color = Color(0.10980392, 0.4392157, 0.78431374, 1)
-shader_parameter/wave_height = 1.499999966472
-shader_parameter/wave_speed = 0.86999998055376
-shader_parameter/wave_density = 1.34999997355012
-shader_parameter/turbulence = 0.92
-shader_parameter/metallic = 0.15
-shader_parameter/roughness = 0.34
+shader_parameter/wave_height = 0.70999998413008
+shader_parameter/wave_speed = 1.17999997362464
+shader_parameter/wave_density = 1.4599999710914
+shader_parameter/turbulence = 0.999999977648
+shader_parameter/metallic = 0.499999988824
+shader_parameter/roughness = 0.0
 shader_parameter/highlight_color = Color(1, 1, 1, 1)
 shader_parameter/highlight_strength = 0.0
 shader_parameter/clip_to_hex = true
@@ -26,12 +26,13 @@ subdivide_width = 24
 subdivide_depth = 24
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_mxcym"]
-height = 0.4
+height = 0.8
 radius = 3.0
 
 [node name="HexTile" type="Node3D" unique_id=937024430]
 script = ExtResource("1_3i3hi")
 ConstructionSiteScene = ExtResource("2_so3nn")
+HexTileHeight = 0.8
 
 [node name="Body" type="StaticBody3D" parent="." unique_id=1095410016]
 
@@ -39,4 +40,5 @@ ConstructionSiteScene = ExtResource("2_so3nn")
 mesh = SubResource("PlaneMesh_go6ie")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Body" unique_id=1057021608]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
 shape = SubResource("CylinderShape3D_mxcym")

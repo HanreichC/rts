@@ -6,7 +6,6 @@ public partial class WaterHexTile : HexTileBase
 	// Must match shader_parameter/hex_radius on the top mesh's material (the shader's
 	// clip_to_hex test uses this as the hexagon's circumradius).
 	[Export] public float HexRadius { get; set; } = 3.0f;
-	[Export] public float WallHeight { get; set; } = 1f;
 	[Export] public NodePath TopMeshPath { get; set; } = "Body/Mesh";
 	// Segments per hex edge. The wall's top edge is only linear between hex corners; subdividing
 	// it lets the shader's per-vertex wave displacement follow the water surface's ripple shape
@@ -15,6 +14,7 @@ public partial class WaterHexTile : HexTileBase
 
 	public override void _Ready()
 	{
+		base._Ready();
 		BuildTopMesh();
 		BuildWalls();
 	}
@@ -127,8 +127,8 @@ public partial class WaterHexTile : HexTileBase
 
 				var top0 = new Vector3(p0.X, 0f, p0.Y);
 				var top1 = new Vector3(p1.X, 0f, p1.Y);
-				var bottom0 = new Vector3(p0.X, -WallHeight, p0.Y);
-				var bottom1 = new Vector3(p1.X, -WallHeight, p1.Y);
+				var bottom0 = new Vector3(p0.X, -HexTileHeight, p0.Y);
+				var bottom1 = new Vector3(p1.X, -HexTileHeight, p1.Y);
 
 				surfaceTool.SetNormal(normal);
 				surfaceTool.AddVertex(top0);

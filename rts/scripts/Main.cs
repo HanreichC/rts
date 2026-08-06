@@ -13,6 +13,8 @@ public partial class Main : Node3D
 	[Export] public Node3D HexContainer { get; set; }
 	[Export] public Camera3D Camera { get; set; }
 
+	[Export] public float WaterHexTileYOffset { get; set; } = 0.5f;
+
 	private readonly Dictionary<Vector2I, HexTileBase> _tiles = [];
 	private readonly Dictionary<Vector2I, GhostHexTile> _ghostTiles = [];
 
@@ -45,7 +47,13 @@ public partial class Main : Node3D
 			return;
 		}
 
-		hex.Position = HexGrid.AxialToWorld(key, HexSize);
+		var position = hex.Position = HexGrid.AxialToWorld(key, HexSize);
+
+
+		if (hex is WaterHexTile)
+			position.Y = WaterHexTileYOffset;
+
+		hex.Position = position;
 		hex.Q = key.X;
 		hex.R = key.Y;
 
@@ -73,8 +81,10 @@ public partial class Main : Node3D
 			GD.PrintErr("Building scene root not Node3D");
 			return;
 		}
-		hex.ConstructionSite.AddChild(building);
-		building.Position = Vector3.Zero; // Adjust as needed
+
+		//building.Position = new Vector3(0, hex.HexTileHeight, 0);
+		hex.AddBuilding(building);
+		//hex.AddChild(building);
 	}
 
 	private void AddGhostHexTile(Vector2I key)
@@ -99,7 +109,6 @@ public partial class Main : Node3D
 
 	private void ClearGhostHexTiles()
 	{
-		CloseHexTilePicker();
 		foreach (var ghost in _ghostTiles.Values)
 			if (IsInstanceValid(ghost))
 				ghost.QueueFree();
@@ -220,6 +229,7 @@ public partial class Main : Node3D
 
 		AddHexTile(scene, key);      // occupies the tile
 		ShowBuildPositions();    // rebuilds ghosts -> old ghost cleaned up here
+		CloseHexTilePicker();
 	}
 
 	private void OnBuildingPickerSelected(PackedScene scene)
@@ -232,6 +242,7 @@ public partial class Main : Node3D
 		var key = new Vector2I(_selectedHexTile.Q, _selectedHexTile.R);
 
 		AddBuilding(scene, key);
+		CloseConstructionSitePicker();
 	}
 
 

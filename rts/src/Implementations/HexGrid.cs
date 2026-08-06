@@ -1,10 +1,14 @@
 ﻿using Godot;
+using System;
 
 namespace rts.Implementations;
 
 /// <summary>Pure hex-grid math (flat-top, axial coords). No scene state.</summary>
 public static class HexGrid
 {
+    private static readonly Random _rng = new();
+    public static float RandomRotation() => _rng.Next(6) * 60f; // 0,60,120,180,240,300
+
     /// <summary>The six axial neighbor offsets.</summary>
     public static readonly Vector2I[] Directions =
     [

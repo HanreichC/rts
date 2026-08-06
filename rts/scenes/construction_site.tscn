@@ -3,7 +3,13 @@
 [ext_resource type="Script" uid="uid://nchaf2d6xrj4" path="res://scripts/ConstructionSite.cs" id="1_l1rfi"]
 [ext_resource type="PackedScene" uid="uid://dquqqqmydjq1t" path="res://scenes/house.tscn" id="2_ljql8"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ljql8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vc6nt"]
+albedo_color = Color(0.7490196, 0.73333335, 0.7176471, 1)
+
 [sub_resource type="CylinderMesh" id="CylinderMesh_3tcii"]
+material = SubResource("StandardMaterial3D_vc6nt")
 top_radius = 1.0
 bottom_radius = 1.0
 height = 0.05
@@ -19,6 +25,7 @@ BuildingSelectionPanel = NodePath("CanvasLayer/BuildingSelectionPanel")
 PlusLabel = NodePath("PlusLabel")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1486203377]
+physics_material_override = SubResource("PhysicsMaterial_ljql8")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=2118467472]
 mesh = SubResource("CylinderMesh_3tcii")
