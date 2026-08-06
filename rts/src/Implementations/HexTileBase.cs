@@ -10,19 +10,23 @@ namespace RTS.Implementations
 		public int Q { get; set; } = 0;
 		public int R { get; set; } = 0;
 
-		private Node3D _constructionSite;
+		public ConstructionSite ConstructionSite;
 
-		public void SetConstructionSiteVisible(bool visible)
+		public override void _Ready()
+        {
+            ConstructionSite = ConstructionSiteScene.Instantiate<ConstructionSite>();
+            AddChild(ConstructionSite);
+            ConstructionSite.Position = new Vector3(0, ConstructionSiteHeight, 0);
+
+			SetConstructionSiteVisible(false);
+        }
+
+        public void SetConstructionSiteVisible(bool visible)
 		{
-			if (visible && _constructionSite == null && ConstructionSiteScene != null)
-			{
-				_constructionSite = ConstructionSiteScene.Instantiate<Node3D>();
-				AddChild(_constructionSite);
-				_constructionSite.Position = new Vector3(0, ConstructionSiteHeight, 0);
-			}
+			if (ConstructionSite == null)
+				return;
 
-			if (_constructionSite != null)
-				_constructionSite.Visible = visible;
+			ConstructionSite.Visible = visible;
 		}
 	}
 }

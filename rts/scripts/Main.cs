@@ -17,7 +17,9 @@ public partial class Main : Node3D
 	private readonly Dictionary<Vector2I, GhostHexTile> _ghostTiles = [];
 
 	private bool _buildMode = false;
-	private GhostHexTile _activePicker;
+
+	private GhostHexTile _selectedGhostHexTile;
+	private HexTileBase _selectedHexTile;
 
 	public override void _Ready() => CreateStartTiles();
 
@@ -29,10 +31,10 @@ public partial class Main : Node3D
 			new(-1, 0), new(0, -1), new(1, -1)
 		];
 		foreach (var hex in start)
-			AddHex(HexScene, hex);
+			AddHexTile(HexScene, hex);
 	}
 
-	private void AddHex(PackedScene hexScene, Vector2I key)
+	private void AddHexTile(PackedScene hexScene, Vector2I key)
 	{
 		if (_tiles.ContainsKey(key))
 			return;
@@ -54,9 +56,31 @@ public partial class Main : Node3D
 			hex.SetConstructionSiteVisible(true);
 	}
 
-	private void AddGhostHex(Vector2I key)
+	private void AddBuilding(PackedScene buildingScene, Vector2I key)
 	{
-		if (_tiles.ContainsKey(key) || _ghostTiles.ContainsKey(key))
+		if (!_tiles.TryGetValue(key, out HexTileBase hex))
+		{
+			GD.PrintErr($"No hex tile at {key} to add building to");
+			return;
+		}
+		if (hex.ConstructionSite == null)
+		{
+			GD.PrintErr($"Hex tile at {key} has no construction site to add building to");
+			return;
+		}
+		if (buildingScene.Instantiate() is not Node3D building)
+		{
+			GD.PrintErr("Building scene root not Node3D");
+			return;
+		}
+		hex.ConstructionSite.AddChild(building);
+		building.Position = Vector3.Zero; // Adjust as needed
+	}
+
+	private void AddGhostHexTile(Vector2I key)
+	{
+		if (_tiles.ContainsKey(key)
+			|| _ghostTiles.ContainsKey(key))
 			return;
 
 		if (GhostHexScene.Instantiate() is not GhostHexTile ghost)
@@ -73,9 +97,9 @@ public partial class Main : Node3D
 		_ghostTiles[key] = ghost;
 	}
 
-	private void ClearGhostHexes()
+	private void ClearGhostHexTiles()
 	{
-		ClosePicker();
+		CloseHexTilePicker();
 		foreach (var ghost in _ghostTiles.Values)
 			if (IsInstanceValid(ghost))
 				ghost.QueueFree();
@@ -91,16 +115,16 @@ public partial class Main : Node3D
 		if (_buildMode)
 			ShowBuildPositions();
 		else
-			ClearGhostHexes();
+			ClearGhostHexTiles();
 	}
 
 	private void ShowBuildPositions()
 	{
-		ClearGhostHexes();
+		ClearGhostHexTiles();
 
 		foreach (var key in _tiles.Keys)
 			foreach (var dir in HexGrid.Directions)
-				AddGhostHex(key + dir); // AddGhostHex already de-dupes
+				AddGhostHexTile(key + dir); // AddGhostHex already de-dupes
 	}
 
 	public override void _UnhandledInput(InputEvent @event)
@@ -114,14 +138,19 @@ public partial class Main : Node3D
 
 	private void HandleLeftClick()
 	{
+		CloseHexTilePicker();
+		CloseConstructionSitePicker();
+
 		var hex = HexGrid.WorldToAxial(GetMouseWorldPointOnGround(), HexSize);
 
 		if (_buildMode)
 		{
-			if (_ghostTiles.TryGetValue(hex, out GhostHexTile ghost))
-				OpenPicker(ghost);
-			else
-				ClosePicker();
+			if (_ghostTiles.TryGetValue(hex, out GhostHexTile selectedGhostHexTile))
+				OpenHexTilePicker(selectedGhostHexTile);
+
+			if (_tiles.TryGetValue(hex, out HexTileBase selectedHexTile))
+				OpenConstructionSitePicker(selectedHexTile);
+
 			return;
 		}
 
@@ -129,42 +158,82 @@ public partial class Main : Node3D
 			GD.Print($"Clicked tile {hex} (Q={tile.Q}, R={tile.R})");
 	}
 
-	private void OpenPicker(GhostHexTile ghost)
+	private void OpenHexTilePicker(GhostHexTile ghost)
 	{
-		if (_activePicker == ghost)
+		if (_selectedGhostHexTile == ghost)
 			return;
 
-		ClosePicker();
-		_activePicker = ghost;
-		ghost.TileSelected += OnTileSelected;
+		_selectedGhostHexTile = ghost;
+		ghost.TileSelected += OnHexTilePickerSelected;
 		ghost.OpenPicker();
 	}
 
-	private void ClosePicker()
+	private void CloseHexTilePicker()
 	{
-		if (_activePicker == null)
+		if (_selectedGhostHexTile == null)
 			return;
 
-		if (IsInstanceValid(_activePicker))
+		if (IsInstanceValid(_selectedGhostHexTile))
 		{
-			_activePicker.TileSelected -= OnTileSelected;
-			_activePicker.ClosePicker();
+			_selectedGhostHexTile.TileSelected -= OnHexTilePickerSelected;
+			_selectedGhostHexTile.ClosePicker();
 		}
-		_activePicker = null;
+		_selectedGhostHexTile = null;
 	}
 
-	private void OnTileSelected(PackedScene scene)
+	private void OpenConstructionSitePicker(HexTileBase tile)
 	{
-		GD.Print($"Selected {scene.ResourcePath.GetFile().GetBaseName()} at {_activePicker.Q}, {_activePicker.R}");
-
-		if (_activePicker == null)
+		if (_selectedHexTile == tile)
 			return;
 
-		var key = new Vector2I(_activePicker.Q, _activePicker.R);
+		_selectedHexTile = tile;
 
-		AddHex(scene, key);      // occupies the tile
+		if (tile.ConstructionSite != null)
+		{
+			tile.ConstructionSite.BuildingSelected += OnBuildingPickerSelected;
+			tile.ConstructionSite.OpenPicker();
+		}
+	}
+
+	private void CloseConstructionSitePicker()
+	{
+		if (_selectedHexTile == null)
+			return;
+
+		if (_selectedHexTile.ConstructionSite != null)
+		{
+			_selectedHexTile.ConstructionSite.BuildingSelected -= OnBuildingPickerSelected;
+			_selectedHexTile.ConstructionSite.ClosePicker();
+		}
+
+		_selectedHexTile = null;
+	}
+
+	private void OnHexTilePickerSelected(PackedScene scene)
+	{
+		GD.Print($"Selected {scene.ResourcePath.GetFile().GetBaseName()} at {_selectedGhostHexTile.Q}, {_selectedGhostHexTile.R}");
+
+		if (_selectedGhostHexTile == null)
+			return;
+
+		var key = new Vector2I(_selectedGhostHexTile.Q, _selectedGhostHexTile.R);
+
+		AddHexTile(scene, key);      // occupies the tile
 		ShowBuildPositions();    // rebuilds ghosts -> old ghost cleaned up here
 	}
+
+	private void OnBuildingPickerSelected(PackedScene scene)
+	{
+		GD.Print("picked");
+
+		if (_selectedHexTile == null)
+			return;
+
+		var key = new Vector2I(_selectedHexTile.Q, _selectedHexTile.R);
+
+		AddBuilding(scene, key);
+	}
+
 
 	// Y=0 ground plane math is enough for a flat grid — no physics query needed.
 	private Vector3 GetMouseWorldPointOnGround()

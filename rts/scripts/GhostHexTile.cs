@@ -29,10 +29,13 @@ public partial class GhostHexTile : HexTileBase
 
 	public override void _Process(double delta)
 	{
-		if (HexTileSelectionPanel == null || !HexTileSelectionPanel.Visible) return;
+		if (HexTileSelectionPanel == null
+			|| !HexTileSelectionPanel.Visible)
+			return;
 
 		var camera = GetViewport().GetCamera3D();
-		if (camera == null) return;
+		if (camera == null)
+			return;
 
 		var screenPos = camera.UnprojectPosition(PlusLabel.GlobalPosition);
 		HexTileSelectionPanel.Position = screenPos - new Vector2(HexTileSelectionPanel.Size.X / 2f, HexTileSelectionPanel.Size.Y + 10f);

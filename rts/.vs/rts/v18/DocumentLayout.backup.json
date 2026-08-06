@@ -3,26 +3,30 @@
   "WorkspaceRootPath": "C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4370C10C-295C-4AE6-B275-AD5A674F8D7E}|rts.csproj|c:\\users\\christopherhanreich\\source\\repos\\rts\\rts\\scripts\\waterhextile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4370C10C-295C-4AE6-B275-AD5A674F8D7E}|rts.csproj|solutionrelative:scripts\\waterhextile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4370C10C-295C-4AE6-B275-AD5A674F8D7E}|rts.csproj|c:\\users\\christopherhanreich\\source\\repos\\rts\\rts\\scripts\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4370C10C-295C-4AE6-B275-AD5A674F8D7E}|rts.csproj|solutionrelative:scripts\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\shader\\water.gdshader||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:shader\\water.gdshader||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{4370C10C-295C-4AE6-B275-AD5A674F8D7E}|rts.csproj|c:\\users\\christopherhanreich\\source\\repos\\rts\\rts\\scripts\\ghosthextile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4370C10C-295C-4AE6-B275-AD5A674F8D7E}|rts.csproj|solutionrelative:scripts\\ghosthextile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\scenes\\water_hex_tile.tscn||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:scenes\\water_hex_tile.tscn||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{4370C10C-295C-4AE6-B275-AD5A674F8D7E}|rts.csproj|c:\\users\\christopherhanreich\\source\\repos\\rts\\rts\\scripts\\constructionsite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4370C10C-295C-4AE6-B275-AD5A674F8D7E}|rts.csproj|solutionrelative:scripts\\constructionsite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\.godot\\editor\\editor_layout.cfg||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.godot\\editor\\editor_layout.cfg||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{4370C10C-295C-4AE6-B275-AD5A674F8D7E}|rts.csproj|c:\\users\\christopherhanreich\\source\\repos\\rts\\rts\\src\\implementations\\hextilebase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4370C10C-295C-4AE6-B275-AD5A674F8D7E}|rts.csproj|solutionrelative:src\\implementations\\hextilebase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ChristopherHanreich\\.copilot\\plans\\plan-match-water-tiles-to-terrain.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|MarkdownSecurePreview"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ChristopherHanreich\\AppData\\Local\\Temp\\VSGeneratedDocuments\\a5017314-62f3-dc40-34b7-19602a15c022\\Main_ScriptMethods.generated.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ChristopherHanreich\\.copilot\\plans\\plan-improve-water-hex-mesh.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|MarkdownSecurePreview"
+      "AbsoluteMoniker": "D:0:0:{4370C10C-295C-4AE6-B275-AD5A674F8D7E}|rts.csproj|c:\\users\\christopherhanreich\\source\\repos\\rts\\rts\\src\\implementations\\hexgrid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4370C10C-295C-4AE6-B275-AD5A674F8D7E}|rts.csproj|solutionrelative:src\\implementations\\hexgrid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ChristopherHanreich\\AppData\\Local\\Temp\\VSGeneratedDocuments\\ee580c97-ae86-66f9-170c-807d4f22cb02\\Main_ScriptProperties.generated.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,9 +35,61 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 156,
+          "DockedWidth": 178,
           "SelectedChildIndex": 12,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Main_ScriptMethods.generated.cs [generated]",
+              "DocumentMoniker": "C:\\Users\\ChristopherHanreich\\AppData\\Local\\Temp\\VSGeneratedDocuments\\a5017314-62f3-dc40-34b7-19602a15c022\\Main_ScriptMethods.generated.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\AppData\\Local\\Temp\\VSGeneratedDocuments\\a5017314-62f3-dc40-34b7-19602a15c022\\Main_ScriptMethods.generated.cs",
+              "ToolTip": "Main_ScriptMethods.generated.cs [generated by Godot.SourceGenerators.ScriptMethodsGenerator]",
+              "ViewState": "AgIAAKQAAAAAAAAAAAAjwLwAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "OverriddenToolTip": "Main_ScriptMethods.generated.cs [generated by Godot.SourceGenerators.ScriptMethodsGenerator]",
+              "WhenOpened": "2026-08-06T05:53:54.434Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "HexGrid.cs",
+              "DocumentMoniker": "C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\src\\Implementations\\HexGrid.cs",
+              "RelativeDocumentMoniker": "src\\Implementations\\HexGrid.cs",
+              "ToolTip": "C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\src\\Implementations\\HexGrid.cs",
+              "RelativeToolTip": "src\\Implementations\\HexGrid.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAA5wAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-06T05:53:16.293Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "HexTileBase.cs",
+              "DocumentMoniker": "C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\src\\Implementations\\HexTileBase.cs",
+              "RelativeDocumentMoniker": "src\\Implementations\\HexTileBase.cs",
+              "ToolTip": "C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\src\\Implementations\\HexTileBase.cs",
+              "RelativeToolTip": "src\\Implementations\\HexTileBase.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAQwCAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-06T05:51:45.164Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Main_ScriptProperties.generated.cs [generated]",
+              "DocumentMoniker": "C:\\Users\\ChristopherHanreich\\AppData\\Local\\Temp\\VSGeneratedDocuments\\ee580c97-ae86-66f9-170c-807d4f22cb02\\Main_ScriptProperties.generated.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\AppData\\Local\\Temp\\VSGeneratedDocuments\\ee580c97-ae86-66f9-170c-807d4f22cb02\\Main_ScriptProperties.generated.cs",
+              "ToolTip": "Main_ScriptProperties.generated.cs [generated by Godot.SourceGenerators.ScriptPropertiesGenerator]",
+              "ViewState": "AgIAACMAAAAAAAAAAAAwwDQAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "OverriddenToolTip": "Main_ScriptProperties.generated.cs [generated by Godot.SourceGenerators.ScriptPropertiesGenerator]",
+              "WhenOpened": "2026-08-06T05:51:36.012Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
@@ -68,78 +124,47 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "editor_layout.cfg",
-              "DocumentMoniker": "C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\.godot\\editor\\editor_layout.cfg",
-              "RelativeDocumentMoniker": ".godot\\editor\\editor_layout.cfg",
-              "ToolTip": "C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\.godot\\editor\\editor_layout.cfg",
-              "RelativeToolTip": ".godot\\editor\\editor_layout.cfg",
-              "ViewState": "AgIAADYAAAAAAAAAAAAYwFIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-08-05T10:42:24.962Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "plan-match-water-tiles-to-terrain.md [Preview]",
-              "DocumentMoniker": "C:\\Users\\ChristopherHanreich\\.copilot\\plans\\plan-match-water-tiles-to-terrain.md",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\.copilot\\plans\\plan-match-water-tiles-to-terrain.md",
-              "ToolTip": "C:\\Users\\ChristopherHanreich\\.copilot\\plans\\plan-match-water-tiles-to-terrain.md [Preview]",
-              "RelativeToolTip": "..\\..\\..\\..\\.copilot\\plans\\plan-match-water-tiles-to-terrain.md [Preview]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
-              "WhenOpened": "2026-08-05T10:19:52.279Z",
-              "EditorCaption": " [Preview]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "plan-improve-water-hex-mesh.md [Preview]",
-              "DocumentMoniker": "C:\\Users\\ChristopherHanreich\\.copilot\\plans\\plan-improve-water-hex-mesh.md",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\.copilot\\plans\\plan-improve-water-hex-mesh.md",
-              "ToolTip": "C:\\Users\\ChristopherHanreich\\.copilot\\plans\\plan-improve-water-hex-mesh.md [Preview]",
-              "RelativeToolTip": "..\\..\\..\\..\\.copilot\\plans\\plan-improve-water-hex-mesh.md [Preview]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
-              "WhenOpened": "2026-08-05T10:05:29.118Z",
-              "EditorCaption": " [Preview]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "water_hex_tile.tscn",
-              "DocumentMoniker": "C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\scenes\\water_hex_tile.tscn",
-              "RelativeDocumentMoniker": "scenes\\water_hex_tile.tscn",
-              "ToolTip": "C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\scenes\\water_hex_tile.tscn",
-              "RelativeToolTip": "scenes\\water_hex_tile.tscn",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAYwCoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-08-05T10:04:37.331Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "WaterHexTile.cs",
-              "DocumentMoniker": "C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\scripts\\WaterHexTile.cs",
-              "RelativeDocumentMoniker": "scripts\\WaterHexTile.cs",
-              "ToolTip": "C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\scripts\\WaterHexTile.cs",
-              "RelativeToolTip": "scripts\\WaterHexTile.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAiwKAAAAAAAAAAAAAAAA==",
+              "Title": "Main.cs",
+              "DocumentMoniker": "C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\scripts\\Main.cs",
+              "RelativeDocumentMoniker": "scripts\\Main.cs",
+              "ToolTip": "C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\scripts\\Main.cs",
+              "RelativeToolTip": "scripts\\Main.cs",
+              "ViewState": "AgIAANMAAAAAAAAAAAAxwNgAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-05T10:04:37.07Z",
+              "WhenOpened": "2026-08-05T13:14:35.531Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "water.gdshader",
-              "DocumentMoniker": "C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\shader\\water.gdshader",
-              "RelativeDocumentMoniker": "shader\\water.gdshader",
-              "ToolTip": "C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\shader\\water.gdshader",
-              "RelativeToolTip": "shader\\water.gdshader",
-              "ViewState": "AgIAADQAAAAAAAAAAAAtwFwAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-08-05T10:02:32.769Z",
+              "Title": "GhostHexTile.cs",
+              "DocumentMoniker": "C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\scripts\\GhostHexTile.cs",
+              "RelativeDocumentMoniker": "scripts\\GhostHexTile.cs",
+              "ToolTip": "C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\scripts\\GhostHexTile.cs",
+              "RelativeToolTip": "scripts\\GhostHexTile.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAxwBsAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-05T13:09:43.107Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 134,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ConstructionSite.cs",
+              "DocumentMoniker": "C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\scripts\\ConstructionSite.cs",
+              "RelativeDocumentMoniker": "scripts\\ConstructionSite.cs",
+              "ToolTip": "C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\scripts\\ConstructionSite.cs",
+              "RelativeToolTip": "scripts\\ConstructionSite.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAcwAgAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-05T13:11:03.352Z",
               "EditorCaption": ""
             }
           ]
