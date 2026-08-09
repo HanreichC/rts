@@ -3,6 +3,22 @@
   "WorkspaceRootPath": "C:\\Users\\chanr\\source\\repos\\rts\\rts\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{4370C10C-295C-4AE6-B275-AD5A674F8D7E}|rts.csproj|c:\\users\\chanr\\source\\repos\\rts\\rts\\scripts\\grassconstructionsite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4370C10C-295C-4AE6-B275-AD5A674F8D7E}|rts.csproj|solutionrelative:scripts\\grassconstructionsite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4370C10C-295C-4AE6-B275-AD5A674F8D7E}|rts.csproj|c:\\users\\chanr\\source\\repos\\rts\\rts\\scripts\\waterconstructionsite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4370C10C-295C-4AE6-B275-AD5A674F8D7E}|rts.csproj|solutionrelative:scripts\\waterconstructionsite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4370C10C-295C-4AE6-B275-AD5A674F8D7E}|rts.csproj|c:\\users\\chanr\\source\\repos\\rts\\rts\\src\\implementations\\constructionsitebase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4370C10C-295C-4AE6-B275-AD5A674F8D7E}|rts.csproj|solutionrelative:src\\implementations\\constructionsitebase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4370C10C-295C-4AE6-B275-AD5A674F8D7E}|rts.csproj|c:\\users\\chanr\\source\\repos\\rts\\rts\\src\\implementations\\hexgrid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4370C10C-295C-4AE6-B275-AD5A674F8D7E}|rts.csproj|solutionrelative:src\\implementations\\hexgrid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{4370C10C-295C-4AE6-B275-AD5A674F8D7E}|rts.csproj|c:\\users\\chanr\\source\\repos\\rts\\rts\\src\\implementations\\hextilebase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4370C10C-295C-4AE6-B275-AD5A674F8D7E}|rts.csproj|solutionrelative:src\\implementations\\hextilebase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -13,14 +29,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{4370C10C-295C-4AE6-B275-AD5A674F8D7E}|rts.csproj|c:\\users\\chanr\\source\\repos\\rts\\rts\\scripts\\waterhextile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4370C10C-295C-4AE6-B275-AD5A674F8D7E}|rts.csproj|solutionrelative:scripts\\waterhextile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4370C10C-295C-4AE6-B275-AD5A674F8D7E}|rts.csproj|c:\\users\\chanr\\source\\repos\\rts\\rts\\scripts\\constructionsite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4370C10C-295C-4AE6-B275-AD5A674F8D7E}|rts.csproj|solutionrelative:scripts\\constructionsite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4370C10C-295C-4AE6-B275-AD5A674F8D7E}|rts.csproj|c:\\users\\chanr\\source\\repos\\rts\\rts\\src\\implementations\\hexgrid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4370C10C-295C-4AE6-B275-AD5A674F8D7E}|rts.csproj|solutionrelative:src\\implementations\\hexgrid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4370C10C-295C-4AE6-B275-AD5A674F8D7E}|rts.csproj|c:\\users\\chanr\\source\\repos\\rts\\rts\\scripts\\grasshextile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -44,17 +52,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 122,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "HexTileBase.cs",
               "DocumentMoniker": "C:\\Users\\chanr\\source\\repos\\rts\\rts\\src\\Implementations\\HexTileBase.cs",
               "RelativeDocumentMoniker": "src\\Implementations\\HexTileBase.cs",
               "ToolTip": "C:\\Users\\chanr\\source\\repos\\rts\\rts\\src\\Implementations\\HexTileBase.cs",
               "RelativeToolTip": "src\\Implementations\\HexTileBase.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAkwCkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAA9wAgAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-08-06T05:51:45.164Z",
               "IsPinned": true,
@@ -62,7 +70,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "HexGrid.cs",
               "DocumentMoniker": "C:\\Users\\chanr\\source\\repos\\rts\\rts\\src\\Implementations\\HexGrid.cs",
               "RelativeDocumentMoniker": "src\\Implementations\\HexGrid.cs",
@@ -72,45 +80,6 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-08-06T05:53:16.293Z",
               "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ConstructionSite.cs",
-              "DocumentMoniker": "C:\\Users\\chanr\\source\\repos\\rts\\rts\\scripts\\ConstructionSite.cs",
-              "RelativeDocumentMoniker": "scripts\\ConstructionSite.cs",
-              "ToolTip": "C:\\Users\\chanr\\source\\repos\\rts\\rts\\scripts\\ConstructionSite.cs",
-              "RelativeToolTip": "scripts\\ConstructionSite.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-06T18:04:48.977Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "WaterHexTile.cs",
-              "DocumentMoniker": "C:\\Users\\chanr\\source\\repos\\rts\\rts\\scripts\\WaterHexTile.cs",
-              "RelativeDocumentMoniker": "scripts\\WaterHexTile.cs",
-              "ToolTip": "C:\\Users\\chanr\\source\\repos\\rts\\rts\\scripts\\WaterHexTile.cs",
-              "RelativeToolTip": "scripts\\WaterHexTile.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAA7AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-06T17:19:45.611Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "GrassHexTile.cs",
-              "DocumentMoniker": "C:\\Users\\chanr\\source\\repos\\rts\\rts\\scripts\\GrassHexTile.cs",
-              "RelativeDocumentMoniker": "scripts\\GrassHexTile.cs",
-              "ToolTip": "C:\\Users\\chanr\\source\\repos\\rts\\rts\\scripts\\GrassHexTile.cs",
-              "RelativeToolTip": "scripts\\GrassHexTile.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-06T17:19:41.639Z",
               "EditorCaption": ""
             },
             {
@@ -147,7 +116,44 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "GrassConstructionSite.cs",
+              "DocumentMoniker": "C:\\Users\\chanr\\source\\repos\\rts\\rts\\scripts\\GrassConstructionSite.cs",
+              "RelativeDocumentMoniker": "scripts\\GrassConstructionSite.cs",
+              "ToolTip": "C:\\Users\\chanr\\source\\repos\\rts\\rts\\scripts\\GrassConstructionSite.cs",
+              "RelativeToolTip": "scripts\\GrassConstructionSite.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-06T18:04:48.977Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "WaterHexTile.cs",
+              "DocumentMoniker": "C:\\Users\\chanr\\source\\repos\\rts\\rts\\scripts\\WaterHexTile.cs",
+              "RelativeDocumentMoniker": "scripts\\WaterHexTile.cs",
+              "ToolTip": "C:\\Users\\chanr\\source\\repos\\rts\\rts\\scripts\\WaterHexTile.cs",
+              "RelativeToolTip": "scripts\\WaterHexTile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-06T17:19:45.611Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "GrassHexTile.cs",
+              "DocumentMoniker": "C:\\Users\\chanr\\source\\repos\\rts\\rts\\scripts\\GrassHexTile.cs",
+              "RelativeDocumentMoniker": "scripts\\GrassHexTile.cs",
+              "ToolTip": "C:\\Users\\chanr\\source\\repos\\rts\\rts\\scripts\\GrassHexTile.cs",
+              "RelativeToolTip": "scripts\\GrassHexTile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-06T17:19:41.639Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "Main.cs",
               "DocumentMoniker": "C:\\Users\\chanr\\source\\repos\\rts\\rts\\scripts\\Main.cs",
               "RelativeDocumentMoniker": "scripts\\Main.cs",
@@ -155,12 +161,11 @@
               "RelativeToolTip": "scripts\\Main.cs",
               "ViewState": "AgIAAGgAAAAAAAAAAAAkwH0AAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-05T13:14:35.531Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-08-05T13:14:35.531Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "Main_ScriptProperties.generated.cs",
               "DocumentMoniker": "C:\\Users\\ChristopherHanreich\\AppData\\Local\\Temp\\VSGeneratedDocuments\\ee580c97-ae86-66f9-170c-807d4f22cb02\\Main_ScriptProperties.generated.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\ChristopherHanreich\\AppData\\Local\\Temp\\VSGeneratedDocuments\\ee580c97-ae86-66f9-170c-807d4f22cb02\\Main_ScriptProperties.generated.cs",
@@ -172,7 +177,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "Main_ScriptMethods.generated.cs",
               "DocumentMoniker": "C:\\Users\\ChristopherHanreich\\AppData\\Local\\Temp\\VSGeneratedDocuments\\a5017314-62f3-dc40-34b7-19602a15c022\\Main_ScriptMethods.generated.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\ChristopherHanreich\\AppData\\Local\\Temp\\VSGeneratedDocuments\\a5017314-62f3-dc40-34b7-19602a15c022\\Main_ScriptMethods.generated.cs",
@@ -184,7 +189,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "GhostHexTile.cs",
               "DocumentMoniker": "C:\\Users\\chanr\\source\\repos\\rts\\rts\\scripts\\GhostHexTile.cs",
               "RelativeDocumentMoniker": "scripts\\GhostHexTile.cs",
@@ -192,7 +197,38 @@
               "RelativeToolTip": "scripts\\GhostHexTile.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-05T13:09:43.107Z",
+              "WhenOpened": "2026-08-05T13:09:43.107Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 122,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "WaterConstructionSite.cs",
+              "DocumentMoniker": "C:\\Users\\chanr\\source\\repos\\rts\\rts\\scripts\\WaterConstructionSite.cs",
+              "RelativeDocumentMoniker": "scripts\\WaterConstructionSite.cs",
+              "ToolTip": "C:\\Users\\chanr\\source\\repos\\rts\\rts\\scripts\\WaterConstructionSite.cs",
+              "RelativeToolTip": "scripts\\WaterConstructionSite.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-09T13:42:27.225Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ConstructionSiteBase.cs",
+              "DocumentMoniker": "C:\\Users\\chanr\\source\\repos\\rts\\rts\\src\\Implementations\\ConstructionSiteBase.cs",
+              "RelativeDocumentMoniker": "src\\Implementations\\ConstructionSiteBase.cs",
+              "ToolTip": "C:\\Users\\chanr\\source\\repos\\rts\\rts\\src\\Implementations\\ConstructionSiteBase.cs",
+              "RelativeToolTip": "src\\Implementations\\ConstructionSiteBase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-09T13:25:15.307Z",
               "EditorCaption": ""
             }
           ]

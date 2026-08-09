@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://566bmonnby40"]
 
-[ext_resource type="Script" uid="uid://j0la744jhyl7" path="res://scripts/GrassHexTile.cs" id="1_xon6g"]
-[ext_resource type="PackedScene" uid="uid://b08o5oxqxnx3w" path="res://scenes/construction_site.tscn" id="2_vxyp2"]
+[ext_resource type="Script" uid="uid://j0la744jhyl7" path="res://scripts/GrassHexTile.cs" id="1_yebk0"]
+[ext_resource type="PackedScene" uid="uid://b08o5oxqxnx3w" path="res://scenes/constructionSites/grass_construction_site.tscn" id="2_2ch8a"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ibg3g"]
 albedo_color = Color(0.5529412, 0.7607843, 0.20784314, 1)
@@ -28,8 +28,8 @@ height = 0.99
 radial_segments = 6
 
 [node name="HexTile" type="Node3D" unique_id=937024430]
-script = ExtResource("1_xon6g")
-ConstructionSiteScene = ExtResource("2_vxyp2")
+script = ExtResource("1_yebk0")
+ConstructionSiteScene = ExtResource("2_2ch8a")
 
 [node name="Body" type="StaticBody3D" parent="." unique_id=1095410016]
 

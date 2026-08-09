@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://hbreeucidmm4"]
 
 [ext_resource type="Script" uid="uid://8qkuii5ev2dd" path="res://scripts/GhostHexTile.cs" id="1_h4dqv"]
-[ext_resource type="PackedScene" uid="uid://cehshrs2at6vv" path="res://scenes/water_hex_tile.tscn" id="2_u6qq0"]
-[ext_resource type="PackedScene" uid="uid://566bmonnby40" path="res://scenes/grass_hex_tile.tscn" id="3_mlyrr"]
+[ext_resource type="PackedScene" uid="uid://cehshrs2at6vv" path="res://scenes/hexTiles/water_hex_tile.tscn" id="2_u6qq0"]
+[ext_resource type="PackedScene" uid="uid://566bmonnby40" path="res://scenes/hexTiles/grass_hex_tile.tscn" id="3_mlyrr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gnbg0"]
 transparency = 1
@@ -25,7 +25,6 @@ GrassHexScene = ExtResource("3_mlyrr")
 WaterHexScene = ExtResource("2_u6qq0")
 PlusLabel = NodePath("PlusLabel")
 HexTileSelectionPanel = NodePath("CanvasLayer/HexTileSelectionPanel")
-ConstructionSiteHeight = 0.5
 
 [node name="Body" type="StaticBody3D" parent="." unique_id=367019170]
 

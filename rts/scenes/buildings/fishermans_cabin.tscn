@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cbjpvrimdka5i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ibg3g"]
+albedo_color = Color(0, 0, 0.7882353, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mxcym"]
+material = SubResource("StandardMaterial3D_ibg3g")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mxcym"]
+
+[node name="FishermansCabin" type="Node3D" unique_id=883313285]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=176072213]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1907116353]
+mesh = SubResource("BoxMesh_mxcym")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1609316579]
+shape = SubResource("BoxShape3D_mxcym")

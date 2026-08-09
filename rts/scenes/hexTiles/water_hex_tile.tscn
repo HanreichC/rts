@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://cehshrs2at6vv"]
 
-[ext_resource type="Script" uid="uid://cgx4uxjcrhijb" path="res://scripts/WaterHexTile.cs" id="1_3i3hi"]
-[ext_resource type="PackedScene" uid="uid://b08o5oxqxnx3w" path="res://scenes/construction_site.tscn" id="2_so3nn"]
-[ext_resource type="Shader" uid="uid://bxewbfojnfmtl" path="res://shader/water.gdshader" id="3_wu2yf"]
+[ext_resource type="Script" uid="uid://cgx4uxjcrhijb" path="res://scripts/WaterHexTile.cs" id="1_2abg2"]
+[ext_resource type="PackedScene" uid="uid://rriyu64x2b5w" path="res://scenes/constructionSites/water_construction_site.tscn" id="2_vvwq4"]
+[ext_resource type="Shader" uid="uid://bxewbfojnfmtl" path="res://shader/water.gdshader" id="3_k8fxv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_go6ie"]
 render_priority = 0
-shader = ExtResource("3_wu2yf")
+shader = ExtResource("3_k8fxv")
 shader_parameter/water_color = Color(0.10980392, 0.4392157, 0.78431374, 1)
 shader_parameter/wave_height = 0.70999998413008
 shader_parameter/wave_speed = 1.17999997362464
@@ -30,8 +30,8 @@ height = 0.8
 radius = 3.0
 
 [node name="HexTile" type="Node3D" unique_id=937024430]
-script = ExtResource("1_3i3hi")
-ConstructionSiteScene = ExtResource("2_so3nn")
+script = ExtResource("1_2abg2")
+ConstructionSiteScene = ExtResource("2_vvwq4")
 HexTileHeight = 0.8
 
 [node name="Body" type="StaticBody3D" parent="." unique_id=1095410016]

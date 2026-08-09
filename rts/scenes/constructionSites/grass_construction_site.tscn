@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b08o5oxqxnx3w"]
 
-[ext_resource type="Script" uid="uid://nchaf2d6xrj4" path="res://scripts/ConstructionSite.cs" id="1_l1rfi"]
-[ext_resource type="PackedScene" uid="uid://dquqqqmydjq1t" path="res://scenes/house.tscn" id="2_ljql8"]
+[ext_resource type="Script" uid="uid://b3j4tm6vt33xc" path="res://scripts/GrassConstructionSite.cs" id="1_ltu4v"]
+[ext_resource type="PackedScene" uid="uid://dquqqqmydjq1t" path="res://scenes/buildings/house.tscn" id="2_k644g"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ljql8"]
 
@@ -19,8 +19,8 @@ height = 0.05
 radius = 1.0
 
 [node name="Node3D" type="Node3D" unique_id=542154132 node_paths=PackedStringArray("BuildingSelectionPanel", "PlusLabel")]
-script = ExtResource("1_l1rfi")
-HouseScene = ExtResource("2_ljql8")
+script = ExtResource("1_ltu4v")
+HouseScene = ExtResource("2_k644g")
 BuildingSelectionPanel = NodePath("CanvasLayer/BuildingSelectionPanel")
 PlusLabel = NodePath("PlusLabel")
 

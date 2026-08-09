@@ -12,12 +12,12 @@ namespace RTS.Implementations
 		public int Q { get; set; } = 0;
 		public int R { get; set; } = 0;
 
-		public ConstructionSite ConstructionSite;
+		public ConstructionSiteBase ConstructionSite;
 		public Node3D Building { get; private set; }
 
 		public override void _Ready()
 		{
-			ConstructionSite = ConstructionSiteScene.Instantiate<ConstructionSite>();
+			ConstructionSite = ConstructionSiteScene.Instantiate<ConstructionSiteBase>();
 			AddChild(ConstructionSite);
 			ConstructionSite.Position = new Vector3(0, HexTileHeight / 2f, 0);
 
