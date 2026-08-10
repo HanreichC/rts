@@ -12,10 +12,7 @@ public partial class ConstructionSiteBase : Node3D
     public override void _Ready()
     {
         if (BuildingSelectionPanel == null)
-        {
-            GD.PrintErr("ConstructionSite: BuildingSelectionPanel not assigned");
             return;
-        }
 
         BuildingSelectionPanel.SetAnchorsPreset(Control.LayoutPreset.TopLeft, keepOffsets: false);
         BuildingSelectionPanel.Visible = false;

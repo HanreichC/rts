@@ -165,11 +165,12 @@ public partial class HexGrid : Node3D
 
 		_selectedHexTile = tile;
 
-		if (tile.ConstructionSite != null)
-		{
-			tile.ConstructionSite.BuildingSelected += OnBuildingPickerSelected;
-			tile.ConstructionSite.OpenPicker();
-		}
+		if (tile.ConstructionSite == null
+		    || !tile.AllowedToAddBuilding)
+			return;
+		
+		tile.ConstructionSite.BuildingSelected += OnBuildingPickerSelected;
+		tile.ConstructionSite.OpenPicker();
 	}
 
 	private void CloseConstructionSitePicker()

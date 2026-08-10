@@ -12,8 +12,11 @@ namespace RTS.Implementations
 		public int Q { get; set; } = 0;
 		public int R { get; set; } = 0;
 
-		public ConstructionSiteBase ConstructionSite;
+		public ConstructionSiteBase ConstructionSite { get; private set; }
+		
 		public Node3D Building { get; private set; }
+		
+		public bool AllowedToAddBuilding => Building == null;
 
 		public override void _Ready()
 		{
@@ -32,15 +35,16 @@ namespace RTS.Implementations
 			if (ConstructionSite == null)
 				return;
 
-			if (Building != null)
+			if (!AllowedToAddBuilding)
 				visible = false;
 
 			ConstructionSite.Visible = visible;
 		}
-
+		
 		public void AddBuilding(Node3D building)
 		{
-			if (building == null)
+			if (building == null
+			    || !AllowedToAddBuilding)
 				return;
 
 			Building = building;

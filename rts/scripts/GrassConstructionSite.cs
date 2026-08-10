@@ -8,6 +8,6 @@ public partial class GrassConstructionSite : ConstructionSiteBase
 	public void OnHouseButtonPressed()
 	{
 		if (HouseScene != null)
-			EmitSignal(SignalName.BuildingSelected, HouseScene);
+			EmitSignal(ConstructionSiteBase.SignalName.BuildingSelected, HouseScene);
 	}
 }

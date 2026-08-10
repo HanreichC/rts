@@ -1,6 +1,5 @@
 using Godot;
 using rts.Implementations;
-// ReSharper disable All
 
 public partial class Main : Node3D
 {
@@ -13,11 +12,11 @@ public partial class Main : Node3D
 	
 	public override void _Ready()
 	{
-		if (HexGridScene != null)
-		{
-			_hexGrid = HexGridScene.Instantiate<HexGrid>();
-			AddChild(_hexGrid);
-		}
+		if (HexGridScene == null)
+			return;
+		
+		_hexGrid = HexGridScene.Instantiate<HexGrid>();
+		AddChild(_hexGrid);
 	}
 	
 	public override void _UnhandledInput(InputEvent @event)
@@ -28,8 +27,7 @@ public partial class Main : Node3D
 		if (@event is InputEventMouseButton { Pressed: true, ButtonIndex: MouseButton.Left })
 			_hexGrid.HandleClick(GetMouseWorldPointOnGround());
 	}
-
-	// Y=0 ground plane math is enough for a flat grid — no physics query needed.
+	
 	private Vector3 GetMouseWorldPointOnGround()
 	{
 		var mouse = GetViewport().GetMousePosition();

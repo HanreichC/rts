@@ -8,6 +8,6 @@ public partial class WaterConstructionSite : ConstructionSiteBase
 	public void OnFishermansCabinButtonPressed()
 	{
 		if (FishermansCabinScene != null)
-			EmitSignal(SignalName.BuildingSelected, FishermansCabinScene);
+			EmitSignal(ConstructionSiteBase.SignalName.BuildingSelected, FishermansCabinScene);
 	}
 }
