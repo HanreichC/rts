@@ -30,35 +30,26 @@ public partial class WaterHexTile : HexTileBase
 		// subdivided into a regular barycentric triangle grid. This avoids concentric-ring bands
 		// (which read visually as a spiral/whirlpool) while still guaranteeing the outer edge
 		// vertices land exactly on the hex boundary at the same positions the wall uses.
-		int n = Mathf.Max(1, SegmentsPerEdge);
+		var n = Mathf.Max(1, SegmentsPerEdge);
 		var center = Vector2.Zero;
 
 		var surfaceTool = new SurfaceTool();
 		surfaceTool.Begin(Mesh.PrimitiveType.Triangles);
 
-		for (int i = 0; i < 6; i++)
+		for (var i = 0; i < 6; i++)
 		{
-			float angleA = Mathf.DegToRad(30f + 60f * i);
-			float angleB = Mathf.DegToRad(30f + 60f * (i + 1));
-			Vector2 cornerA = new Vector2(Mathf.Cos(angleA), Mathf.Sin(angleA)) * HexRadius;
-			Vector2 cornerB = new Vector2(Mathf.Cos(angleB), Mathf.Sin(angleB)) * HexRadius;
+			var angleA = Mathf.DegToRad(30f + 60f * i);
+			var angleB = Mathf.DegToRad(30f + 60f * (i + 1));
+			var cornerA = new Vector2(Mathf.Cos(angleA), Mathf.Sin(angleA)) * HexRadius;
+			var cornerB = new Vector2(Mathf.Cos(angleB), Mathf.Sin(angleB)) * HexRadius;
 
-			// Barycentric grid points: point(row, col) = center + row/n*(cornerA-center) + col/n*(cornerB-center),
-			// with row+col <= n. This yields a uniform triangular tessellation of the sector.
-			Vector2 PointAt(int row, int col)
+			for (var row = 0; row < n; row++)
 			{
-				float u = (float)row / n;
-				float v = (float)col / n;
-				return center + u * (cornerA - center) + v * (cornerB - center);
-			}
-
-			for (int row = 0; row < n; row++)
-			{
-				for (int col = 0; col < n - row; col++)
+				for (var col = 0; col < n - row; col++)
 				{
-					Vector2 p0 = PointAt(row, col);
-					Vector2 p1 = PointAt(row + 1, col);
-					Vector2 p2 = PointAt(row, col + 1);
+					var p0 = PointAt(row, col);
+					var p1 = PointAt(row + 1, col);
+					var p2 = PointAt(row, col + 1);
 
 					var v0 = new Vector3(p0.X, 0f, p0.Y);
 					var v1 = new Vector3(p1.X, 0f, p1.Y);
@@ -72,19 +63,30 @@ public partial class WaterHexTile : HexTileBase
 					surfaceTool.AddVertex(v2);
 
 					// Second triangle of the quad cell, only valid while there is room below-right.
-					if (col < n - row - 1)
-					{
-						Vector2 p3 = PointAt(row + 1, col + 1);
-						var v3 = new Vector3(p3.X, 0f, p3.Y);
+					if (col >= n - row - 1)
+						continue;
+					
+					var p3 = PointAt(row + 1, col + 1);
+					var v3 = new Vector3(p3.X, 0f, p3.Y);
 
-						surfaceTool.SetNormal(Vector3.Up);
-						surfaceTool.AddVertex(v1);
-						surfaceTool.SetNormal(Vector3.Up);
-						surfaceTool.AddVertex(v3);
-						surfaceTool.SetNormal(Vector3.Up);
-						surfaceTool.AddVertex(v2);
-					}
+					surfaceTool.SetNormal(Vector3.Up);
+					surfaceTool.AddVertex(v1);
+					surfaceTool.SetNormal(Vector3.Up);
+					surfaceTool.AddVertex(v3);
+					surfaceTool.SetNormal(Vector3.Up);
+					surfaceTool.AddVertex(v2);
 				}
+			}
+
+			continue;
+
+			// Barycentric grid points: point(row, col) = center + row/n*(cornerA-center) + col/n*(cornerB-center),
+			// with row+col <= n. This yields a uniform triangular tessellation of the sector.
+			Vector2 PointAt(int row, int col)
+			{
+				var u = (float)row / n;
+				var v = (float)col / n;
+				return center + u * (cornerA - center) + v * (cornerB - center);
 			}
 		}
 
@@ -102,28 +104,28 @@ public partial class WaterHexTile : HexTileBase
 		// Flat-top-in-X hexagon corners: bisector angles between the 0/60/120 degree edge
 		// normals used by the shader's clip_to_hex test, at 30 + 60*k degrees.
 		var corners = new Vector2[6];
-		for (int i = 0; i < 6; i++)
+		for (var i = 0; i < 6; i++)
 		{
-			float angle = Mathf.DegToRad(30f + 60f * i);
+			var angle = Mathf.DegToRad(30f + 60f * i);
 			corners[i] = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * HexRadius;
 		}
 
 		var surfaceTool = new SurfaceTool();
 		surfaceTool.Begin(Mesh.PrimitiveType.Triangles);
 
-		for (int i = 0; i < 6; i++)
+		for (var i = 0; i < 6; i++)
 		{
-			Vector2 a = corners[i];
-			Vector2 b = corners[(i + 1) % 6];
-			Vector3 normal = new Vector3(b.Y - a.Y, 0f, -(b.X - a.X)).Normalized();
+			var a = corners[i];
+			var b = corners[(i + 1) % 6];
+			var normal = new Vector3(b.Y - a.Y, 0f, -(b.X - a.X)).Normalized();
 
-			int segments = Mathf.Max(1, SegmentsPerEdge);
-			for (int s = 0; s < segments; s++)
+			var segments = Mathf.Max(1, SegmentsPerEdge);
+			for (var s = 0; s < segments; s++)
 			{
-				float t0 = (float)s / segments;
-				float t1 = (float)(s + 1) / segments;
-				Vector2 p0 = a.Lerp(b, t0);
-				Vector2 p1 = a.Lerp(b, t1);
+				var t0 = (float)s / segments;
+				var t1 = (float)(s + 1) / segments;
+				var p0 = a.Lerp(b, t0);
+				var p1 = a.Lerp(b, t1);
 
 				var top0 = new Vector3(p0.X, 0f, p0.Y);
 				var top1 = new Vector3(p1.X, 0f, p1.Y);

@@ -1,6 +1,5 @@
 using Godot;
 using rts.Implementations;
-using System;
 
 namespace RTS.Implementations
 {
@@ -17,11 +16,14 @@ namespace RTS.Implementations
 
 		public override void _Ready()
 		{
-			ConstructionSite = ConstructionSiteScene.Instantiate<ConstructionSiteBase>();
-			AddChild(ConstructionSite);
-			ConstructionSite.Position = new Vector3(0, HexTileHeight / 2f, 0);
+			if (ConstructionSiteScene != null)
+			{
+				ConstructionSite = ConstructionSiteScene.Instantiate<ConstructionSiteBase>();
+				AddChild(ConstructionSite);
+				ConstructionSite.Position = new Vector3(0, HexTileHeight / 2f, 0);
 
-			SetConstructionSiteVisible(false);
+				SetConstructionSiteVisible(false);
+			}
 		}
 
 		public void SetConstructionSiteVisible(bool visible)

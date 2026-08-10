@@ -32,10 +32,10 @@ public partial class ConstructionSiteBase : Node3D
             return;
 
         var screenPos = camera.UnprojectPosition(PlusLabel.GlobalPosition);
-        BuildingSelectionPanel.Position = screenPos - new Vector2(BuildingSelectionPanel.Size.X / 2f, BuildingSelectionPanel.Size.Y + 10f);
+        BuildingSelectionPanel.Position =
+            screenPos - new Vector2(BuildingSelectionPanel.Size.X / 2f, BuildingSelectionPanel.Size.Y + 10f);
     }
 
     public void OpenPicker() => BuildingSelectionPanel.Visible = true;
     public void ClosePicker() => BuildingSelectionPanel.Visible = false;
-
 }
