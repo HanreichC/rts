@@ -2,6 +2,7 @@ using Godot;
 using rts.Implementations;
 using RTS.Implementations;
 using System.Collections.Generic;
+using System.Linq;
 
 public partial class Main : Node3D
 {
@@ -81,10 +82,8 @@ public partial class Main : Node3D
 			GD.PrintErr("Building scene root not Node3D");
 			return;
 		}
-
-		//building.Position = new Vector3(0, hex.HexTileHeight, 0);
+		
 		hex.AddBuilding(building);
-		//hex.AddChild(building);
 	}
 
 	private void AddGhostHexTile(Vector2I key)
@@ -109,9 +108,8 @@ public partial class Main : Node3D
 
 	private void ClearGhostHexTiles()
 	{
-		foreach (var ghost in _ghostTiles.Values)
-			if (IsInstanceValid(ghost))
-				ghost.QueueFree();
+		foreach (var ghost in _ghostTiles.Values.Where(IsInstanceValid))
+			ghost.QueueFree();
 		_ghostTiles.Clear();
 	}
 

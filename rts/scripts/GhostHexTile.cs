@@ -22,6 +22,8 @@ public partial class GhostHexTile : HexTileBase
 
 		HexTileSelectionPanel.SetAnchorsPreset(Control.LayoutPreset.TopLeft, keepOffsets: false);
 		HexTileSelectionPanel.Visible = false;
+		
+		base._Ready();
 	}
 
 	public void OpenPicker() => HexTileSelectionPanel.Visible = true;
