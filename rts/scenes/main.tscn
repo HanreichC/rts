@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://cpjrnq5r6dy50"]
 
 [ext_resource type="Script" uid="uid://spt2211mnwgw" path="res://scripts/Main.cs" id="1_o5qli"]
-[ext_resource type="PackedScene" uid="uid://566bmonnby40" path="res://scenes/hexTiles/grass_hex_tile.tscn" id="2_sugp2"]
-[ext_resource type="PackedScene" uid="uid://hbreeucidmm4" path="res://scenes/hexTiles/ghost_hex_tile.tscn" id="3_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://bqosgd1b8cemm" path="res://scenes/hex_grid.tscn" id="2_jyhfs"]
 [ext_resource type="Script" uid="uid://bmi8wgt4dx5rq" path="res://scripts/CameraRig.cs" id="4_jyhfs"]
 [ext_resource type="Shader" uid="uid://bxewbfojnfmtl" path="res://shader/water.gdshader" id="4_tbgi4"]
 
@@ -49,13 +48,10 @@ albedo_color = Color(0.4745098, 0.6509804, 1, 1)
 material = SubResource("StandardMaterial3D_ibg3g")
 size = Vector2(2000, 2000)
 
-[node name="Main" type="Node3D" unique_id=252113751 node_paths=PackedStringArray("HexContainer", "Camera")]
+[node name="Main" type="Node3D" unique_id=252113751 node_paths=PackedStringArray("Camera")]
 script = ExtResource("1_o5qli")
-HexScene = ExtResource("2_sugp2")
-GhostHexScene = ExtResource("3_jyhfs")
-HexContainer = NodePath("HexContainer")
 Camera = NodePath("CameraRig/PitchPivot/Camera3D")
-WaterHexTileYOffset = 0.3
+HexGridScene = ExtResource("2_jyhfs")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1557929172]
 environment = SubResource("Environment_env")
@@ -83,8 +79,6 @@ transform = Transform3D(1, 0, 0, 0, 0.5735764, 0.819152, 0, -0.819152, 0.5735764
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
 fov = 70.0
 size = 14.0
-
-[node name="HexContainer" type="Node3D" parent="." unique_id=1704159855]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=252425112]
 
