@@ -1,4 +1,5 @@
 using Godot;
+using rts.Helper;
 using rts.Implementations;
 
 namespace RTS.Implementations
@@ -45,7 +46,7 @@ namespace RTS.Implementations
 			Building = building;
 			AddChild(Building);
 			Building.Position = new Vector3(0, HexTileHeight / 2f, 0);
-			Building.RotationDegrees = new Vector3(0, HexGrid.RandomRotation(), 0);
+			Building.RotationDegrees = new Vector3(0, HexGridHelper.RandomRotation(), 0);
 			SetConstructionSiteVisible(false);
 		}
 	}

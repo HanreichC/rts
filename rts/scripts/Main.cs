@@ -3,6 +3,7 @@ using rts.Implementations;
 using RTS.Implementations;
 using System.Collections.Generic;
 using System.Linq;
+using rts.Helper;
 
 public partial class Main : Node3D
 {
@@ -48,7 +49,7 @@ public partial class Main : Node3D
 			return;
 		}
 
-		var position = hex.Position = HexGrid.AxialToWorld(key, HexSize);
+		var position = hex.Position = HexGridHelper.AxialToWorld(key, HexSize);
 
 
 		if (hex is WaterHexTile)
@@ -98,7 +99,7 @@ public partial class Main : Node3D
 			return;
 		}
 
-		ghost.Position = HexGrid.AxialToWorld(key, HexSize);
+		ghost.Position = HexGridHelper.AxialToWorld(key, HexSize);
 		ghost.Q = key.X;
 		ghost.R = key.Y;
 
@@ -130,7 +131,7 @@ public partial class Main : Node3D
 		ClearGhostHexTiles();
 
 		foreach (var key in _tiles.Keys)
-			foreach (var dir in HexGrid.Directions)
+			foreach (var dir in HexGridHelper.Directions)
 				AddGhostHexTile(key + dir); // AddGhostHex already de-dupes
 	}
 
@@ -148,7 +149,7 @@ public partial class Main : Node3D
 		CloseHexTilePicker();
 		CloseConstructionSitePicker();
 
-		var hex = HexGrid.WorldToAxial(GetMouseWorldPointOnGround(), HexSize);
+		var hex = HexGridHelper.WorldToAxial(GetMouseWorldPointOnGround(), HexSize);
 
 		if (_buildMode)
 		{
