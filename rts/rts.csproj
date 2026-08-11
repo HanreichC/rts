@@ -6,6 +6,5 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="shader\" />
-    <Folder Include="src\Implementations\" />
   </ItemGroup>
 </Project>
