@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b08o5oxqxnx3w"]
 
-[ext_resource type="Script" uid="uid://b3j4tm6vt33xc" path="res://scripts/constructionSites/GrassConstructionSite.cs" id="1_ltu4v"]
+[ext_resource type="Script" uid="uid://dklaefbqgoovp" path="res://scripts/constructionSites/GrassConstructionSite.cs" id="1_ltu4v"]
 [ext_resource type="PackedScene" uid="uid://dquqqqmydjq1t" path="res://scenes/buildings/house.tscn" id="2_k644g"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ljql8"]
