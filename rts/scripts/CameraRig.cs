@@ -1,5 +1,7 @@
 using Godot;
 
+namespace rts.scripts;
+
 /// <summary>
 /// Orthografische RTS-Kamera.
 ///

@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-namespace rts.Implementations;
+namespace rts.scripts.constructionSites;
 
 public partial class ConstructionSiteBase : Node3D
 {

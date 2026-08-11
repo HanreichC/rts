@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://rriyu64x2b5w"]
 
-[ext_resource type="Script" uid="uid://dsjxafe54ik0l" path="res://scripts/WaterConstructionSite.cs" id="1_s4omj"]
+[ext_resource type="Script" uid="uid://dsjxafe54ik0l" path="res://scripts/constructionSites/WaterConstructionSite.cs" id="1_s4omj"]
 [ext_resource type="PackedScene" uid="uid://cbjpvrimdka5i" path="res://scenes/buildings/fishermans_cabin.tscn" id="2_eovwm"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ljql8"]

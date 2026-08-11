@@ -1,6 +1,6 @@
 using Godot;
-using RTS.Implementations;
-using System.Collections.Generic;
+
+namespace rts.scripts.hexTiles;
 
 public partial class GhostHexTile : HexTileBase
 {

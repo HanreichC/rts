@@ -1,10 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using rts.Helper;
-using RTS.Implementations;
+using rts.scripts.hexTiles;
 
-namespace rts.Implementations;
+namespace rts.scripts;
 
 public partial class HexGrid : Node3D
 {
@@ -50,7 +49,7 @@ public partial class HexGrid : Node3D
 			return;
 		}
 
-		var position = hex.Position = HexGridHelper.AxialToWorld(key, HexSize);
+		var position = hex.Position = AxialToWorld(key, HexSize);
 
 		if (hex is WaterHexTile)
 			position.Y = WaterHexTileYOffset;
@@ -99,7 +98,7 @@ public partial class HexGrid : Node3D
 			return;
 		}
 
-		ghost.Position = HexGridHelper.AxialToWorld(key, HexSize);
+		ghost.Position = AxialToWorld(key, HexSize);
 		ghost.Q = key.X;
 		ghost.R = key.Y;
 
@@ -130,8 +129,14 @@ public partial class HexGrid : Node3D
 	{
 		ClearGhostHexTiles();
 
+		Vector2I[] neighborDirections =
+		[
+			new(1, 0), new(0, 1), new(-1, 1),
+			new(-1, 0), new(0, -1), new(1, -1)
+		];
+		
 		foreach (var key in _tiles.Keys)
-		foreach (var dir in HexGridHelper.Directions)
+		foreach (var dir in neighborDirections)
 			AddGhostHexTile(key + dir); // AddGhostHex already de-dupes
 	}
 	
@@ -166,7 +171,7 @@ public partial class HexGrid : Node3D
 		_selectedHexTile = tile;
 
 		if (tile.ConstructionSite == null
-		    || !tile.AllowedToAddBuilding)
+			|| !tile.AllowedToAddBuilding)
 			return;
 		
 		tile.ConstructionSite.BuildingSelected += OnBuildingPickerSelected;
@@ -203,8 +208,6 @@ public partial class HexGrid : Node3D
 
 	private void OnBuildingPickerSelected(PackedScene scene)
 	{
-		GD.Print("picked");
-
 		if (_selectedHexTile == null)
 			return;
 
@@ -221,20 +224,48 @@ public partial class HexGrid : Node3D
 		CloseHexTilePicker();
 		CloseConstructionSitePicker();
 
-		var hex = HexGridHelper.WorldToAxial(worldPosition, HexSize);
+		var hex = WorldToAxial(worldPosition, HexSize);
 
 		if (_buildMode)
 		{
-			if (_ghostTiles.TryGetValue(hex, out GhostHexTile selectedGhostHexTile))
+			if (_ghostTiles.TryGetValue(hex, out var selectedGhostHexTile))
 				OpenHexTilePicker(selectedGhostHexTile);
 
-			if (_tiles.TryGetValue(hex, out HexTileBase selectedHexTile))
+			if (_tiles.TryGetValue(hex, out var selectedHexTile))
 				OpenConstructionSitePicker(selectedHexTile);
 
 			return;
 		}
+	}
+	
+	private static Vector3 AxialToWorld(Vector2I hex, float hexSize)
+	{
+		var x = hexSize * Mathf.Sqrt(3.0f) * (hex.X + hex.Y / 2.0f);
+		var z = hexSize * 1.5f * hex.Y;
+		return new Vector3(x, 0f, z);
+	}
 
-		if (_tiles.TryGetValue(hex, out HexTileBase tile))
-			GD.Print($"Clicked tile {hex} (Q={tile.Q}, R={tile.R})");
+	private static Vector2I WorldToAxial(Vector3 worldPos, float hexSize)
+	{
+		var qf = (Mathf.Sqrt(3f) / 3f * worldPos.X - 1f / 3f * worldPos.Z) / hexSize;
+		var rf = (2f / 3f * worldPos.Z) / hexSize;
+		return CubeRound(qf, rf);
+	}
+
+	private static Vector2I CubeRound(float qf, float rf)
+	{
+		var sf = -qf - rf;
+		var q = Mathf.RoundToInt(qf);
+		var r = Mathf.RoundToInt(rf);
+		var s = Mathf.RoundToInt(sf);
+
+		var qdiff = Mathf.Abs(q - qf);
+		var rdiff = Mathf.Abs(r - rf);
+		var sdiff = Mathf.Abs(s - sf);
+
+		if (qdiff > rdiff && qdiff > sdiff) q = -r - s;
+		else if (rdiff > sdiff) r = -q - s;
+
+		return new Vector2I(q, r);
 	}
 }

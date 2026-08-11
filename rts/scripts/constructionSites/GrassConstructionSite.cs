@@ -1,5 +1,6 @@
 using Godot;
-using rts.Implementations;
+
+namespace rts.scripts.constructionSites;
 
 public partial class GrassConstructionSite : ConstructionSiteBase
 {

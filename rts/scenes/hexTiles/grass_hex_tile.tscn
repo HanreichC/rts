@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://566bmonnby40"]
 
-[ext_resource type="Script" uid="uid://j0la744jhyl7" path="res://scripts/GrassHexTile.cs" id="1_yebk0"]
+[ext_resource type="Script" uid="uid://j0la744jhyl7" path="res://scripts/hexTiles/GrassHexTile.cs" id="1_yebk0"]
 [ext_resource type="PackedScene" uid="uid://b08o5oxqxnx3w" path="res://scenes/constructionSites/grass_construction_site.tscn" id="2_2ch8a"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ibg3g"]

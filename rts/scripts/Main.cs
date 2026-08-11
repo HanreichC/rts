@@ -1,5 +1,6 @@
 using Godot;
-using rts.Implementations;
+
+namespace rts.scripts;
 
 public partial class Main : Node3D
 {
