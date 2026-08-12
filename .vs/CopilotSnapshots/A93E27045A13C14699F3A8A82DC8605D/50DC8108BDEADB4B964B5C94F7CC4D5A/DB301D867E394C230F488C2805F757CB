@@ -1,0 +1,63 @@
+﻿[gd_scene format=3 uid="uid://rriyu64x2b5w"]
+
+[ext_resource type="Script" uid="uid://dsjxafe54ik0l" path="res://Scripts/ConstructionSites/WaterConstructionSite.cs" id="1_s4omj"]
+[ext_resource type="PackedScene" uid="uid://cbjpvrimdka5i" path="res://scenes/buildings/fishermans_cabin.tscn" id="2_eovwm"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ljql8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vc6nt"]
+albedo_color = Color(0.40392157, 0.49411765, 1, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3tcii"]
+material = SubResource("StandardMaterial3D_vc6nt")
+top_radius = 1.0
+bottom_radius = 1.0
+height = 0.05
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_3tcii"]
+height = 0.05
+radius = 1.0
+
+[node name="Node3D" type="Node3D" unique_id=542154132 node_paths=PackedStringArray("BuildingSelectionPanel", "PlusLabel")]
+script = ExtResource("1_s4omj")
+FishermansCabinScene = ExtResource("2_eovwm")
+BuildingSelectionPanel = NodePath("CanvasLayer/BuildingSelectionPanel")
+PlusLabel = NodePath("PlusLabel")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1486203377]
+physics_material_override = SubResource("PhysicsMaterial_ljql8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=2118467472]
+mesh = SubResource("CylinderMesh_3tcii")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=691201741]
+shape = SubResource("CylinderShape3D_3tcii")
+
+[node name="PlusLabel" type="Label3D" parent="." unique_id=1303389964]
+transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, 0.99999994, 0, -0.99999994, -4.3711385e-08, 0, 0.03, -0.065)
+outline_modulate = Color(1, 1, 1, 1)
+text = "+"
+font_size = 400
+width = 400.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1642624153]
+
+[node name="BuildingSelectionPanel" type="PanelContainer" parent="CanvasLayer" unique_id=34167122]
+offset_left = 531.0
+offset_top = 258.0
+offset_right = 631.0
+offset_bottom = 358.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/BuildingSelectionPanel" unique_id=695121634]
+layout_mode = 2
+
+[node name="FishermansCabinButton" type="Button" parent="CanvasLayer/BuildingSelectionPanel/VBoxContainer" unique_id=1278355091]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Fischerhütte"
+
+[node name="HFlowContainer" type="HFlowContainer" parent="CanvasLayer/BuildingSelectionPanel/VBoxContainer" unique_id=110768231]
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="pressed" from="CanvasLayer/BuildingSelectionPanel/VBoxContainer/FishermansCabinButton" to="." method="OnFishermansCabinButtonPressed"]

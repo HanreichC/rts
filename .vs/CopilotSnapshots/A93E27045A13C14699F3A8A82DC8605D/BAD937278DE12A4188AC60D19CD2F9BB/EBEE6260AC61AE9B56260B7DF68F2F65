@@ -1,0 +1,10 @@
+﻿[gd_scene format=3 uid="uid://bqosgd1b8cemm"]
+
+[ext_resource type="Script" uid="uid://bysqaix4oby18" path="res://Scripts/HexGrid.cs" id="1_ug5ck"]
+[ext_resource type="PackedScene" uid="uid://566bmonnby40" path="res://scenes/hexTiles/grass_hex_tile.tscn" id="2_wdud7"]
+[ext_resource type="PackedScene" uid="uid://hbreeucidmm4" path="res://scenes/hexTiles/ghost_hex_tile.tscn" id="3_k0gij"]
+
+[node name="HexGrid" type="Node3D" unique_id=1156072804]
+script = ExtResource("1_ug5ck")
+StartHexTileScene = ExtResource("2_wdud7")
+GhostHexTileScene = ExtResource("3_k0gij")

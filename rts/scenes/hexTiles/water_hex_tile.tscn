@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cehshrs2at6vv"]
 
-[ext_resource type="Script" uid="uid://cgx4uxjcrhijb" path="res://scripts/hexTiles/WaterHexTile.cs" id="1_2abg2"]
+[ext_resource type="Script" uid="uid://1vwqpkaq4jwe" path="res://Scripts/HexTiles/WaterHexTile.cs" id="1_2abg2"]
 [ext_resource type="PackedScene" uid="uid://rriyu64x2b5w" path="res://scenes/constructionSites/water_construction_site.tscn" id="2_vvwq4"]
-[ext_resource type="Shader" uid="uid://bxewbfojnfmtl" path="res://shader/water.gdshader" id="3_k8fxv"]
+[ext_resource type="Shader" uid="uid://bwk1t3tndjuad" path="res://Shader/water.gdshader" id="3_k8fxv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_go6ie"]
 render_priority = 0
