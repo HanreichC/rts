@@ -4,11 +4,11 @@ namespace rts.scripts.constructionSites;
 
 public partial class GrassConstructionSite : ConstructionSiteBase
 {
-	[Export] public PackedScene HouseScene { get; set; }
+	[Export] public PackedScene LumberjacksCabinScene { get; set; }
 
-	public void OnHouseButtonPressed()
+	public void OnLumberjacksCabinButtonPressed()
 	{
-		if (HouseScene != null)
-			EmitSignal(ConstructionSiteBase.SignalName.BuildingSelected, HouseScene);
+		if (LumberjacksCabinScene != null)
+			EmitSignal(ConstructionSiteBase.SignalName.BuildingSelected, LumberjacksCabinScene);
 	}
 }

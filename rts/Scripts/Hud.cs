@@ -13,8 +13,6 @@ public partial class Hud : CanvasLayer
 
 	public override void _Ready()
 	{
-		GD.Print("hier HUD");
-		
 		PlayerEconomy.Instance.GoldRessource.AddRessourceValueChangedEventHandler(UpdateGoldLabel);
 		PlayerEconomy.Instance.WoodRessource.AddRessourceValueChangedEventHandler(UpdateWoodLabel);
 		PlayerEconomy.Instance.StoneRessource.AddRessourceValueChangedEventHandler(UpdateStoneLabel);

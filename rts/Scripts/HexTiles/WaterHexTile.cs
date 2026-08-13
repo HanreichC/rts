@@ -130,8 +130,8 @@ public partial class WaterHexTile : HexTileBase
 
 				var top0 = new Vector3(p0.X, 0f, p0.Y);
 				var top1 = new Vector3(p1.X, 0f, p1.Y);
-				var bottom0 = new Vector3(p0.X, -HexTileHeight, p0.Y);
-				var bottom1 = new Vector3(p1.X, -HexTileHeight, p1.Y);
+				var bottom0 = new Vector3(p0.X, -0.8f, p0.Y);
+				var bottom1 = new Vector3(p1.X, -0.8f, p1.Y);
 
 				surfaceTool.SetNormal(normal);
 				surfaceTool.AddVertex(top0);

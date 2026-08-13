@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b08o5oxqxnx3w"]
 
 [ext_resource type="Script" uid="uid://dklaefbqgoovp" path="res://Scripts/ConstructionSites/GrassConstructionSite.cs" id="1_ltu4v"]
-[ext_resource type="PackedScene" uid="uid://dquqqqmydjq1t" path="res://scenes/buildings/house.tscn" id="2_k644g"]
+[ext_resource type="PackedScene" uid="uid://cm0dh061rfse7" path="res://scenes/buildings/lumberjacks_cabin.tscn" id="2_ltu4v"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ljql8"]
 
@@ -20,7 +20,7 @@ radius = 1.0
 
 [node name="Node3D" type="Node3D" unique_id=542154132 node_paths=PackedStringArray("BuildingSelectionPanel", "PlusLabel")]
 script = ExtResource("1_ltu4v")
-HouseScene = ExtResource("2_k644g")
+LumberjacksCabinScene = ExtResource("2_ltu4v")
 BuildingSelectionPanel = NodePath("CanvasLayer/BuildingSelectionPanel")
 PlusLabel = NodePath("PlusLabel")
 
@@ -54,10 +54,10 @@ layout_mode = 2
 [node name="HouseButton" type="Button" parent="CanvasLayer/BuildingSelectionPanel/VBoxContainer" unique_id=1278355091]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Haus"
+text = "Holzfällerhütte"
 
 [node name="HFlowContainer" type="HFlowContainer" parent="CanvasLayer/BuildingSelectionPanel/VBoxContainer" unique_id=110768231]
 layout_mode = 2
 size_flags_vertical = 3
 
-[connection signal="pressed" from="CanvasLayer/BuildingSelectionPanel/VBoxContainer/HouseButton" to="." method="OnHouseButtonPressed"]
+[connection signal="pressed" from="CanvasLayer/BuildingSelectionPanel/VBoxContainer/HouseButton" to="." method="OnLumberjacksCabinButtonPressed"]

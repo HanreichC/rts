@@ -1,9 +1,9 @@
-[gd_scene format=3 uid="uid://cbjpvrimdka5i"]
+[gd_scene format=3 uid="uid://cm0dh061rfse7"]
 
-[ext_resource type="Script" uid="uid://cas2scn832xal" path="res://Scripts/Buildings/FishermansCabin.cs" id="1_y3hjc"]
+[ext_resource type="Script" uid="uid://d0io4bqyb7ie2" path="res://scripts/buildings/LumberjacksCabin.cs" id="1_6jptu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ibg3g"]
-albedo_color = Color(0, 0, 0.7882353, 1)
+albedo_color = Color(0.75686276, 0.6039216, 0.41960785, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_mxcym"]
 material = SubResource("StandardMaterial3D_ibg3g")
@@ -11,7 +11,7 @@ material = SubResource("StandardMaterial3D_ibg3g")
 [sub_resource type="BoxShape3D" id="BoxShape3D_mxcym"]
 
 [node name="FishermansCabin" type="Node3D" unique_id=883313285]
-script = ExtResource("1_y3hjc")
+script = ExtResource("1_6jptu")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=176072213]
 
