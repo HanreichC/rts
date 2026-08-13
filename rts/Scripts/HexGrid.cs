@@ -14,9 +14,7 @@ public partial class HexGrid : Node3D
 	private HexTileBase _selectedHexTile;
 	
 	[Export] public float HexSize { get; set; } = 3.0f;
-	
-	[Export] public float WaterHexTileYOffset { get; set; } = 0.5f;
-	
+
 	private readonly Dictionary<Vector2I, HexTileBase> _tiles = [];
 	private readonly Dictionary<Vector2I, GhostHexTile> _ghostTiles = [];
 	
@@ -50,9 +48,6 @@ public partial class HexGrid : Node3D
 		}
 
 		var position = hex.Position = AxialToWorld(key, HexSize);
-
-		if (hex is WaterHexTile)
-			position.Y = WaterHexTileYOffset;
 
 		hex.Position = position;
 		hex.Q = key.X;

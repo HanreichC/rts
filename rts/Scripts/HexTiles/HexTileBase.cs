@@ -22,6 +22,15 @@ public partial class HexTileBase : Node3D
 
     public override void _Ready()
     {
+        // Let subclasses build/rebuild their own mesh geometry first (e.g. WaterHexTile's
+        // procedural top + walls), then align every tile type the same way: whatever the
+        // lowest point of the tile's own geometry ends up being, shift the tile so that point
+        // sits exactly at world y = 0. This keeps every tile's bottom flush with every other
+        // tile's bottom, regardless of each tile's mesh height/pivot, without assuming any
+        // tile type already sits at y = 0 by convention.
+        BuildGeometry();
+        Position += new Vector3(0, -GetLocalBottomY(this), 0);
+
         if (ConstructionSiteScene == null)
             return;
 
@@ -30,6 +39,15 @@ public partial class HexTileBase : Node3D
         ConstructionSite.Position = new Vector3(0, SurfaceHeight - GetLocalBottomY(ConstructionSite), 0);
 
         SetConstructionSiteVisible(false);
+    }
+
+    /// <summary>
+    /// Override to build/rebuild this tile's own mesh geometry (e.g. procedural meshes).
+    /// Runs before the tile is aligned so its bottom flush with other tiles, so any geometry
+    /// built here is already accounted for in that alignment.
+    /// </summary>
+    protected virtual void BuildGeometry()
+    {
     }
 
     public void SetConstructionSiteVisible(bool visible)
@@ -95,7 +113,7 @@ public partial class HexTileBase : Node3D
     /// building models whose pivot isn't at the mesh's bottom, so placement always rests
     /// exactly on the target surface regardless of pivot position.
     /// </summary>
-    private static float GetLocalBottomY(Node3D node)
+    protected static float GetLocalBottomY(Node3D node)
     {
         var aabb = new Aabb();
         var hasAabb = false;

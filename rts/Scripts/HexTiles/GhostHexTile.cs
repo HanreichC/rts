@@ -14,7 +14,9 @@ public partial class GhostHexTile : HexTileBase
 
 	public override void _Ready()
 	{
-		if (HexTileSelectionPanel == null)
+        base._Ready();
+
+        if (HexTileSelectionPanel == null)
 		{
 			GD.PrintErr("GhostHexTile: HexTileSelectionPanel not assigned");
 			return;
@@ -22,8 +24,7 @@ public partial class GhostHexTile : HexTileBase
 
 		HexTileSelectionPanel.SetAnchorsPreset(Control.LayoutPreset.TopLeft, keepOffsets: false);
 		HexTileSelectionPanel.Visible = false;
-		
-		base._Ready();
+	
 	}
 
 	public void OpenPicker() => HexTileSelectionPanel.Visible = true;
