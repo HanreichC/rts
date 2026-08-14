@@ -7,20 +7,20 @@ namespace rts.scripts.Player;
 public partial class PlayerEconomy : Node
 {
     public static PlayerEconomy Instance { get; private set; }
-    
+
     private const string ConfigPath =
         "res://data/player_ressource_start_config.tres";
 
     public PlayerRessource GoldRessource { get; private set; }
-    
+
     public PlayerRessource WoodRessource { get; private set; }
-    
+
     public PlayerRessource StoneRessource { get; private set; }
 
     public override void _Ready()
     {
         Instance = this;
-        
+
         LoadStartValues();
     }
 
@@ -37,7 +37,7 @@ public partial class PlayerEconomy : Node
 
             return;
         }
-        
+
         GoldRessource =
             new PlayerRessource(
                 PlayerRessourceType.Gold,
@@ -45,16 +45,16 @@ public partial class PlayerEconomy : Node
                 config.GoldCurrentValue,
                 config.GoldMaxValue,
                 config.GoldMinValue);
-        
-        WoodRessource = 
+
+        WoodRessource =
             new PlayerRessource(
                 PlayerRessourceType.Wood,
                 config.WoodName,
                 config.WoodCurrentValue,
                 config.WoodMaxValue,
                 config.WoodMinValue);
-            
-        StoneRessource = 
+
+        StoneRessource =
             new PlayerRessource(
                 PlayerRessourceType.Stone,
                 config.StoneName,
@@ -62,4 +62,13 @@ public partial class PlayerEconomy : Node
                 config.StoneMaxValue,
                 config.StoneMinValue);
     }
+
+    public PlayerRessource TryGetPlayerRessource(PlayerRessourceType type)
+        => type switch
+        {
+            PlayerRessourceType.Gold => GoldRessource,
+            PlayerRessourceType.Wood => WoodRessource,
+            PlayerRessourceType.Stone => StoneRessource,
+            _ => null
+        };
 }

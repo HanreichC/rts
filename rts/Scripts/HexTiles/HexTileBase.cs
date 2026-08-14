@@ -1,5 +1,6 @@
 using System;
 using Godot;
+using rts.Exceptions;
 using rts.scripts.Buildings;
 using rts.scripts.constructionSites;
 
@@ -70,8 +71,16 @@ public partial class HexTileBase : Node3DBase
             GD.PrintErr("Building scene root not Node3D");
             return;
         }
-        
-        AddBuilding(building);
+
+        try
+        {
+            AddBuilding(building);
+        }
+        catch (BuildRequirementsAreNotMetException)
+        {
+            // ToDo: Show error message
+        }
+
         CloseConstructionSitePicker();
     }
     
@@ -84,12 +93,15 @@ public partial class HexTileBase : Node3DBase
         ConstructionSite.ClosePicker();
     }
     
-    public void AddBuilding(Node3D building)
+    public void AddBuilding(BuildingBase building)
     {
         if (building == null
             || !AllowedToAddBuilding)
             return;
-
+        
+        building.EnsureBuildRequirementsMet();
+        building.SpendBuildRequirements();
+        
         Building = building;
         AddChild(Building);
         Building.Position = new Vector3(0, SurfaceHeight - GetLocalBottomY(Building), 0);
