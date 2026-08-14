@@ -12,7 +12,8 @@ material = SubResource("StandardMaterial3D_ibg3g")
 
 [node name="FishermansCabin" type="Node3D" unique_id=883313285]
 script = ExtResource("1_y3hjc")
-CostValue = 10.0
+CostType = 1
+CostValue = 20.0
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=176072213]
 
