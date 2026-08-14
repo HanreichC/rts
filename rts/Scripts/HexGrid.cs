@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using rts.scripts.Buildings;
 using rts.scripts.hexTiles;
 
 namespace rts.scripts;
@@ -62,7 +63,7 @@ public partial class HexGrid : Node3D
 	
 	private void AddBuilding(PackedScene buildingScene, Vector2I key)
 	{
-		if (!_tiles.TryGetValue(key, out HexTileBase hex))
+		if (!_tiles.TryGetValue(key, out var hex))
 		{
 			GD.PrintErr($"No hex tile at {key} to add building to");
 			return;
@@ -72,7 +73,7 @@ public partial class HexGrid : Node3D
 			GD.PrintErr($"Hex tile at {key} has no construction site to add building to");
 			return;
 		}
-		if (buildingScene.Instantiate() is not Node3D building)
+		if (buildingScene.Instantiate() is not BuildingBase building)
 		{
 			GD.PrintErr("Building scene root not Node3D");
 			return;
