@@ -21,25 +21,6 @@ public partial class WaterHexTile : HexTileBase
     private MeshInstance3D _topMesh;
     private float _hexRadius;
 
-    //public override void _Ready()
-    //{
-    //	base._Ready();
-
-    //	_topMesh = FindMeshInstance(this);
-    //	_hexRadius = GetHexRadius(_topMesh);
-
-    //	BuildTopMesh();
-    //	BuildWalls();
-
-    //       var localBottomY = GetLocalBottomY(this);
-    //       GD.Print($"WaterHexTile local bottom Y = {localBottomY} (expected ~{-WallDepth})");
-
-    //       // Compute the actual, current lowest point of the built geometry (in local Y) and shift
-    //       // the tile by exactly that amount, so its bottom always ends up at world y = 0 - flush
-    //       // with every other hex tile's bottom - no matter what the wall geometry looks like.
-    //       Position += new Vector3(0, -localBottomY, 0);
-    //   }
-
     protected override void BuildGeometry()
     {
         _topMesh = FindMeshInstance(this);
