@@ -1,5 +1,6 @@
 using System;
 using Godot;
+using rts.scripts.Buildings;
 using rts.scripts.constructionSites;
 
 namespace rts.scripts.hexTiles;
@@ -40,7 +41,7 @@ public partial class HexTileBase : Node3DBase
 
         SetConstructionSiteVisible(false);
     }
-
+    
     public void SetConstructionSiteVisible(bool visible)
     {
         if (ConstructionSite == null)
@@ -52,6 +53,37 @@ public partial class HexTileBase : Node3DBase
         ConstructionSite.Visible = visible;
     }
 
+    public void OpenConstructionSitePicker()
+    {
+        if (ConstructionSite == null
+            || !AllowedToAddBuilding)
+            return;
+		
+        ConstructionSite.BuildingSelected += OnBuildingPickerSelected;
+        ConstructionSite.OpenPicker();
+    }
+    
+    private void OnBuildingPickerSelected(PackedScene scene)
+    {
+        if (scene.Instantiate() is not BuildingBase building)
+        {
+            GD.PrintErr("Building scene root not Node3D");
+            return;
+        }
+        
+        AddBuilding(building);
+        CloseConstructionSitePicker();
+    }
+    
+    public void CloseConstructionSitePicker()
+    {
+        if (ConstructionSite == null)
+            return;
+        
+        ConstructionSite.BuildingSelected -= OnBuildingPickerSelected;
+        ConstructionSite.ClosePicker();
+    }
+    
     public void AddBuilding(Node3D building)
     {
         if (building == null

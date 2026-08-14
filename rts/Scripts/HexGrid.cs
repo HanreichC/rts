@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using rts.scripts.Buildings;
 using rts.scripts.hexTiles;
 
 namespace rts.scripts;
@@ -12,14 +11,13 @@ public partial class HexGrid : Node3D
 	[Export] public PackedScene GhostHexTileScene { get; set; }
 	
 	private GhostHexTile _selectedGhostHexTile;
-	private HexTileBase _selectedHexTile;
 	
 	[Export] public float HexSize { get; set; } = 3.0f;
 
 	private readonly Dictionary<Vector2I, HexTileBase> _tiles = [];
 	private readonly Dictionary<Vector2I, GhostHexTile> _ghostTiles = [];
-	
-	private bool _buildMode = false;
+
+	private bool _buildMode;
 	
 	public override void _Ready()
 	{
@@ -59,27 +57,6 @@ public partial class HexGrid : Node3D
 
 		if (_buildMode)
 			hex.SetConstructionSiteVisible(true);
-	}
-	
-	private void AddBuilding(PackedScene buildingScene, Vector2I key)
-	{
-		if (!_tiles.TryGetValue(key, out var hex))
-		{
-			GD.PrintErr($"No hex tile at {key} to add building to");
-			return;
-		}
-		if (hex.ConstructionSite == null)
-		{
-			GD.PrintErr($"Hex tile at {key} has no construction site to add building to");
-			return;
-		}
-		if (buildingScene.Instantiate() is not BuildingBase building)
-		{
-			GD.PrintErr("Building scene root not Node3D");
-			return;
-		}
-		
-		hex.AddBuilding(building);
 	}
 
 	private void AddGhostHexTile(Vector2I key)
@@ -144,6 +121,8 @@ public partial class HexGrid : Node3D
 		_selectedGhostHexTile = ghost;
 		ghost.TileSelected += OnHexTilePickerSelected;
 		ghost.OpenPicker();
+		
+		GD.Print("open");
 	}
 
 	private void CloseHexTilePicker()
@@ -159,35 +138,6 @@ public partial class HexGrid : Node3D
 		_selectedGhostHexTile = null;
 	}
 
-	private void OpenConstructionSitePicker(HexTileBase tile)
-	{
-		if (_selectedHexTile == tile)
-			return;
-
-		_selectedHexTile = tile;
-
-		if (tile.ConstructionSite == null
-			|| !tile.AllowedToAddBuilding)
-			return;
-		
-		tile.ConstructionSite.BuildingSelected += OnBuildingPickerSelected;
-		tile.ConstructionSite.OpenPicker();
-	}
-
-	private void CloseConstructionSitePicker()
-	{
-		if (_selectedHexTile == null)
-			return;
-
-		if (_selectedHexTile.ConstructionSite != null)
-		{
-			_selectedHexTile.ConstructionSite.BuildingSelected -= OnBuildingPickerSelected;
-			_selectedHexTile.ConstructionSite.ClosePicker();
-		}
-
-		_selectedHexTile = null;
-	}
-
 	private void OnHexTilePickerSelected(PackedScene scene)
 	{
 		GD.Print($"Selected {scene.ResourcePath.GetFile().GetBaseName()} at {_selectedGhostHexTile.Q}, {_selectedGhostHexTile.R}");
@@ -201,37 +151,29 @@ public partial class HexGrid : Node3D
 		ShowBuildPositions();    // rebuilds ghosts -> old ghost cleaned up here
 		CloseHexTilePicker();
 	}
-
-	private void OnBuildingPickerSelected(PackedScene scene)
-	{
-		if (_selectedHexTile == null)
-			return;
-
-		var key = new Vector2I(_selectedHexTile.Q, _selectedHexTile.R);
-
-		AddBuilding(scene, key);
-		CloseConstructionSitePicker();
-	}
 	
 	public void OnBuildButtonPressed() => ToggleBuildMode();
 
 	public void HandleClick(Vector3 worldPosition)
 	{
-		CloseHexTilePicker();
-		CloseConstructionSitePicker();
-
 		var hex = WorldToAxial(worldPosition, HexSize);
 
-		if (_buildMode)
-		{
-			if (_ghostTiles.TryGetValue(hex, out var selectedGhostHexTile))
-				OpenHexTilePicker(selectedGhostHexTile);
-
-			if (_tiles.TryGetValue(hex, out var selectedHexTile))
-				OpenConstructionSitePicker(selectedHexTile);
-
+		if (!_buildMode)
 			return;
+
+		if (_ghostTiles.TryGetValue(hex, out var selectedGhostHexTile))
+		{
+			CloseHexTilePicker();
+			OpenHexTilePicker(selectedGhostHexTile);
 		}
+
+		if (_tiles.TryGetValue(hex, out var selectedHexTile))
+		{
+			selectedHexTile.CloseConstructionSitePicker();
+			selectedHexTile.OpenConstructionSitePicker();
+		}
+
+		return;
 	}
 	
 	private static Vector3 AxialToWorld(Vector2I hex, float hexSize)
