@@ -19,13 +19,13 @@ public partial class Hud : CanvasLayer
 	}
 
 	private void UpdateGoldLabel(float value)
-		=> GoldLabel.Text = $"Gold: {value}";
+		=> GoldLabel.Text = $"Gold: {value}/{PlayerEconomy.Instance.GoldRessource.MaxValue}";
 
 	private void UpdateWoodLabel(float value)
-		=> WoodLabel.Text = $"Wood: {value}";
+		=> WoodLabel.Text = $"Wood: {value}/{PlayerEconomy.Instance.WoodRessource.MaxValue}";
 
 	private void UpdateStoneLabel(float value)
-		=> StoneLabel.Text = $"Stone: {value}";
+		=> StoneLabel.Text = $"Stone: {value}/{PlayerEconomy.Instance.StoneRessource.MaxValue}";
 
 	public override void _ExitTree()
 	{

@@ -26,34 +26,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 122,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 8,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "HexGrid.cs",
-              "DocumentMoniker": "C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\Scripts\\HexGrid.cs",
-              "RelativeDocumentMoniker": "Scripts\\HexGrid.cs",
-              "ToolTip": "C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\Scripts\\HexGrid.cs",
-              "RelativeToolTip": "Scripts\\HexGrid.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAQwBAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-13T07:19:13.629Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "GhostHexTile.cs",
-              "DocumentMoniker": "C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\Scripts\\HexTiles\\GhostHexTile.cs",
-              "RelativeDocumentMoniker": "Scripts\\HexTiles\\GhostHexTile.cs",
-              "ToolTip": "C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\Scripts\\HexTiles\\GhostHexTile.cs",
-              "RelativeToolTip": "Scripts\\HexTiles\\GhostHexTile.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABAAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-13T07:18:25.404Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
@@ -88,13 +62,38 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "HexGrid.cs",
+              "DocumentMoniker": "C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\Scripts\\HexGrid.cs",
+              "RelativeDocumentMoniker": "Scripts\\HexGrid.cs",
+              "ToolTip": "C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\Scripts\\HexGrid.cs",
+              "RelativeToolTip": "Scripts\\HexGrid.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAQwBAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-13T07:19:13.629Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GhostHexTile.cs",
+              "DocumentMoniker": "C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\Scripts\\HexTiles\\GhostHexTile.cs",
+              "RelativeDocumentMoniker": "Scripts\\HexTiles\\GhostHexTile.cs",
+              "ToolTip": "C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\Scripts\\HexTiles\\GhostHexTile.cs",
+              "RelativeToolTip": "Scripts\\HexTiles\\GhostHexTile.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABAAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-13T07:18:25.404Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 3,
               "Title": "HexTileBase.cs",
               "DocumentMoniker": "C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\Scripts\\HexTiles\\HexTileBase.cs",
               "RelativeDocumentMoniker": "Scripts\\HexTiles\\HexTileBase.cs",
               "ToolTip": "C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\Scripts\\HexTiles\\HexTileBase.cs",
               "RelativeToolTip": "Scripts\\HexTiles\\HexTileBase.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAwwDAAAAAqAAAAAAAAAA==",
+              "ViewState": "AgIAACEAAAAAAAAAAAAwwDAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-08-13T06:52:29.743Z",
               "EditorCaption": ""
@@ -109,8 +108,7 @@
               "RelativeToolTip": "Scripts\\HexTiles\\WaterHexTile.cs",
               "ViewState": "AgIAACMAAAAAAAAAAAAAwDEAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-13T06:48:39.438Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-08-13T06:48:39.438Z"
             }
           ]
         },
