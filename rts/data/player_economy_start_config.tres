@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="PlayerEconomyConfig" format=3 uid="uid://cfy013y8aijip"]
+
+[ext_resource type="Script" uid="uid://boxehetwjymcb" path="res://Scripts/Config/PlayerEconomyConfig.cs" id="1_23ino"]
+
+[resource]
+script = ExtResource("1_23ino")
+GoldName = "Gold"
+GoldCurrentValue = 100.0
+GoldMaxValue = 1000.0
+WoodName = "Wood"
+WoodMaxValue = 100.0
+StoneName = "Stone"
+StoneMaxValue = 100.0
+metadata/_custom_type_script = "uid://boxehetwjymcb"

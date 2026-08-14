@@ -9,7 +9,7 @@ public partial class PlayerEconomy : Node
     public static PlayerEconomy Instance { get; private set; }
 
     private const string ConfigPath =
-        "res://data/player_ressource_start_config.tres";
+        "res://data/player_economy_start_config.tres";
 
     public PlayerRessource GoldRessource { get; private set; }
 
@@ -26,7 +26,7 @@ public partial class PlayerEconomy : Node
 
     private void LoadStartValues()
     {
-        var config = GD.Load<PlayerRessourceConfig>(ConfigPath);
+        var config = GD.Load<PlayerEconomyConfig>(ConfigPath);
 
         if (config == null)
         {

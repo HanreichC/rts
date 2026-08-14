@@ -5,11 +5,19 @@ namespace rts.scripts;
 
 public partial class Hud : CanvasLayer
 {
+	[ExportGroup("Player Ressource")]
 	[Export] public Label GoldLabel { get; private set; }
 
 	[Export] public Label WoodLabel { get; private set; }
 
 	[Export] public Label StoneLabel { get; private set; }
+	
+	[ExportGroup("Player Environment")]
+	[Export] public Label HexTileLabel { get; private set; }
+
+	[Export] public Label BuildingLabel { get; private set; }
+
+	[Export] public Label UnitLabel { get; private set; }
 
 	public override void _Ready()
 	{

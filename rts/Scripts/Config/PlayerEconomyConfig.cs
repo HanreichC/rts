@@ -4,9 +4,8 @@ using rts.scripts.Player;
 namespace rts.scripts.Config;
 
 [GlobalClass]
-public partial class PlayerRessourceConfig : Resource
+public partial class PlayerEconomyConfig : Resource
 {
-
 	[ExportGroup("Gold Player Ressource")]
 	[Export] public string GoldName { get; set; }
 	[Export] public float GoldCurrentValue { get; set; }

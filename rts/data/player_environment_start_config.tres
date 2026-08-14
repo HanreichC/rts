@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PlayerEnvironmentConfig" format=3 uid="uid://cavv7ooomv2jt"]
+
+[ext_resource type="Script" uid="uid://s2mpxt1xdg7v" path="res://Scripts/Config/PlayerEnvironmentConfig.cs" id="1_yjw7n"]
+
+[resource]
+script = ExtResource("1_yjw7n")
+HexTileName = "HexTiles"
+HexTileMaxValue = 20.0
+BuildingName = "Buildings"
+BuildingMaxValue = 10.0
+UnitName = "Units"
+UnitMaxValue = 100.0
+metadata/_custom_type_script = "uid://s2mpxt1xdg7v"
