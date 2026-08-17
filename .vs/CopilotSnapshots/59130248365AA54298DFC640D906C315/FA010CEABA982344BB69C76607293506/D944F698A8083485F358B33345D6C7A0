@@ -1,0 +1,46 @@
+﻿using Godot;
+using rts.scripts.Player;
+
+namespace rts.scripts;
+
+public partial class Hud : CanvasLayer
+{
+	[ExportGroup("Player Ressource")]
+	[Export] public Label GoldLabel { get; private set; }
+
+	[Export] public Label WoodLabel { get; private set; }
+
+	[Export] public Label StoneLabel { get; private set; }
+	
+	[ExportGroup("Player Environment")]
+	[Export] public Label HexTileLabel { get; private set; }
+
+	[Export] public Label BuildingLabel { get; private set; }
+
+	[Export] public Label UnitLabel { get; private set; }
+
+	public override void _Ready()
+	{
+		PlayerEconomy.Instance.GoldResourceEntry.AddRessourceValueChangedEventHandler(UpdateGoldLabel);
+		PlayerEconomy.Instance.WoodResourceEntry.AddRessourceValueChangedEventHandler(UpdateWoodLabel);
+		PlayerEconomy.Instance.StoneResourceEntry.AddRessourceValueChangedEventHandler(UpdateStoneLabel);
+	}
+
+	private void UpdateGoldLabel(float value)
+		=> GoldLabel.Text = $"Gold: {value}/{PlayerEconomy.Instance.GoldResourceEntry.MaxValue}";
+
+	private void UpdateWoodLabel(float value)
+		=> WoodLabel.Text = $"Wood: {value}/{PlayerEconomy.Instance.WoodResourceEntry.MaxValue}";
+
+	private void UpdateStoneLabel(float value)
+		=> StoneLabel.Text = $"Stone: {value}/{PlayerEconomy.Instance.StoneResourceEntry.MaxValue}";
+
+	public override void _ExitTree()
+	{
+		PlayerEconomy.Instance.GoldResourceEntry.RessourceValueChanged -= UpdateGoldLabel;
+		PlayerEconomy.Instance.WoodResourceEntry.RessourceValueChanged -= UpdateWoodLabel;
+		PlayerEconomy.Instance.StoneResourceEntry.RessourceValueChanged -= UpdateStoneLabel;
+		
+		base._ExitTree();
+	}
+}

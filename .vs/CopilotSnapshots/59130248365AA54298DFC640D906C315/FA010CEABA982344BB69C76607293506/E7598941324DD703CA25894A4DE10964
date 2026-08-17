@@ -1,0 +1,74 @@
+﻿using System.Collections.Generic;
+using Godot;
+using rts.scripts.Config;
+
+namespace rts.scripts.Player;
+
+public partial class PlayerEconomy : Node
+{
+    public static PlayerEconomy Instance { get; private set; }
+
+    private const string ConfigPath =
+        "res://data/player_economy_start_config.tres";
+
+    public ResourceEntry GoldResourceEntry { get; private set; }
+
+    public ResourceEntry WoodResourceEntry { get; private set; }
+
+    public ResourceEntry StoneResourceEntry { get; private set; }
+
+    public override void _Ready()
+    {
+        Instance = this;
+
+        LoadStartValues();
+    }
+
+    private void LoadStartValues()
+    {
+        var config = GD.Load<PlayerEconomyConfig>(ConfigPath);
+
+        if (config == null)
+        {
+            GD.PushError(
+                "Startkonfiguration konnte nicht geladen werden: "
+                + ConfigPath
+            );
+
+            return;
+        }
+
+        GoldResourceEntry =
+            new ResourceEntry(
+                PlayerResourceType.Gold,
+                config.GoldName,
+                config.GoldCurrentValue,
+                config.GoldMaxValue,
+                config.GoldMinValue);
+
+        WoodResourceEntry =
+            new ResourceEntry(
+                PlayerResourceType.Wood,
+                config.WoodName,
+                config.WoodCurrentValue,
+                config.WoodMaxValue,
+                config.WoodMinValue);
+
+        StoneResourceEntry =
+            new ResourceEntry(
+                PlayerResourceType.Stone,
+                config.StoneName,
+                config.StoneCurrentValue,
+                config.StoneMaxValue,
+                config.StoneMinValue);
+    }
+
+    public ResourceEntry TryGetPlayerRessource(PlayerResourceType type)
+        => type switch
+        {
+            PlayerResourceType.Gold => GoldResourceEntry,
+            PlayerResourceType.Wood => WoodResourceEntry,
+            PlayerResourceType.Stone => StoneResourceEntry,
+            _ => null
+        };
+}

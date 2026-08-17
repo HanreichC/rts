@@ -1,10 +1,10 @@
-[gd_scene format=3 uid="uid://cpjrnq5r6dy50"]
+﻿[gd_scene format=3 uid="uid://cpjrnq5r6dy50"]
 
 [ext_resource type="Script" uid="uid://diuxuj516o148" path="res://Scripts/Main.cs" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://bqosgd1b8cemm" path="res://scenes/hex_grid.tscn" id="2_jyhfs"]
 [ext_resource type="Script" uid="uid://c7coe5o5gtfvf" path="res://Scripts/CameraRig.cs" id="4_jyhfs"]
 [ext_resource type="Shader" uid="uid://bwk1t3tndjuad" path="res://Shader/water.gdshader" id="4_tbgi4"]
-[ext_resource type="Script" path="res://Scripts/Ui/ResourceLabel.cs" id="5_tbgi4"]
+[ext_resource type="Script" uid="uid://dxv4bkvh14fyy" path="res://Scripts/Hud.cs" id="5_tbgi4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sky"]
 sky_top_color = Color(0.55, 0.7, 0.85, 1)
@@ -81,9 +81,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
 fov = 70.0
 size = 14.0
 
-[node name="HUD" type="CanvasLayer" parent="." unique_id=252425112]
+[node name="HUD" type="CanvasLayer" parent="." unique_id=252425112 node_paths=PackedStringArray("GoldLabel", "WoodLabel", "StoneLabel")]
+script = ExtResource("5_tbgi4")
+GoldLabel = NodePath("RessourcePanelContainer/VBoxContainer/GoldLabel")
+WoodLabel = NodePath("RessourcePanelContainer/VBoxContainer/WoodLabel")
+StoneLabel = NodePath("RessourcePanelContainer/VBoxContainer/StoneLabel")
 
-[node name="BottomPanelContainer" type="PanelContainer" parent="HUD" unique_id=38050352]
+[node name="ButtomPanelContainer" type="PanelContainer" parent="HUD" unique_id=38050352]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -92,33 +96,27 @@ offset_top = -74.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Button" type="Button" parent="HUD/BottomPanelContainer" unique_id=218776149]
+[node name="Button" type="Button" parent="HUD/ButtomPanelContainer" unique_id=218776149]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 text = "Bauen"
 
-[node name="ResourcePanelContainer" type="PanelContainer" parent="HUD" unique_id=1721712692]
+[node name="RessourcePanelContainer" type="PanelContainer" parent="HUD" unique_id=1721712692]
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ResourcePanelContainer" unique_id=1774834549]
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/RessourcePanelContainer" unique_id=1774834549]
 layout_mode = 2
 
-[node name="GoldLabel" type="Label" parent="HUD/ResourcePanelContainer/VBoxContainer" unique_id=1079880567]
+[node name="GoldLabel" type="Label" parent="HUD/RessourcePanelContainer/VBoxContainer" unique_id=1079880567]
 layout_mode = 2
-script = ExtResource("5_tbgi4")
-Type = 0
 
-[node name="WoodLabel" type="Label" parent="HUD/ResourcePanelContainer/VBoxContainer" unique_id=817979525]
+[node name="WoodLabel" type="Label" parent="HUD/RessourcePanelContainer/VBoxContainer" unique_id=817979525]
 layout_mode = 2
-script = ExtResource("5_tbgi4")
-Type = 1
 
-[node name="StoneLabel" type="Label" parent="HUD/ResourcePanelContainer/VBoxContainer" unique_id=352347232]
+[node name="StoneLabel" type="Label" parent="HUD/RessourcePanelContainer/VBoxContainer" unique_id=352347232]
 layout_mode = 2
-script = ExtResource("5_tbgi4")
-Type = 2
 
 [node name="EnvironmentPanelContainer" type="PanelContainer" parent="HUD" unique_id=776621031]
 anchors_preset = 1
@@ -133,17 +131,11 @@ layout_mode = 2
 
 [node name="HexTileLabel" type="Label" parent="HUD/EnvironmentPanelContainer/VBoxContainer" unique_id=763297842]
 layout_mode = 2
-script = ExtResource("5_tbgi4")
-Type = 3
 
 [node name="BuildingLabel" type="Label" parent="HUD/EnvironmentPanelContainer/VBoxContainer" unique_id=177991372]
 layout_mode = 2
-script = ExtResource("5_tbgi4")
-Type = 4
 
 [node name="UnitLabel" type="Label" parent="HUD/EnvironmentPanelContainer/VBoxContainer" unique_id=751615451]
 layout_mode = 2
-script = ExtResource("5_tbgi4")
-Type = 5
 
-[connection signal="pressed" from="HUD/BottomPanelContainer/Button" to="." method="OnBuildButtonPressed"]
+[connection signal="pressed" from="HUD/ButtomPanelContainer/Button" to="." method="OnBuildButtonPressed"]

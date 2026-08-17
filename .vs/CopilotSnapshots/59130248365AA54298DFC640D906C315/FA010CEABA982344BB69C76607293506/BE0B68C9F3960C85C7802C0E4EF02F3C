@@ -1,0 +1,54 @@
+﻿using Godot;
+using rts.Exceptions;
+using rts.scripts.Player;
+
+// ReSharper disable All
+
+namespace rts.scripts.Buildings;
+
+public partial class BuildingBase : Node3D
+{
+	[ExportGroup("Building Costs")] [Export] public PlayerResourceType CostType { get; set; }
+
+	[Export] public float CostValue { get; set; }
+
+	private ResourceEntry CurrentCostResourceEntry => PlayerEconomy.Instance.TryGetPlayerRessource(CostType);
+	
+	[ExportGroup("Ressource Generation")] [Export] public PlayerResourceType PlayerResourceGenerationType { get; set; }
+	
+	[Export] public float RessourceGenerationValue { get; set; }
+	[Export] public float RessourceGenerationInterval { get; set; }
+	
+	private ResourceEntry CurrentGenerationResourceEntry => PlayerEconomy.Instance.TryGetPlayerRessource(PlayerResourceGenerationType);
+
+	public void EnsureBuildRequirementsMet()
+	{
+		var currentPlayerRessource = CurrentCostResourceEntry;
+
+		if (currentPlayerRessource is null
+			|| !currentPlayerRessource.CanAfford(CostValue))
+			throw new BuildRequirementsAreNotMetException();
+	}
+
+	public void SpendBuildRequirements()
+		=> CurrentCostResourceEntry.Spend(CostValue);
+
+	public override void _Ready()
+	{
+		if (CurrentGenerationResourceEntry == null
+			|| RessourceGenerationValue <= 0
+			|| RessourceGenerationInterval <= 0)
+			return;
+		
+		var ressourceGenerationTimer = new Timer
+		{
+			WaitTime = RessourceGenerationInterval,
+			Autostart = true
+		};
+		AddChild(ressourceGenerationTimer);
+		ressourceGenerationTimer.Timeout += OnRessourceGenerationTimerTimeout;
+	}
+	
+	private void OnRessourceGenerationTimerTimeout()
+		=> CurrentGenerationResourceEntry.Add(RessourceGenerationValue);
+}

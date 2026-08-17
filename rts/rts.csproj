@@ -7,4 +7,7 @@
   <ItemGroup>
     <Folder Include="Shader\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="data\player_resources_config.tres" />
+  </ItemGroup>
 </Project>

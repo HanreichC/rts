@@ -1,0 +1,56 @@
+[gd_resource type="Resource" script_class="PlayerResourcesConfig" format=3 uid="uid://cfy013y8aijip"]
+
+[ext_resource type="Script" path="res://Scripts/Config/PlayerResourcesConfig.cs" id="1_config"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerResource.cs" id="2_resource"]
+
+[sub_resource type="Resource" id="Resource_gold"]
+script = ExtResource("2_resource")
+Type = 0
+DisplayName = "Gold"
+Min = 0.0
+Max = 1000.0
+Value = 100.0
+
+[sub_resource type="Resource" id="Resource_wood"]
+script = ExtResource("2_resource")
+Type = 1
+DisplayName = "Wood"
+Min = 0.0
+Max = 100.0
+Value = 0.0
+
+[sub_resource type="Resource" id="Resource_stone"]
+script = ExtResource("2_resource")
+Type = 2
+DisplayName = "Stone"
+Min = 0.0
+Max = 100.0
+Value = 0.0
+
+[sub_resource type="Resource" id="Resource_hex_tile"]
+script = ExtResource("2_resource")
+Type = 3
+DisplayName = "HexTiles"
+Min = 0.0
+Max = 999.0
+Value = 0.0
+
+[sub_resource type="Resource" id="Resource_building"]
+script = ExtResource("2_resource")
+Type = 4
+DisplayName = "Buildings"
+Min = 0.0
+Max = 999.0
+Value = 0.0
+
+[sub_resource type="Resource" id="Resource_unit"]
+script = ExtResource("2_resource")
+Type = 5
+DisplayName = "Units"
+Min = 0.0
+Max = 999.0
+Value = 0.0
+
+[resource]
+script = ExtResource("1_config")
+Resources = Array[PlayerResource]([SubResource("Resource_gold"), SubResource("Resource_wood"), SubResource("Resource_stone"), SubResource("Resource_hex_tile"), SubResource("Resource_building"), SubResource("Resource_unit")])

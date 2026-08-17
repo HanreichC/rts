@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://cm0dh061rfse7"]
+﻿[gd_scene format=3 uid="uid://cm0dh061rfse7"]
 
 [ext_resource type="Script" uid="uid://d0io4bqyb7ie2" path="res://Scripts/Buildings/LumberjacksCabin.cs" id="1_6jptu"]
 

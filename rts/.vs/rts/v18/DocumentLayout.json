@@ -3,20 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4370C10C-295C-4AE6-B275-AD5A674F8D7E}|rts.csproj|c:\\users\\christopherhanreich\\source\\repos\\rts\\rts\\scripts\\hexgrid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4370C10C-295C-4AE6-B275-AD5A674F8D7E}|rts.csproj|solutionrelative:scripts\\hexgrid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4370C10C-295C-4AE6-B275-AD5A674F8D7E}|rts.csproj|c:\\users\\christopherhanreich\\source\\repos\\rts\\rts\\scripts\\hextiles\\hextilebase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4370C10C-295C-4AE6-B275-AD5A674F8D7E}|rts.csproj|solutionrelative:scripts\\hextiles\\hextilebase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4370C10C-295C-4AE6-B275-AD5A674F8D7E}|rts.csproj|c:\\users\\christopherhanreich\\source\\repos\\rts\\rts\\scripts\\hextiles\\ghosthextile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4370C10C-295C-4AE6-B275-AD5A674F8D7E}|rts.csproj|solutionrelative:scripts\\hextiles\\ghosthextile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4370C10C-295C-4AE6-B275-AD5A674F8D7E}|rts.csproj|c:\\users\\christopherhanreich\\source\\repos\\rts\\rts\\scripts\\hextiles\\waterhextile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4370C10C-295C-4AE6-B275-AD5A674F8D7E}|rts.csproj|solutionrelative:scripts\\hextiles\\waterhextile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4370C10C-295C-4AE6-B275-AD5A674F8D7E}|rts.csproj|c:\\users\\christopherhanreich\\source\\repos\\rts\\rts\\scripts\\player\\playerresource.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4370C10C-295C-4AE6-B275-AD5A674F8D7E}|rts.csproj|solutionrelative:scripts\\player\\playerresource.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -63,52 +51,15 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "HexGrid.cs",
-              "DocumentMoniker": "C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\Scripts\\HexGrid.cs",
-              "RelativeDocumentMoniker": "Scripts\\HexGrid.cs",
-              "ToolTip": "C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\Scripts\\HexGrid.cs",
-              "RelativeToolTip": "Scripts\\HexGrid.cs",
-              "ViewState": "AgIAAGwAAAAAAAAAAAAmwLUAAAArAAAAAAAAAA==",
+              "Title": "PlayerResource.cs",
+              "DocumentMoniker": "C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\Scripts\\Player\\PlayerResource.cs",
+              "RelativeDocumentMoniker": "Scripts\\Player\\PlayerResource.cs",
+              "ToolTip": "C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\Scripts\\Player\\PlayerResource.cs",
+              "RelativeToolTip": "Scripts\\Player\\PlayerResource.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-13T07:19:13.629Z",
+              "WhenOpened": "2026-08-17T06:24:30.8Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "GhostHexTile.cs",
-              "DocumentMoniker": "C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\Scripts\\HexTiles\\GhostHexTile.cs",
-              "RelativeDocumentMoniker": "Scripts\\HexTiles\\GhostHexTile.cs",
-              "ToolTip": "C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\Scripts\\HexTiles\\GhostHexTile.cs",
-              "RelativeToolTip": "Scripts\\HexTiles\\GhostHexTile.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABAAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-13T07:18:25.404Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "HexTileBase.cs",
-              "DocumentMoniker": "C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\Scripts\\HexTiles\\HexTileBase.cs",
-              "RelativeDocumentMoniker": "Scripts\\HexTiles\\HexTileBase.cs",
-              "ToolTip": "C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\Scripts\\HexTiles\\HexTileBase.cs",
-              "RelativeToolTip": "Scripts\\HexTiles\\HexTileBase.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAgwDAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-13T06:52:29.743Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "WaterHexTile.cs",
-              "DocumentMoniker": "C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\Scripts\\HexTiles\\WaterHexTile.cs",
-              "RelativeDocumentMoniker": "Scripts\\HexTiles\\WaterHexTile.cs",
-              "ToolTip": "C:\\Users\\ChristopherHanreich\\source\\repos\\rts\\rts\\Scripts\\HexTiles\\WaterHexTile.cs",
-              "RelativeToolTip": "Scripts\\HexTiles\\WaterHexTile.cs",
-              "ViewState": "AgIAACMAAAAAAAAAAAAAwDEAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-13T06:48:39.438Z"
             }
           ]
         },

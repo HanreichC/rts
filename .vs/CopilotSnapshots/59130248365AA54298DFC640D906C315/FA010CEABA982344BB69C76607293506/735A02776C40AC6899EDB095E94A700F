@@ -1,0 +1,73 @@
+﻿using Godot;
+using rts.scripts.Config;
+
+namespace rts.scripts.Player;
+
+public partial class PlayerAssets : Node
+{
+    public static PlayerAssets Instance { get; private set; }
+    
+    private const string ConfigPath =
+        "res://data/player_assets_start_config.tres";
+    
+    public ResourceEntry HexTile { get; private set; }
+
+    public ResourceEntry Buildings { get; private set; }
+
+    public ResourceEntry Units { get; private set; }
+    
+    public override void _Ready()
+    {
+        Instance = this;
+
+        LoadStartValues();
+    }
+    
+    private void LoadStartValues()
+    {
+        var config = GD.Load<PlayerAssetstConfig>(ConfigPath);
+
+        if (config == null)
+        {
+            GD.PushError(
+                "Startkonfiguration konnte nicht geladen werden: "
+                + ConfigPath
+            );
+
+            return;
+        }
+
+        HexTile =
+            new ResourceEntry(
+                PlayerResourceType.Gold,
+                config.HexTileName,
+                config.HexTileCurrentValue,
+                config.HexTileMaxValue,
+                config.HexTileMinValue);
+
+        Buildings =
+            new ResourceEntry(
+                PlayerResourceType.Wood,
+                config.BuildingName,
+                config.BuildingCurrentValue,
+                config.BuildingMaxValue,
+                config.BuildingMinValue);
+
+        Units =
+            new ResourceEntry(
+                PlayerResourceType.Stone,
+                config.UnitName,
+                config.UnitCurrentValue,
+                config.UnitMaxValue,
+                config.UnitMinValue);
+    }
+    
+    public ResourceEntry TryGetPlayerRessource(PlayerResourceType type)
+        => type switch
+        {
+            PlayerResourceType.HexTile => HexTile,
+            PlayerResourceType.Building => Buildings,
+            PlayerResourceType.Unit => Units,
+            _ => null
+        };
+}

@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://cm0dh061rfse7"]
+﻿[gd_scene format=3 uid="uid://cm0dh061rfse7"]
 
 [ext_resource type="Script" uid="uid://d0io4bqyb7ie2" path="res://Scripts/Buildings/LumberjacksCabin.cs" id="1_6jptu"]
 
@@ -13,9 +13,9 @@ material = SubResource("StandardMaterial3D_ibg3g")
 [node name="FishermansCabin" type="Node3D" unique_id=883313285]
 script = ExtResource("1_6jptu")
 CostValue = 10.0
-GenerationType = 1
-GenerationValue = 30.0
-GenerationInterval = 5.0
+RessourceGenerationType = 1
+RessourceGenerationValue = 30.0
+RessourceGenerationInterval = 5.0
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=176072213]
 
