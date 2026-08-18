@@ -1,24 +1,22 @@
-using System;
+﻿using System;
 using Godot;
 
 namespace rts.scripts.Player;
 
-public enum PlayerResourceType
-{
-    Gold,
-    Wood,
-    Stone,
-    HexTile,
-    Building,
-    Unit
-}
-
 [GlobalClass]
 public partial class PlayerResource : Resource
 {
-    public event Action<float> ValueChanged;
+    public enum PlayerResourceType
+    {
+        Gold,
+        Wood,
+        Stone,
+        HexTile,
+        Building,
+        Unit
+    }
 
-    private float _value;
+    public event Action<float> ValueChanged;
 
     [Export] public PlayerResourceType Type { get; set; }
 
@@ -27,6 +25,8 @@ public partial class PlayerResource : Resource
     [Export] public float Min { get; set; }
 
     [Export] public float Max { get; set; } = 100f;
+
+    private float _value;
 
     [Export]
     public float Value
@@ -44,19 +44,43 @@ public partial class PlayerResource : Resource
         }
     }
 
-    public bool CanAfford(float cost)
-        => _value - cost >= Min;
+    public bool CanSubtract(float amount)
+        => Value - amount >= Min;
 
-    public void Add(float amount)
-        => Value += amount;
-
-    public bool TrySpend(float cost)
+    public bool TrySubtract(float amount)
     {
-        if (!CanAfford(cost))
+        if (amount <= 0f
+            || !CanSubtract(amount))
             return false;
 
-        Value -= cost;
+        Value -= amount;
 
         return true;
     }
+
+    public bool CanAdd(float amount)
+        => Value + amount <= Max;
+
+    public bool TryAdd(float amount)
+    {
+        if (amount <= 0f ||
+            !CanAdd(amount))
+            return false;
+
+        Value += amount;
+
+        return true;
+    }
+
+    public bool CanIncrement()
+        => CanAdd(1f);
+    
+    public bool TryIncrement()
+        => TryAdd(1f);
+
+    public bool CanDecrement()
+        => CanSubtract(1f);
+    
+    public bool TryDecrement()
+        => TrySubtract(1f);
 }

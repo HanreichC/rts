@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bqosgd1b8cemm" path="res://scenes/hex_grid.tscn" id="2_jyhfs"]
 [ext_resource type="Script" uid="uid://c7coe5o5gtfvf" path="res://Scripts/CameraRig.cs" id="4_jyhfs"]
 [ext_resource type="Shader" uid="uid://bwk1t3tndjuad" path="res://Shader/water.gdshader" id="4_tbgi4"]
-[ext_resource type="Script" path="res://Scripts/Ui/ResourceLabel.cs" id="5_tbgi4"]
+[ext_resource type="Script" uid="uid://drcp2oa8gh7yd" path="res://Scripts/Ui/ResourceLabel.cs" id="5_tbgi4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sky"]
 sky_top_color = Color(0.55, 0.7, 0.85, 1)
@@ -108,7 +108,6 @@ layout_mode = 2
 [node name="GoldLabel" type="Label" parent="HUD/ResourcePanelContainer/VBoxContainer" unique_id=1079880567]
 layout_mode = 2
 script = ExtResource("5_tbgi4")
-Type = 0
 
 [node name="WoodLabel" type="Label" parent="HUD/ResourcePanelContainer/VBoxContainer" unique_id=817979525]
 layout_mode = 2

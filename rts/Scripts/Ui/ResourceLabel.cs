@@ -7,7 +7,7 @@ public partial class ResourceLabel : Label
 {
     private PlayerResource _resource;
 
-    [Export] public PlayerResourceType Type { get; set; }
+    [Export] public PlayerResource.PlayerResourceType Type { get; set; }
 
     public override void _Ready()
     {

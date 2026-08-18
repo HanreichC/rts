@@ -18,7 +18,21 @@ public partial class HexTileBase : Node3DBase
 
     public ConstructionSiteBase ConstructionSite { get; private set; }
 
-    public Node3D Building { get; private set; }
+    private BuildingBase _building;
+    public BuildingBase Building
+    {
+        get => _building;
+        private set
+        {
+            if (_building != null)
+                RemoveChild(_building);
+
+            if (value != null)
+                AddChild(value);
+
+            _building = value;
+        }
+    }
 
     public bool AllowedToAddBuilding => Building == null;
 
@@ -42,7 +56,7 @@ public partial class HexTileBase : Node3DBase
 
         SetConstructionSiteVisible(false);
     }
-    
+
     public void SetConstructionSiteVisible(bool visible)
     {
         if (ConstructionSite == null)
@@ -59,11 +73,11 @@ public partial class HexTileBase : Node3DBase
         if (ConstructionSite == null
             || !AllowedToAddBuilding)
             return;
-		
+
         ConstructionSite.BuildingSelected += OnBuildingPickerSelected;
         ConstructionSite.OpenPicker();
     }
-    
+
     private void OnBuildingPickerSelected(PackedScene scene)
     {
         if (scene.Instantiate() is not BuildingBase building)
@@ -83,30 +97,28 @@ public partial class HexTileBase : Node3DBase
 
         CloseConstructionSitePicker();
     }
-    
+
     public void CloseConstructionSitePicker()
     {
         if (ConstructionSite == null)
             return;
-        
+
         ConstructionSite.BuildingSelected -= OnBuildingPickerSelected;
         ConstructionSite.ClosePicker();
     }
-    
+
     public void AddBuilding(BuildingBase building)
     {
         if (building == null
             || !AllowedToAddBuilding)
             return;
-        
-        building.EnsureBuildRequirementsMet();
-        building.SpendBuildRequirements();
-        
+
+        building.TryBuild(
+            new Vector3(0, SurfaceHeight - GetLocalBottomY(building), 0),
+            new Vector3(0, new Random().Next(6) * 60f, 0));
+
         Building = building;
-        AddChild(Building);
-        Building.Position = new Vector3(0, SurfaceHeight - GetLocalBottomY(Building), 0);
-        Building.RotationDegrees =
-            new Vector3(0, new Random().Next(6) * 60f, 0); // random rotation 0,60,120,180,240,300
+        
         SetConstructionSiteVisible(false);
     }
 }
