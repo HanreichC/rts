@@ -35,7 +35,7 @@ public partial class BuildingBase : Node3D
         RotationDegrees = rotation;
     }
 
-    public void EnsureBuildRequirementsMet()
+    private void EnsureBuildRequirementsMet()
     {
         if (CostResource is null
             || !CostResource.CanSubtract(CostValue)
@@ -44,7 +44,7 @@ public partial class BuildingBase : Node3D
             throw new BuildRequirementsAreNotMetException();
     }
 
-    public void SpendBuildRequirements()
+    private void SpendBuildRequirements()
     {
         CostResource?.TrySubtract(CostValue);
         BuildingResource?.TryIncrement();

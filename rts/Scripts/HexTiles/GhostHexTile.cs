@@ -1,4 +1,5 @@
 using Godot;
+using rts.Helpers;
 
 namespace rts.scripts.hexTiles;
 
@@ -42,6 +43,13 @@ public partial class GhostHexTile : HexTileBase
 
 		var screenPos = camera.UnprojectPosition(PlusLabel.GlobalPosition);
 		HexTileSelectionPanel.Position = screenPos - new Vector2(HexTileSelectionPanel.Size.X / 2f, HexTileSelectionPanel.Size.Y + 10f);
+	}
+
+	public override void TryPlace(Vector2I key, float hexSize)
+	{
+		Position = WorldHelper.AxialToWorld(key, hexSize);
+		Q = key.X;
+		R = key.Y;
 	}
 
 	public void OnGrassButtonPressed()

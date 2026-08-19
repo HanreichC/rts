@@ -23,7 +23,7 @@ DisplayName = "Stone"
 script = ExtResource("2_resource")
 Type = 3
 DisplayName = "HexTiles"
-Max = 30.0
+Max = 15.0
 
 [sub_resource type="Resource" id="Resource_building"]
 script = ExtResource("2_resource")

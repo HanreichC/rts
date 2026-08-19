@@ -1,8 +1,10 @@
 using System;
 using Godot;
 using rts.Exceptions;
+using rts.Helpers;
 using rts.scripts.Buildings;
 using rts.scripts.constructionSites;
+using rts.scripts.Player;
 
 namespace rts.scripts.hexTiles;
 
@@ -19,6 +21,7 @@ public partial class HexTileBase : Node3DBase
     public ConstructionSiteBase ConstructionSite { get; private set; }
 
     private BuildingBase _building;
+
     public BuildingBase Building
     {
         get => _building;
@@ -56,6 +59,32 @@ public partial class HexTileBase : Node3DBase
 
         SetConstructionSiteVisible(false);
     }
+
+    public virtual void TryPlace(
+        Vector2I key,
+        float hexSize)
+    {
+        EnsureCanBePlaced();
+        SpendPlacementRequirements();
+
+        Position = WorldHelper.AxialToWorld(key, hexSize);
+        Q = key.X;
+        R = key.Y;
+    }
+
+    private static void SpendPlacementRequirements()
+        => PlayerResources.Instance[PlayerResource.PlayerResourceType.HexTile].TryIncrement();
+
+    private static void EnsureCanBePlaced()
+    {
+        var resource =
+            PlayerResources.Instance[PlayerResource.PlayerResourceType.HexTile];
+
+        if (resource is null
+            || !resource.CanIncrement())
+            throw new BuildRequirementsAreNotMetException();
+    }
+
 
     public void SetConstructionSiteVisible(bool visible)
     {
@@ -118,7 +147,7 @@ public partial class HexTileBase : Node3DBase
             new Vector3(0, new Random().Next(6) * 60f, 0));
 
         Building = building;
-        
+
         SetConstructionSiteVisible(false);
     }
 }
