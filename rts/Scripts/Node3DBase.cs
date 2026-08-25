@@ -4,6 +4,8 @@ namespace rts.scripts;
 
 public partial class Node3DBase : Node3D
 {
+    [Export] public MeshInstance3D Body { get; set; }
+    
     /// <summary>
     /// Override to build/rebuild this tile's own mesh geometry (e.g. procedural meshes).
     /// Runs before the tile is aligned so its bottom flush with other tiles, so any geometry
@@ -23,7 +25,7 @@ public partial class Node3DBase : Node3D
         var aabb = new Aabb();
         var hasAabb = false;
 
-        CollectAabb(this, this, ref aabb, ref hasAabb);
+        CollectAabb(this, Body, ref aabb, ref hasAabb);
 
         return hasAabb ? aabb.Position.Y + aabb.Size.Y : 0f;
     }
@@ -51,12 +53,12 @@ public partial class Node3DBase : Node3D
     /// building models whose pivot isn't at the mesh's bottom, so placement always rests
     /// exactly on the target surface regardless of pivot position.
     /// </summary>
-    protected static float GetLocalBottomY(Node3D node)
+    public float GetLocalBottomY()
     {
         var aabb = new Aabb();
         var hasAabb = false;
 
-        CollectAabb(node, node, ref aabb, ref hasAabb);
+        CollectAabb(this, this, ref aabb, ref hasAabb);
 
         return hasAabb ? aabb.Position.Y : 0f;
     }

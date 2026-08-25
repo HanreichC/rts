@@ -3,7 +3,7 @@ using rts.scripts.hexTiles;
 
 namespace rts.scripts.constructionSites;
 
-public partial class ConstructionSiteBase : Node3D
+public partial class ConstructionSiteBase : Node3DBase
 {
     [Signal] public delegate void BuildingSelectedEventHandler(PackedScene scene);
 

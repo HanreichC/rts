@@ -4,7 +4,7 @@ using rts.scripts.Player;
 
 namespace rts.scripts.Buildings;
 
-public partial class BuildingBase : Node3D
+public partial class BuildingBase : Node3DBase
 {
     [ExportGroup("Building Costs")]
     [Export]
@@ -26,16 +26,7 @@ public partial class BuildingBase : Node3D
 
     private PlayerResource GenerationResource => PlayerResources.Instance[GenerationType];
 
-    public void TryBuild(Vector3 position,
-                         Vector3 rotation)
-    {
-        EnsureBuildRequirementsMet();
-        SpendBuildRequirements();
-        Position = position;
-        RotationDegrees = rotation;
-    }
-
-    private void EnsureBuildRequirementsMet()
+    public void EnsureBuildRequirementsMet()
     {
         if (CostResource is null
             || !CostResource.CanSubtract(CostValue)
@@ -44,12 +35,11 @@ public partial class BuildingBase : Node3D
             throw new BuildRequirementsAreNotMetException();
     }
 
-    private void SpendBuildRequirements()
+    public void SpendBuildRequirements()
     {
         CostResource?.TrySubtract(CostValue);
         BuildingResource?.TryIncrement();
     }
-
 
     public override void _Ready()
     {

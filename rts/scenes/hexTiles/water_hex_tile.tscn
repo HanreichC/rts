@@ -29,9 +29,10 @@ subdivide_depth = 24
 height = 0.8
 radius = 3.0
 
-[node name="HexTile" type="Node3D" unique_id=937024430]
+[node name="HexTile" type="Node3D" unique_id=937024430 node_paths=PackedStringArray("Body")]
 script = ExtResource("1_2abg2")
 ConstructionSiteScene = ExtResource("2_vvwq4")
+Body = NodePath("Body/Mesh")
 
 [node name="Body" type="StaticBody3D" parent="." unique_id=1095410016]
 
