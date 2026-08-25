@@ -1,6 +1,6 @@
 # Trunk
 
-<img width="2527" height="357" alt="image" src="https://github.com/user-attachments/assets/ef241b44-c545-4062-99a8-dc14cafccd89" />
+<img widt	h="2527" height="357" alt="image" src="https://github.com/user-attachments/assets/ef241b44-c545-4062-99a8-dc14cafccd89" />
 
 | # | Hexcode |
 |---|---------|
