@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://uyeem22co7vc"]
+
+[ext_resource type="PackedScene" uid="uid://b35wr62ur6v1t" path="res://assets/environtment/trees/Tree2.glb" id="1_srdjp"]
+
+[node name="Node3D" type="Node3D" unique_id=1645792212]
+
+[node name="Tree2" parent="." unique_id=442371423 instance=ExtResource("1_srdjp")]

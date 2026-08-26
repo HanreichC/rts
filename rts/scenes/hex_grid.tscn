@@ -8,3 +8,4 @@
 script = ExtResource("1_ug5ck")
 StartHexTileScene = ExtResource("2_wdud7")
 GhostHexTileScene = ExtResource("3_k0gij")
+HexSize = 5.0

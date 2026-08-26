@@ -27,7 +27,7 @@ subdivide_depth = 24
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_mxcym"]
 height = 0.8
-radius = 3.0
+radius = 5.0
 
 [node name="HexTile" type="Node3D" unique_id=937024430 node_paths=PackedStringArray("Body")]
 script = ExtResource("1_2abg2")
@@ -37,6 +37,7 @@ Body = NodePath("Body/Mesh")
 [node name="Body" type="StaticBody3D" parent="." unique_id=1095410016]
 
 [node name="Mesh" type="MeshInstance3D" parent="Body" unique_id=2001022025]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.021045923, 0, 0)
 mesh = SubResource("PlaneMesh_go6ie")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Body" unique_id=1057021608]

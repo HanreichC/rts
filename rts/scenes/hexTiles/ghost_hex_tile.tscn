@@ -10,14 +10,14 @@ albedo_color = Color(1, 1, 1, 0.06666667)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_3tcii"]
 material = SubResource("StandardMaterial3D_gnbg0")
-top_radius = 3.0
-bottom_radius = 3.0
+top_radius = 5.0
+bottom_radius = 5.0
 height = 1.0
 radial_segments = 6
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_3tcii"]
 height = 1.0
-radius = 3.0
+radius = 5.0
 
 [node name="GhostHexTile" type="Node3D" unique_id=519360369 node_paths=PackedStringArray("PlusLabel", "HexTileSelectionPanel")]
 script = ExtResource("1_h4dqv")
