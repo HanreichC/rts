@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bwyp7njdx6tg6"]
+
+[ext_resource type="PackedScene" uid="uid://cgxjvgybwb4n1" path="res://assets/environtment/trees/Tree2.glb" id="1_k054u"]
+[ext_resource type="Shader" uid="uid://l8ewtbk3t11a" path="res://Shader/leaf_wind.gdshader" id="2_5fq1l"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k054u"]
+render_priority = 0
+shader = ExtResource("2_5fq1l")
+shader_parameter/leaf_color = Color(0.08, 0.45, 0.05, 1)
+shader_parameter/wind_strength = 0.02
+shader_parameter/wind_speed = 1.0
+
+[node name="Tree2" unique_id=900214070 instance=ExtResource("1_k054u")]
+
+[node name="Leaf_011" parent="." index="11" unique_id=338737459]
+material_override = SubResource("ShaderMaterial_k054u")

@@ -2,8 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cpr7wd0tn17rw" path="res://Scripts/HexTiles/GrassHexTile.cs" id="1_yebk0"]
 [ext_resource type="PackedScene" uid="uid://b08o5oxqxnx3w" path="res://scenes/constructionSites/grass_construction_site.tscn" id="2_2ch8a"]
-[ext_resource type="PackedScene" uid="uid://biin1eksjsuo0" path="res://scenes/environment/trees/tree1.tscn" id="3_fa72p"]
-[ext_resource type="PackedScene" uid="uid://uyeem22co7vc" path="res://scenes/environment/trees/tree2.tscn" id="4_j7c60"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ibg3g"]
 albedo_color = Color(0.5529412, 0.7607843, 0.20784314, 1)
@@ -44,9 +42,3 @@ shape = SubResource("CylinderShape3D_mxcym")
 
 [node name="Outline" type="MeshInstance3D" parent="Body" unique_id=1828889634]
 mesh = SubResource("CylinderMesh_ibg3g")
-
-[node name="Node3D" parent="." unique_id=1734587352 instance=ExtResource("3_fa72p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27767777, 0.5020971, 2.0000153)
-
-[node name="Node3D2" parent="." unique_id=1645792212 instance=ExtResource("4_j7c60")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5446316, 0.50120074, 1.3347975)

@@ -8,9 +8,9 @@
 render_priority = 0
 shader = ExtResource("3_k8fxv")
 shader_parameter/water_color = Color(0.10980392, 0.4392157, 0.78431374, 1)
-shader_parameter/wave_height = 0.70999998413008
-shader_parameter/wave_speed = 1.17999997362464
-shader_parameter/wave_density = 1.4599999710914
+shader_parameter/wave_height = 1.08999997563632
+shader_parameter/wave_speed = 0.72999998368304
+shader_parameter/wave_density = 1.2699999753382802
 shader_parameter/turbulence = 0.999999977648
 shader_parameter/metallic = 0.499999988824
 shader_parameter/roughness = 0.0
