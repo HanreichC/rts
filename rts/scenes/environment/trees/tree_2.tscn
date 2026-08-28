@@ -3,14 +3,73 @@
 [ext_resource type="PackedScene" uid="uid://cgxjvgybwb4n1" path="res://assets/environtment/trees/Tree2.glb" id="1_k054u"]
 [ext_resource type="Shader" uid="uid://l8ewtbk3t11a" path="res://Shader/leaf_wind.gdshader" id="2_5fq1l"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_k054u"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fhbsj"]
 render_priority = 0
 shader = ExtResource("2_5fq1l")
-shader_parameter/leaf_color = Color(0.08, 0.45, 0.05, 1)
-shader_parameter/wind_strength = 0.02
-shader_parameter/wind_speed = 1.0
+shader_parameter/leaf_color = Color(0.15294118, 0.48235294, 0.19215687, 1)
+shader_parameter/wind_direction = Vector2(1, 0.35)
+shader_parameter/wind_strength = 0.045
+shader_parameter/wind_speed = 0.55
+shader_parameter/wind_wavelength = 14.0
+shader_parameter/gust_amount = 0.45
+shader_parameter/gust_speed = 0.13
+shader_parameter/pivot_offset = 2.0
+shader_parameter/sway_scale = 1.0
+shader_parameter/flutter_strength = 0.012
+shader_parameter/flutter_speed = 3.0
 
 [node name="Tree2" unique_id=900214070 instance=ExtResource("1_k054u")]
 
-[node name="Leaf_011" parent="." index="11" unique_id=338737459]
-material_override = SubResource("ShaderMaterial_k054u")
+[node name="Leaf" parent="." index="0" unique_id=124265492]
+material_override = SubResource("ShaderMaterial_fhbsj")
+
+[node name="Leaf_001" parent="." index="1" unique_id=2109555844]
+material_override = SubResource("ShaderMaterial_fhbsj")
+
+[node name="Leaf_002" parent="." index="2" unique_id=1031194742]
+material_override = SubResource("ShaderMaterial_fhbsj")
+
+[node name="Leaf_003" parent="." index="3" unique_id=1596529868]
+material_override = SubResource("ShaderMaterial_fhbsj")
+
+[node name="Leaf_004" parent="." index="4" unique_id=791711722]
+material_override = SubResource("ShaderMaterial_fhbsj")
+
+[node name="Leaf_005" parent="." index="5" unique_id=292186301]
+material_override = SubResource("ShaderMaterial_fhbsj")
+
+[node name="Leaf_006" parent="." index="6" unique_id=438824562]
+material_override = SubResource("ShaderMaterial_fhbsj")
+
+[node name="Leaf_007" parent="." index="7" unique_id=721011380]
+material_override = SubResource("ShaderMaterial_fhbsj")
+
+[node name="Leaf_008" parent="." index="8" unique_id=584854708]
+material_override = SubResource("ShaderMaterial_fhbsj")
+
+[node name="Leaf_009" parent="." index="9" unique_id=1599071897]
+material_override = SubResource("ShaderMaterial_fhbsj")
+
+[node name="Leaf_010" parent="." index="10" unique_id=742189564]
+material_override = SubResource("ShaderMaterial_fhbsj")
+
+[node name="Leaf_011" parent="." index="11" unique_id=857323195]
+material_override = SubResource("ShaderMaterial_fhbsj")
+
+[node name="Leaf_012" parent="." index="12" unique_id=899426621]
+material_override = SubResource("ShaderMaterial_fhbsj")
+
+[node name="Leaf_013" parent="." index="13" unique_id=1131552799]
+material_override = SubResource("ShaderMaterial_fhbsj")
+
+[node name="Leaf_014" parent="." index="14" unique_id=2091892810]
+material_override = SubResource("ShaderMaterial_fhbsj")
+
+[node name="Leaf_015" parent="." index="15" unique_id=1515406280]
+material_override = SubResource("ShaderMaterial_fhbsj")
+
+[node name="Leaf_016" parent="." index="16" unique_id=169478667]
+material_override = SubResource("ShaderMaterial_fhbsj")
+
+[node name="Trunk" parent="." index="17" unique_id=1764070070]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.051413298, 0, -0.031326234)
