@@ -1,6 +1,7 @@
 using Godot;
 using rts.Exceptions;
 using rts.scripts.Player;
+using rts.scripts.Units;
 
 namespace rts.scripts.Buildings;
 
@@ -20,9 +21,20 @@ public partial class BuildingBase : Node3DBase
 
     [Export] public float GenerationInterval { get; set; }
 
+    [ExportGroup("Units")]
+    [Export]
+    public PackedScene UnitScene { get; set; }
+
+    [Export]
+    public int UnitCount { get; set; }
+
+    [Export]
+    public float UnitSpawnRadius { get; set; }
+
     private PlayerResource CostResource => PlayerResources.Instance[CostType];
 
-    private PlayerResource BuildingResource => PlayerResources.Instance[PlayerResource.PlayerResourceType.Building];
+    private static PlayerResource BuildingResource =>
+        PlayerResources.Instance[PlayerResource.PlayerResourceType.Building];
 
     private PlayerResource GenerationResource => PlayerResources.Instance[GenerationType];
 
@@ -48,6 +60,8 @@ public partial class BuildingBase : Node3DBase
             || GenerationInterval <= 0)
             return;
 
+        SpawnUnits();
+        
         var timer = new Timer
         {
             WaitTime = GenerationInterval,
@@ -60,4 +74,26 @@ public partial class BuildingBase : Node3DBase
 
     private void OnGenerationTimerTimeout()
         => GenerationResource.TryAdd(GenerationValue);
+    
+    private void SpawnUnits()                                        
+    {                                                                
+        if (UnitScene == null || UnitCount <= 0) return;             
+                                                                   
+        var groundY = GetLocalBottomY();                                              
+                                                                   
+        for (var i = 0; i < UnitCount; i++)                          
+        {                                                            
+            if (UnitScene.Instantiate() is not UnitBase unit)        
+                continue;                                                        
+                                                                   
+            AddChild(unit);                   
+            unit.HomeBuilding = this;                                
+                                                                   
+            var angle = Mathf.Tau * i / UnitCount;                   
+            unit.Position = new Vector3(                             
+                Mathf.Cos(angle) * UnitSpawnRadius,                  
+                groundY - unit.GetLocalBottomY(),                    
+                Mathf.Sin(angle) * UnitSpawnRadius);                 
+        }                                                            
+    }   
 }

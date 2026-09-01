@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cm0dh061rfse7"]
 
 [ext_resource type="Script" uid="uid://d0io4bqyb7ie2" path="res://Scripts/Buildings/LumberjacksCabin.cs" id="1_6jptu"]
+[ext_resource type="PackedScene" uid="uid://c1a1gsvwtvxsa" path="res://scenes/units/lumberjack.tscn" id="2_3nb1p"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ibg3g"]
 albedo_color = Color(0.75686276, 0.6039216, 0.41960785, 1)
@@ -16,6 +17,9 @@ CostValue = 10.0
 GenerationType = 1
 GenerationValue = 30.0
 GenerationInterval = 5.0
+UnitScene = ExtResource("2_3nb1p")
+UnitCount = 1
+UnitSpawnRadius = 0.6
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=176072213]
 
