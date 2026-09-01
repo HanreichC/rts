@@ -1,5 +1,253 @@
 [gd_scene format=3 uid="uid://cmd56ureu6qrf"]
 
 [ext_resource type="PackedScene" uid="uid://b3xv6o4a5pbbe" path="res://assets/environtment/trees/Tree1.glb" id="1_ypn1d"]
+[ext_resource type="Shader" uid="uid://l8ewtbk3t11a" path="res://Shader/leaf_wind.gdshader" id="2_vw3ir"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_exwfp"]
+render_priority = 0
+shader = ExtResource("2_vw3ir")
+shader_parameter/leaf_color = Color(0.15294118, 0.48235294, 0.19215687, 1)
+shader_parameter/wind_direction = Vector2(1, 0.35)
+shader_parameter/wind_strength = 0.045
+shader_parameter/wind_speed = 0.55
+shader_parameter/wind_wavelength = 14.0
+shader_parameter/gust_amount = 0.45
+shader_parameter/gust_speed = 0.13
+shader_parameter/pivot_offset = 2.0
+shader_parameter/sway_scale = 1.0
+shader_parameter/flutter_strength = 0.012
+shader_parameter/flutter_speed = 3.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ooeka"]
+render_priority = 0
+shader = ExtResource("2_vw3ir")
+shader_parameter/leaf_color = Color(0.15294118, 0.48235294, 0.19215687, 1)
+shader_parameter/wind_direction = Vector2(1, 0.35)
+shader_parameter/wind_strength = 0.045
+shader_parameter/wind_speed = 0.55
+shader_parameter/wind_wavelength = 14.0
+shader_parameter/gust_amount = 0.45
+shader_parameter/gust_speed = 0.13
+shader_parameter/pivot_offset = 2.0
+shader_parameter/sway_scale = 1.0
+shader_parameter/flutter_strength = 0.012
+shader_parameter/flutter_speed = 3.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_04gi2"]
+render_priority = 0
+shader = ExtResource("2_vw3ir")
+shader_parameter/leaf_color = Color(0.15294118, 0.48235294, 0.19215687, 1)
+shader_parameter/wind_direction = Vector2(1, 0.35)
+shader_parameter/wind_strength = 0.045
+shader_parameter/wind_speed = 0.55
+shader_parameter/wind_wavelength = 14.0
+shader_parameter/gust_amount = 0.45
+shader_parameter/gust_speed = 0.13
+shader_parameter/pivot_offset = 2.0
+shader_parameter/sway_scale = 1.0
+shader_parameter/flutter_strength = 0.012
+shader_parameter/flutter_speed = 3.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1uxox"]
+render_priority = 0
+shader = ExtResource("2_vw3ir")
+shader_parameter/leaf_color = Color(0.15294118, 0.48235294, 0.19215687, 1)
+shader_parameter/wind_direction = Vector2(1, 0.35)
+shader_parameter/wind_strength = 0.045
+shader_parameter/wind_speed = 0.55
+shader_parameter/wind_wavelength = 14.0
+shader_parameter/gust_amount = 0.45
+shader_parameter/gust_speed = 0.13
+shader_parameter/pivot_offset = 2.0
+shader_parameter/sway_scale = 1.0
+shader_parameter/flutter_strength = 0.012
+shader_parameter/flutter_speed = 3.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r8pke"]
+render_priority = 0
+shader = ExtResource("2_vw3ir")
+shader_parameter/leaf_color = Color(0.15294118, 0.48235294, 0.19215687, 1)
+shader_parameter/wind_direction = Vector2(1, 0.35)
+shader_parameter/wind_strength = 0.045
+shader_parameter/wind_speed = 0.55
+shader_parameter/wind_wavelength = 14.0
+shader_parameter/gust_amount = 0.45
+shader_parameter/gust_speed = 0.13
+shader_parameter/pivot_offset = 2.0
+shader_parameter/sway_scale = 1.0
+shader_parameter/flutter_strength = 0.012
+shader_parameter/flutter_speed = 3.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y6mfy"]
+render_priority = 0
+shader = ExtResource("2_vw3ir")
+shader_parameter/leaf_color = Color(0.15294118, 0.48235294, 0.19215687, 1)
+shader_parameter/wind_direction = Vector2(1, 0.35)
+shader_parameter/wind_strength = 0.045
+shader_parameter/wind_speed = 0.55
+shader_parameter/wind_wavelength = 14.0
+shader_parameter/gust_amount = 0.45
+shader_parameter/gust_speed = 0.13
+shader_parameter/pivot_offset = 2.0
+shader_parameter/sway_scale = 1.0
+shader_parameter/flutter_strength = 0.012
+shader_parameter/flutter_speed = 3.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fdo8b"]
+render_priority = 0
+shader = ExtResource("2_vw3ir")
+shader_parameter/leaf_color = Color(0.15294118, 0.48235294, 0.19215687, 1)
+shader_parameter/wind_direction = Vector2(1, 0.35)
+shader_parameter/wind_strength = 0.045
+shader_parameter/wind_speed = 0.55
+shader_parameter/wind_wavelength = 14.0
+shader_parameter/gust_amount = 0.45
+shader_parameter/gust_speed = 0.13
+shader_parameter/pivot_offset = 2.0
+shader_parameter/sway_scale = 1.0
+shader_parameter/flutter_strength = 0.012
+shader_parameter/flutter_speed = 3.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hn7gs"]
+render_priority = 0
+shader = ExtResource("2_vw3ir")
+shader_parameter/leaf_color = Color(0.15294118, 0.48235294, 0.19215687, 1)
+shader_parameter/wind_direction = Vector2(1, 0.35)
+shader_parameter/wind_strength = 0.045
+shader_parameter/wind_speed = 0.55
+shader_parameter/wind_wavelength = 14.0
+shader_parameter/gust_amount = 0.45
+shader_parameter/gust_speed = 0.13
+shader_parameter/pivot_offset = 2.0
+shader_parameter/sway_scale = 1.0
+shader_parameter/flutter_strength = 0.012
+shader_parameter/flutter_speed = 3.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bamy4"]
+render_priority = 0
+shader = ExtResource("2_vw3ir")
+shader_parameter/leaf_color = Color(0.15294118, 0.48235294, 0.19215687, 1)
+shader_parameter/wind_direction = Vector2(1, 0.35)
+shader_parameter/wind_strength = 0.045
+shader_parameter/wind_speed = 0.55
+shader_parameter/wind_wavelength = 14.0
+shader_parameter/gust_amount = 0.45
+shader_parameter/gust_speed = 0.13
+shader_parameter/pivot_offset = 2.0
+shader_parameter/sway_scale = 1.0
+shader_parameter/flutter_strength = 0.012
+shader_parameter/flutter_speed = 3.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4l4vi"]
+render_priority = 0
+shader = ExtResource("2_vw3ir")
+shader_parameter/leaf_color = Color(0.15294118, 0.48235294, 0.19215687, 1)
+shader_parameter/wind_direction = Vector2(1, 0.35)
+shader_parameter/wind_strength = 0.045
+shader_parameter/wind_speed = 0.55
+shader_parameter/wind_wavelength = 14.0
+shader_parameter/gust_amount = 0.45
+shader_parameter/gust_speed = 0.13
+shader_parameter/pivot_offset = 2.0
+shader_parameter/sway_scale = 1.0
+shader_parameter/flutter_strength = 0.012
+shader_parameter/flutter_speed = 3.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rk43k"]
+render_priority = 0
+shader = ExtResource("2_vw3ir")
+shader_parameter/leaf_color = Color(0.15294118, 0.48235294, 0.19215687, 1)
+shader_parameter/wind_direction = Vector2(1, 0.35)
+shader_parameter/wind_strength = 0.045
+shader_parameter/wind_speed = 0.55
+shader_parameter/wind_wavelength = 14.0
+shader_parameter/gust_amount = 0.45
+shader_parameter/gust_speed = 0.13
+shader_parameter/pivot_offset = 2.0
+shader_parameter/sway_scale = 1.0
+shader_parameter/flutter_strength = 0.012
+shader_parameter/flutter_speed = 3.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fddrh"]
+render_priority = 0
+shader = ExtResource("2_vw3ir")
+shader_parameter/leaf_color = Color(0.15294118, 0.48235294, 0.19215687, 1)
+shader_parameter/wind_direction = Vector2(1, 0.35)
+shader_parameter/wind_strength = 0.045
+shader_parameter/wind_speed = 0.55
+shader_parameter/wind_wavelength = 14.0
+shader_parameter/gust_amount = 0.45
+shader_parameter/gust_speed = 0.13
+shader_parameter/pivot_offset = 2.0
+shader_parameter/sway_scale = 1.0
+shader_parameter/flutter_strength = 0.012
+shader_parameter/flutter_speed = 3.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vp0k2"]
+render_priority = 0
+shader = ExtResource("2_vw3ir")
+shader_parameter/leaf_color = Color(0.15294118, 0.48235294, 0.19215687, 1)
+shader_parameter/wind_direction = Vector2(1, 0.35)
+shader_parameter/wind_strength = 0.045
+shader_parameter/wind_speed = 0.55
+shader_parameter/wind_wavelength = 14.0
+shader_parameter/gust_amount = 0.45
+shader_parameter/gust_speed = 0.13
+shader_parameter/pivot_offset = 2.0
+shader_parameter/sway_scale = 1.0
+shader_parameter/flutter_strength = 0.012
+shader_parameter/flutter_speed = 3.0
 
 [node name="Tree1" unique_id=636190950 instance=ExtResource("1_ypn1d")]
+
+[node name="Leaf" parent="." index="0" unique_id=984814254]
+transform = Transform3D(0.9859951, 0.087697335, 0.14185451, -0.15133713, 0.8278901, 0.5400881, -0.07007565, -0.553992, 0.82956743, 0.005245149, 1.5981587, 0.7428945)
+material_override = SubResource("ShaderMaterial_exwfp")
+
+[node name="Leaf_001" parent="." index="1" unique_id=1341053103]
+transform = Transform3D(1.1780808, -0.11063684, 0.31300524, 0.19842583, 1.1598436, -0.33686408, -0.2661578, 0.3749796, 1.1343005, 0.115644574, 1.8259085, 0.39710796)
+material_override = SubResource("ShaderMaterial_ooeka")
+
+[node name="Leaf_002" parent="." index="2" unique_id=1263033481]
+transform = Transform3D(1.0433873, 0.4835283, -0.3691862, -0.103707954, 0.8635998, 0.8379711, 0.5994519, -0.69220746, 0.7875668, 0.5279686, 1.640747, -0.30394787)
+material_override = SubResource("ShaderMaterial_04gi2")
+
+[node name="Leaf_003" parent="." index="3" unique_id=1000140183]
+transform = Transform3D(0.9997855, 0.0034076874, -0.020428723, -0.0033980412, 0.9999941, 0.0005068242, 0.020430328, -0.0004372883, 0.99979115, 0.25595838, 1.592068, 0.534105)
+material_override = SubResource("ShaderMaterial_1uxox")
+
+[node name="Leaf_004" parent="." index="4" unique_id=1343701151]
+transform = Transform3D(0.7569075, 0.57718176, 0.30651584, 0.3796508, -0.006585269, -0.9251065, -0.53193617, 0.8165891, -0.22411197, 0.60504395, 1.558606, -0.048421055)
+material_override = SubResource("ShaderMaterial_r8pke")
+
+[node name="Leaf_005" parent="." index="5" unique_id=929366961]
+transform = Transform3D(0.824067, 0.5529728, 0.123023145, -0.564992, 0.81806433, 0.1074925, -0.041200425, -0.15808815, 0.986565, 0.3043491, 1.5777059, -0.17406437)
+material_override = SubResource("ShaderMaterial_y6mfy")
+
+[node name="Leaf_006" parent="." index="6" unique_id=637333975]
+transform = Transform3D(0.97719765, 0.09274906, 0.19100325, -0.19742313, 0.728004, 0.6565321, -0.07815837, -0.67927, 0.72971463, -0.032844722, 1.6947975, 0.56662935)
+material_override = SubResource("ShaderMaterial_fdo8b")
+
+[node name="Leaf_007" parent="." index="7" unique_id=1921158460]
+transform = Transform3D(1.1579266, -0.12364466, 0.32042643, 0.24698777, 1.0827676, -0.47472766, -0.23865907, 0.5206547, 1.0633513, 0.273544, 1.8543427, 0.11240478)
+material_override = SubResource("ShaderMaterial_hn7gs")
+
+[node name="Leaf_008" parent="." index="8" unique_id=2083482702]
+transform = Transform3D(0.9927819, 0.07472487, 0.09380962, -0.10678899, 0.90679204, 0.40782884, -0.054590844, -0.4149029, 0.9082264, 0.27144927, 1.6422261, 0.07156497)
+material_override = SubResource("ShaderMaterial_bamy4")
+
+[node name="Leaf_009" parent="." index="9" unique_id=471480467]
+transform = Transform3D(1.0109965, 0.0034458993, -0.020657798, -0.003436145, 1.0112075, 0.0005125074, 0.020659423, -0.0004421918, 1.0110022, 0.54036576, 1.5016029, 0.44820118)
+material_override = SubResource("ShaderMaterial_4l4vi")
+
+[node name="Leaf_010" parent="." index="10" unique_id=1282023753]
+transform = Transform3D(0.74030334, 0.6310793, 0.23171066, -0.44787383, 0.20593429, 0.8700576, 0.50135815, -0.7478836, 0.4350977, 0.5421319, 1.5096248, 0.23757452)
+material_override = SubResource("ShaderMaterial_rk43k")
+
+[node name="Leaf_011" parent="." index="11" unique_id=107175184]
+transform = Transform3D(1.0109965, 0.0034458993, -0.020657798, -0.003436145, 1.0112075, 0.0005125074, 0.020659423, -0.0004421918, 1.0110022, 0.36713982, 1.6582731, 0.30886185)
+material_override = SubResource("ShaderMaterial_fddrh")
+
+[node name="Leaf_012" parent="." index="12" unique_id=273908313]
+transform = Transform3D(0.7569075, 0.57718176, 0.30651584, 0.3796508, -0.006585269, -0.9251065, -0.53193617, 0.8165891, -0.22411197, 0.4803512, 1.6998341, 0.022520646)
+material_override = SubResource("ShaderMaterial_vp0k2")
