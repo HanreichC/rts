@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cmd56ureu6qrf"]
 
 [ext_resource type="PackedScene" uid="uid://b3xv6o4a5pbbe" path="res://assets/environtment/trees/Tree1.glb" id="1_ypn1d"]
+[ext_resource type="Script" uid="uid://bjf1t67yqqkmh" path="res://Scripts/Environment/Harvestable.cs" id="2_ecw8i"]
 [ext_resource type="Shader" uid="uid://l8ewtbk3t11a" path="res://Shader/leaf_wind.gdshader" id="2_vw3ir"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_exwfp"]
@@ -199,6 +200,9 @@ shader_parameter/flutter_strength = 0.012
 shader_parameter/flutter_speed = 3.0
 
 [node name="Tree1" unique_id=636190950 instance=ExtResource("1_ypn1d")]
+script = ExtResource("2_ecw8i")
+ResourceType = 1
+ResourceAmount = 10.0
 
 [node name="Leaf" parent="." index="0" unique_id=984814254]
 transform = Transform3D(0.9859951, 0.087697335, 0.14185451, -0.15133713, 0.8278901, 0.5400881, -0.07007565, -0.553992, 0.82956743, 0.005245149, 1.5981587, 0.7428945)

@@ -38,6 +38,16 @@ public partial class BuildingBase : Node3DBase
 
     private PlayerResource GenerationResource => PlayerResources.Instance[GenerationType];
 
+    private float? _footprintRadius;
+
+    /// <summary>
+    /// How far the building's own body reaches out from its origin, measured once before it
+    /// spawns anything. Units are children of their building, so measuring on demand would
+    /// include whichever unit currently stands furthest away and the value would grow as they
+    /// walk off - a unit heading home would then already count as arrived where it stands.
+    /// </summary>
+    public float FootprintRadius => _footprintRadius ??= GetLocalRadius();
+
     public void EnsureBuildRequirementsMet()
     {
         if (CostResource is null
@@ -55,13 +65,13 @@ public partial class BuildingBase : Node3DBase
 
     public override void _Ready()
     {
+        SpawnUnits();
+
         if (GenerationResource is null
             || GenerationValue <= 0
             || GenerationInterval <= 0)
             return;
 
-        SpawnUnits();
-        
         var timer = new Timer
         {
             WaitTime = GenerationInterval,
@@ -75,25 +85,36 @@ public partial class BuildingBase : Node3DBase
     private void OnGenerationTimerTimeout()
         => GenerationResource.TryAdd(GenerationValue);
     
-    private void SpawnUnits()                                        
-    {                                                                
-        if (UnitScene == null || UnitCount <= 0) return;             
-                                                                   
-        var groundY = GetLocalBottomY();                                              
-                                                                   
-        for (var i = 0; i < UnitCount; i++)                          
-        {                                                            
-            if (UnitScene.Instantiate() is not UnitBase unit)        
-                continue;                                                        
-                                                                   
-            AddChild(unit);                   
-            unit.HomeBuilding = this;                                
-                                                                   
-            var angle = Mathf.Tau * i / UnitCount;                   
-            unit.Position = new Vector3(                             
-                Mathf.Cos(angle) * UnitSpawnRadius,                  
-                groundY - unit.GetLocalBottomY(),                    
-                Mathf.Sin(angle) * UnitSpawnRadius);                 
-        }                                                            
-    }   
+    /// <summary>
+    /// Places the building's units in a ring beside it. The ring starts at the building's own
+    /// footprint and grows by each unit's footprint, so <see cref="UnitSpawnRadius"/> is the
+    /// plain gap between building and unit instead of a per-model hardcoded distance.
+    /// </summary>
+    private void SpawnUnits()
+    {
+        if (UnitScene == null
+            || UnitCount <= 0)
+            return;
+
+        var groundY = GetLocalBottomY();
+        // Touched before the first unit is added, so the cached value is the bare building.
+        var buildingRadius = FootprintRadius;
+
+        for (var i = 0; i < UnitCount; i++)
+        {
+            if (UnitScene.Instantiate() is not UnitBase unit)
+                continue;
+
+            AddChild(unit);
+            unit.HomeBuilding = this;
+
+            var angle = Mathf.Tau * i / UnitCount;
+            var distance = buildingRadius + UnitSpawnRadius + unit.GetLocalRadius();
+
+            unit.Position = new Vector3(
+                Mathf.Cos(angle) * distance,
+                groundY - unit.GetLocalBottomY(),
+                Mathf.Sin(angle) * distance);
+        }
+    }
 }

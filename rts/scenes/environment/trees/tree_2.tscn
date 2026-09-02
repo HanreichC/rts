@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bwyp7njdx6tg6"]
 
 [ext_resource type="PackedScene" uid="uid://cgxjvgybwb4n1" path="res://assets/environtment/trees/Tree2.glb" id="1_k054u"]
+[ext_resource type="Script" uid="uid://bjf1t67yqqkmh" path="res://Scripts/Environment/Harvestable.cs" id="2_02jyf"]
 [ext_resource type="Shader" uid="uid://l8ewtbk3t11a" path="res://Shader/leaf_wind.gdshader" id="2_5fq1l"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fhbsj"]
@@ -19,6 +20,9 @@ shader_parameter/flutter_strength = 0.012
 shader_parameter/flutter_speed = 3.0
 
 [node name="Tree2" unique_id=900214070 instance=ExtResource("1_k054u")]
+script = ExtResource("2_02jyf")
+ResourceType = 1
+ResourceAmount = 10.0
 
 [node name="Leaf" parent="." index="0" unique_id=124265492]
 material_override = SubResource("ShaderMaterial_fhbsj")
