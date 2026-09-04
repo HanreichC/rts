@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b08o5oxqxnx3w" path="res://scenes/constructionSites/grass_construction_site.tscn" id="2_2ch8a"]
 [ext_resource type="PackedScene" uid="uid://bwyp7njdx6tg6" path="res://scenes/environment/trees/tree_2.tscn" id="3_2ch8a"]
 [ext_resource type="PackedScene" uid="uid://cmd56ureu6qrf" path="res://scenes/environment/trees/tree_1.tscn" id="4_fa72p"]
+[ext_resource type="Material" path="res://scenes/hexTiles/hex_highlight.tres" id="5_hilite"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ibg3g"]
 albedo_color = Color(0.5529412, 0.7607843, 0.20784314, 1)
@@ -31,6 +32,7 @@ radial_segments = 6
 
 [node name="HexTile" type="Node3D" unique_id=937024430 node_paths=PackedStringArray("Body")]
 script = ExtResource("1_yebk0")
+HighlightOverlay = ExtResource("5_hilite")
 ConstructionSiteScene = ExtResource("2_2ch8a")
 Body = NodePath("Body/Mesh")
 

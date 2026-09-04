@@ -25,7 +25,7 @@ public partial class GathererUnitBase : UnitBase
     public PlayerResource.PlayerResourceType HarvestType { get; set; }
 
     /// <summary>Seconds of work per swing.</summary>
-    [Export] public float HarvestDuration { get; set; } = 2f;
+    [Export] public float HarvestDuration { get; set; } = 7f;
 
     /// <summary>How much the unit carries per trip before it heads home.</summary>
     [Export] public float CarryCapacity { get; set; } = 10f;
@@ -37,7 +37,7 @@ public partial class GathererUnitBase : UnitBase
     [Export] public float SearchInterval { get; set; } = 1f;
 
     /// <summary>How close the unit gets before it counts as arrived.</summary>
-    [Export] public float ReachDistance { get; set; } = 0.6f;
+    [Export] public float ReachDistance { get; set; } = 0.3f;
 
     private State _state = State.Searching;
     private Harvestable _target;
@@ -78,9 +78,19 @@ public partial class GathererUnitBase : UnitBase
 
         _timer = SearchInterval;
 
-        // Searched around the home building, not around the unit, so a gatherer always stays
-        // tied to the building it came from instead of wandering off tree by tree.
-        var target = Harvestable.FindNearestFree(GetTree(), HomePosition, MovementRadius, HarvestType);
+        // Searched around the home building's tile, not around the unit, so a gatherer always
+        // stays tied to the building it came from instead of wandering off tree by tree.
+        var homeTile = HomeTile;
+
+        if (homeTile == null)
+            return;
+
+        var target = Harvestable.FindNearestFree(
+            GetTree(),
+            HomePosition,
+            homeTile.AxialCoordinates,
+            HomeBuilding?.HarvestRadius ?? 0,
+            HarvestType);
 
         if (target == null
             || !target.TryReserve(this))

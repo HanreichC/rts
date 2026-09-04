@@ -12,11 +12,19 @@ public partial class HexTileBase : Node3DBase
 {
 	[Export] public PackedScene ConstructionSiteScene { get; set; }
 
+	/// <summary>
+	/// Drawn on top of the tile's own material while the tile is highlighted. An overlay rather
+	/// than a material swap, so nothing has to remember and restore the tile's real material.
+	/// </summary>
+	[Export] public Material HighlightOverlay { get; set; }
+
 	private float? _surfaceHeight;
 	protected float SurfaceHeight => _surfaceHeight ??= GetSurfaceHeight();
 
 	public int Q { get; set; }
 	public int R { get; set; }
+
+	public Vector2I AxialCoordinates => new(Q, R);
 
 	protected ConstructionSiteBase ConstructionSite { get; private set; }
 
@@ -85,6 +93,12 @@ public partial class HexTileBase : Node3DBase
 			throw new BuildRequirementsAreNotMetException();
 	}
 
+
+	public void SetHighlighted(bool highlighted)
+	{
+		if (Body != null)
+			Body.MaterialOverlay = highlighted ? HighlightOverlay : null;
+	}
 
 	public void SetConstructionSiteVisible(bool visible)
 	{
@@ -158,5 +172,18 @@ public partial class HexTileBase : Node3DBase
 			GD.Print($"Bauvoraussetzungen nicht erfüllt: {building.CostValue} {building.CostType}");
 			building.QueueFree();
 		}
+	}
+
+	/// <summary>
+	/// Läuft die Elternkette hoch bis zur Tile, auf der dieser Node steht.
+	/// Null, wenn er auf keiner steht.
+	/// </summary>
+	public static HexTileBase FindOwner(Node node)
+	{
+		for (var current = node; current != null; current = current.GetParent())
+			if (current is HexTileBase tile)
+				return tile;
+
+		return null;
 	}
 }

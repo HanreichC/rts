@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://1vwqpkaq4jwe" path="res://Scripts/HexTiles/WaterHexTile.cs" id="1_2abg2"]
 [ext_resource type="PackedScene" uid="uid://rriyu64x2b5w" path="res://scenes/constructionSites/water_construction_site.tscn" id="2_vvwq4"]
 [ext_resource type="Shader" uid="uid://bwk1t3tndjuad" path="res://Shader/water.gdshader" id="3_k8fxv"]
+[ext_resource type="Material" path="res://scenes/hexTiles/hex_highlight.tres" id="9_hilite"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_go6ie"]
 render_priority = 0
@@ -31,6 +32,7 @@ radius = 5.0
 
 [node name="HexTile" type="Node3D" unique_id=937024430 node_paths=PackedStringArray("Body")]
 script = ExtResource("1_2abg2")
+HighlightOverlay = ExtResource("9_hilite")
 ConstructionSiteScene = ExtResource("2_vvwq4")
 Body = NodePath("Body/Mesh")
 

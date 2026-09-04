@@ -1,14 +1,13 @@
 using Godot;
 using rts.scripts.Buildings;
+using rts.scripts.hexTiles;
 
 namespace rts.scripts.Units;
 
 public partial class UnitBase : Node3DBase
 {
     [ExportGroup("Movement")]
-    [Export] public float MovementRadius { get; set; }
-
-    [Export] public float MovementSpeed { get; set; } = 2f;
+    [Export] public float MovementSpeed { get; set; } = 0.5f;
 
     public BuildingBase HomeBuilding { get; set; }
 
@@ -19,6 +18,14 @@ public partial class UnitBase : Node3DBase
     public Vector3 HomePosition => HomeBuilding != null && IsInstanceValid(HomeBuilding)
         ? HomeBuilding.GlobalPosition
         : GlobalPosition;
+
+    /// <summary>
+    /// The tile this unit works around, and the center of its home building's harvest radius.
+    /// Falls back to the tile the unit itself stands on, for the same reason as
+    /// <see cref="HomePosition"/>.
+    /// </summary>
+    public HexTileBase HomeTile => HexTileBase.FindOwner(
+        HomeBuilding != null && IsInstanceValid(HomeBuilding) ? HomeBuilding : this);
 
     /// <summary>
     /// Walks toward a global target on the XZ plane and reports whether the unit has arrived.

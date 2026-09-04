@@ -20,6 +20,7 @@ GenerationInterval = 5.0
 UnitScene = ExtResource("2_3nb1p")
 UnitCount = 1
 UnitSpawnRadius = 0.6
+HarvestRadius = 1
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=176072213]
 

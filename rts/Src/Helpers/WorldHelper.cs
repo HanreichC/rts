@@ -34,4 +34,12 @@ public static class WorldHelper
 
         return new Vector2I(q, r);
     }
+
+    /// <summary>
+    /// Wie viele Hex-Schritte zwischen zwei Axial-Koordinaten liegen.
+    /// </summary>
+    public static int AxialDistance(Vector2I a, Vector2I b)
+        => (Mathf.Abs(a.X - b.X)
+            + Mathf.Abs(a.X + a.Y - b.X - b.Y)
+            + Mathf.Abs(a.Y - b.Y)) / 2;
 }

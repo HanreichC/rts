@@ -86,6 +86,8 @@ public partial class HexGrid : Node3D
     public void ToggleBuildMode()
     {
         _buildMode = !_buildMode;
+        ClearHarvestRadius();
+
         foreach (var tile in _tiles.Values)
             tile.SetConstructionSiteVisible(_buildMode);
 
@@ -154,18 +156,44 @@ public partial class HexGrid : Node3D
         CloseHexTilePicker();
     }
 
+    /// <summary>
+    /// Lights up the tiles the clicked tile's building can harvest from. Only real tiles count:
+    /// ghosts are not built yet, so nothing can be gathered there.
+    /// </summary>
+    private void ShowHarvestRadius(Vector2I key)
+    {
+        if (!_tiles.TryGetValue(key, out var clicked)
+            || clicked.Building == null)
+            return;
+
+        foreach (var (tileKey, tile) in _tiles)
+            tile.SetHighlighted(
+                WorldHelper.AxialDistance(key, tileKey) <= clicked.Building.HarvestRadius);
+    }
+
+    private void ClearHarvestRadius()
+    {
+        foreach (var tile in _tiles.Values)
+            tile.SetHighlighted(false);
+    }
+
     private void OnBuildButtonPressed() => ToggleBuildMode();
 
     public void HandleClick(Vector3 worldPosition)
     {
         CloseHexTilePicker();
+        ClearHarvestRadius();
+
         foreach (var tile in _tiles)
             tile.Value.CloseConstructionSitePicker();
 
         var hex = WorldHelper.WorldToAxial(worldPosition, HexSize);
 
         if (!_buildMode)
+        {
+            ShowHarvestRadius(hex);
             return;
+        }
 
         if (_ghostTiles.TryGetValue(hex, out var selectedGhostHexTile))
         {

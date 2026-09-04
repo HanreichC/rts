@@ -31,6 +31,12 @@ public partial class BuildingBase : Node3DBase
     [Export]
     public float UnitSpawnRadius { get; set; }
 
+    /// <summary>
+    /// Radius in HexTiles
+    /// </summary>
+    [ExportGroup("Harvesting")]
+    [Export] public int HarvestRadius { get; set; } = 1;
+
     private PlayerResource CostResource => PlayerResources.Instance[CostType];
 
     private static PlayerResource BuildingResource =>
@@ -84,7 +90,7 @@ public partial class BuildingBase : Node3DBase
 
     private void OnGenerationTimerTimeout()
         => GenerationResource.TryAdd(GenerationValue);
-    
+
     /// <summary>
     /// Places the building's units in a ring beside it. The ring starts at the building's own
     /// footprint and grows by each unit's footprint, so <see cref="UnitSpawnRadius"/> is the

@@ -12,13 +12,8 @@ height = 0.6
 
 [node name="Node3D" type="Node3D" unique_id=1065882955]
 script = ExtResource("1_oxvci")
-MovementRadius = 10.0
-MovementSpeed = 2.0
 HarvestType = 1
-HarvestDuration = 2.0
-CarryCapacity = 10.0
-SearchInterval = 1.0
-ReachDistance = 0.6
+SearchInterval = 4.0
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1456898347]
 

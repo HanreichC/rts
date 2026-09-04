@@ -1,5 +1,7 @@
 using System.Linq;
 using Godot;
+using rts.Helpers;
+using rts.scripts.hexTiles;
 using rts.scripts.Player;
 using rts.scripts.Units;
 
@@ -22,6 +24,12 @@ public partial class Harvestable : Node3DBase
 
     [Export] public float ResourceAmount { get; set; } = 10f;
 
+    /// <summary>
+    /// The tile this node stands on. Resolved once: a harvestable never moves, and the search
+    /// below would otherwise walk the parent chain of every node in the group on every scan.
+    /// </summary>
+    public HexTileBase Tile { get; private set; }
+
     // The unit currently working here. Without this, every idle unit would pick the same nearest
     // node and they would all pile up on one tree.
     private UnitBase _worker;
@@ -30,7 +38,11 @@ public partial class Harvestable : Node3DBase
 
     private bool IsReserved => _worker != null && IsInstanceValid(_worker);
 
-    public override void _Ready() => AddToGroup(GroupName);
+    public override void _Ready()
+    {
+        AddToGroup(GroupName);
+        Tile = HexTileBase.FindOwner(this);
+    }
 
     public bool TryReserve(UnitBase unit)
     {
@@ -74,21 +86,27 @@ public partial class Harvestable : Node3DBase
     }
 
     /// <summary>
-    /// Finds the closest unclaimed node of the given type within <paramref name="radius"/> of
-    /// <paramref name="center"/>. Distances are measured on the XZ plane only, because a node's
-    /// origin sits at its base while the searching unit stands on the tile surface.
+    /// Finds the closest unclaimed node of the given type standing on a tile at most
+    /// <paramref name="tileRadius"/> hex steps from <paramref name="centerTile"/>. Reach is
+    /// counted in whole tiles so it matches the highlighted tiles exactly, while
+    /// <paramref name="center"/> only picks the nearest of the candidates - measured on the XZ
+    /// plane only, because a node's origin sits at its base while the searching unit stands on
+    /// the tile surface.
     /// </summary>
     public static Harvestable FindNearestFree(
         SceneTree tree,
         Vector3 center,
-        float radius,
+        Vector2I centerTile,
+        int tileRadius,
         PlayerResource.PlayerResourceType type)
         => tree?.GetNodesInGroup(GroupName)
             .OfType<Harvestable>()
             .Where(harvestable => harvestable.ResourceType == type
                                   && !harvestable.IsDepleted
                                   && !harvestable.IsReserved
-                                  && FlatDistanceTo(center, harvestable.GlobalPosition) <= radius)
+                                  && harvestable.Tile != null
+                                  && WorldHelper.AxialDistance(centerTile, harvestable.Tile.AxialCoordinates)
+                                  <= tileRadius)
             .MinBy(harvestable => FlatDistanceTo(center, harvestable.GlobalPosition));
 
     private static float FlatDistanceTo(Vector3 from, Vector3 to)
